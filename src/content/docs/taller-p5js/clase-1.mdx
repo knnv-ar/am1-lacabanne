@@ -1,0 +1,832 @@
+---
+title: 'Clase 1'
+description: 'Clase 1'
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './ui.jpg';
+import img2 from './p5js-en-editor.png';
+import img3 from './sintaxis.png';
+
+import img4 from './dos-y-tres-d.png';
+import img5 from './coords.png';
+import img6 from './point.png';
+import img7 from './line.png';
+import img8 from './rect.png';
+import img9 from './ellipse.png';
+import img10 from './triangle.png';
+import img11 from './quad.png';
+import img12 from './bezier.png';
+import img13 from './orden-1.png';
+import img14 from './orden-2.png';
+import img15 from './contornos.png';
+import img16 from './terminales.png';
+import img17 from './esquinas.png';
+import img18 from './modos.png';
+import img19 from './center.png';
+import img20 from './corners.png';
+
+import img21 from './greyscale.png';
+import img22 from './last.png';
+import img23 from './colorModels.png';
+import img24 from './hsb.png';
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=0&end=10"/>
+
+## ¿Qué es p5.js?
+
+`p5.js` es una biblioteca de JavaScript para la programación creativa, que busca hacer que programar sea accesible e inclusivo para artistas, diseñadores, educadores, principiantes y cualquier otra persona. Es gratuito y de código abierto bajo la ideología de que el software y las herramientas para aprenderlo deben ser accesibles para todos.
+
+Usando la metáfora de sketch (boceto o bosquejo), `p5.js` tiene un conjunto completo de funcionalidades para dibujar. Sin embargo, no estás limitado solo a dibujar en tu lienzo. Podés tomar toda la página del navegador como tu sketch, incluyendo los objetos HTML5 para texto, entrada, video, cámara web y sonido.
+
+`p5.js` sirve para escribir software que produce imágenes, animaciones e interacciones. La motivación es escribir una línea de código y que un círculo aparezca en la pantalla. Añadiendo unas pocas líneas de código, ahora el círculo sigue al mouse. Otra línea de código, y el círculo cambia de color cuando presionas el mouse. A esto se le llama realizar un sketch con código. Escribís una línea, luego añadís otra, luego otra, y así. El resultado es un programa creado parte por parte.
+
+`p5.js` está inspirado y guiado por otro proyecto, que empezó hace alrededor de 15 años. En el año 2001, Casey Reas y Ben Fry empezaron a trabajar en una nueva plataforma para hacer más fácil la programación de gráficas interactivas; la nombraron Processing. Ellos estaban frustrados con lo difícil que era escribir este tipo de software con los lenguajes que normalmente usaban (C++ y Java) y fueron inspirados por lo simple que era escribir programas interesantes con los lenguajes de su niñez (Logo y BASIC). Su mayor influencia fue Design by Numbers (DBN), un lenguaje que ellos en ese tiempo estaban manteniendo y enseñando (y que fue creado por su tutor de investigación, John Maeda). Con Processing, Ben y Casey estaban buscando una mejor manera para probar sus ideas fácilmente y en código, en vez de solamente conversar sobre ellas o pasar demasiado tiempo programándolas en C++. Su otro objetivo fue construir un lenguaje para enseñar programación a estudiantes de diseño y de arte y ofrecerle a estudiantes más avanzados una manera más fácil de trabajar con gráficas. Esta combinación es una desviación positiva de la manera en que usualmente se enseña programación. Los nuevos usuarios comienzan concentrándose en gráficos e interacción en vez de estructuras de datos y resultados en forma de texto en la consola. A través de los años, Processing se ha transformado en una gran comunidad. Es usado en salas de clases a lo largo del mundo, en planes de estudios de artes, humanidades y ciencias de la computación y de forma profesional. `p5.js` nace con el objetivo original de Processing, hacer que programar sea accesible para artistas, diseñadores, educadores y principiantes, y luego lo reinterpreta para la web actual usando JavaScript y HTML. El desarrollo de `p5.js` ha sido como reunir mundos distintos. Para facilitar la transición a la web de los usuarios de la comunidad existente de Processing, se siguieron la sintaxis y las convenciones de Processing tanto como fue posible. Sin embargo, `p5.js` está construido en JavaScript, mientras que Processing está construido en un lenguaje llamado Java. Estos dos lenguajes tienen distintos patrones y funciones, así que en ocasiones hay un alejamiento de la sintaxis ya familiar de Processing. También fue importante que `p5.js` pudiera ser integrado sin problemas a las existentes características, herramientas y estructuras de la web, para así atraer a usuarios familiarizados con la web, pero sin experiencia en programación creativa. Sintetizar todos estos factores fue un desafío, pero el objetivo de unir estas estructuras proporcionó un camino claro a seguir en el desarrollo de `p5.js`. Una primera versión beta fue lanzada en agosto del 2014. Desde ese entonces, ha sido usado e integrado a programas de estudios en todo el mundo.*
+
+#### Algunos Ejemplos
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=WSIYSImw2IOP7C8M&amp;start=436" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+https://www.openprocessing.org/sketch/748916
+
+https://www.openprocessing.org/sketch/486307
+
+https://www.openprocessing.org/sketch/392202
+
+https://www.openprocessing.org/sketch/760858
+
+https://www.openprocessing.org/sketch/148870
+
+https://www.openprocessing.org/sketch/897940
+
+https://www.openprocessing.org/sketch/908804
+
+https://www.openprocessing.org/sketch/566877
+
+http://www.generative-gestaltung.de/2/sketches/?01_P/P_2_2_3_02
+
+http://www.generative-gestaltung.de/2/sketches/?01_P/P_2_2_6_03
+
+https://editor.p5js.org/generative-design/sketches/P_3_1_3_04
+
+http://www.generative-gestaltung.de/2/sketches/?01_P/P_4_1_2_01
+
+https://editor.p5js.org/generative-design/sketches/P_4_3_3_01
+
+http://www.generative-gestaltung.de/2/sketches/?02_M/M_1_5_02
+
+---
+## 1. Obtención - Instalación
+
+### 1.1. Trabajando con p5.js en línea
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=5tU9SyJES5zm-3KP&amp;start=715" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+La forma mas simple y rápida de comenzar es a través del [editor online de p5.js](https://editor.p5js.org/). A través de esta herramienta podremos probar nuestros sketches, completamente online sin necesidad de descargar nada adicional.
+
+Registrarnos como usuarios nos dará la posibilidad de guardar y compartir sketches, lo cual es recomendable. Veamos la interfaz en detalle:
+
+<Image src={img1} alt="" width="700"/>
+
+1. El panel de código. Acá es donde se escribe el código de p5.js
+
+2. El panel de previsualización. Acá es donde se verá nuestro sketch en base al código que escribimos en el panel 1.
+
+3. La consola. Nos muestra mensajes con los posibles errores que tenga nuestro código. Además podemos imprimir nuestros propios mensajes lo que nos servirá para depurar nuestro sketch (esto será explicado más adelante).
+
+4. Controles. Presionando el botón "Play" ( ▶ ) podremos ejecutar nuestro sketch. Presionando el boton "Stop" ( ⬛︎ ) lo detenemos. La opción "Auto-refresh" si está marcada va a hacer que el panel de previsualización se actualice periódicamente a medida que vamos escribiendo nuestro código, sin necesidad de ejecutarlo o detenerlo con los botones de Play y Stop. A la derecha de esto, se encuentra el nombre de nuestro sketch, el cual es generado aleatoriamente. Tocando en el icono del lápiz podemos escribir un nombre personalizado.
+
+5. Menú. En "File" tendremos la posibilidad de crear, guardar y abrir nuestros archivos. Una vez guardado, podremos compartir nuestro sketch, duplicarlo a agregarlo a una colección (que pueden ser creadas con las opciones del punto 6) También podremos ver infinidad de ejemplos que han subido otros usuarios y descargar el sketch a nuestra computadora. En "Edit" se encuentra la opción "Tidy Code" que nos tabulará correctamente nuestro código, ordenandolo para una mejor comprensión. Las opciones de "Find" nos sirve para buscar palabras específicas en nuestro código, lo cual es muy util cuando nuestros programas empiecen a crecer en cantidad de lineas. En "Sketch" podemos agregar archivos y carpetas a nuestro sketch, la funcionalidad de esto se explicara mas adelante. (Se puede ver la jerarquia de archivos de nuestro sketch haciendo click en el simbolo &gt; debajo del botón Play). También en "Sketch" tendremos las opciones de ejecutar y detener nuestro sketch tal como lo hacen los botones Play y Stop. Por ultimo la opción "Help" nos muestra la lista de atajos del teclado, el acceso a la referencia de p5.js (donde se explica cada una de las funciones) y links útiles en la opción "About".
+
+6. En el icono dentado de la derecha tendremos opciones de personalización visual del editor (color, tamaño de la fuente, etc) y opciones de accesibilidad. En el desplegable "My Account" tendremos links de acceso a nuestros sketches guardados, a nuestras colecciones donde tambien podremos agregar nuevas, para luego añadir sketches a estas como se explica en el punto 5. También se encuentra la opción "My Assets" que nos da la posibilidad de cargar archivos externos de medios como audios, videos e imagenes para utilizar en nuestros programas (veremos ejemplos de utilización de medios en las clases siguientes). Por ultimo tendremos opciones para cambiar nuestro nombre de usuario y password en la opción "Settings" y la opción de cerrar sesión.
+
+En el editor online de p5.js vamos a poder ejecutar casi la totalidad de ejemplos y ejercicios que veremos a lo largo del curso. Pero puede haber situaciones en las que se desee trabajar sin la necesidad de estar conectados a Internet. Para eso veremos como generar Sketches y guardarlos localmente. Además estarán embebidos los ejemplos dentro de la plataforma para poder ir practicando a medida que se va avanzando como se muestra a continuación:
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/yDdIda7CB" width="100%" height="500px"></iframe>
+</div>
+
+### 1.2. Trabajando con p5.js localmente
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=5tU9SyJES5zm-3KP&amp;start=1367" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Antes que nada, vas a necesitar un editor de código. Un editor de código es similar a un editor de texto (como Bloc de notas), excepto que posee una funcionalidad especial para editar código en vez de texto plano. Podés usar cualquier editor que quieras; recomiendo [Sublime Text](https://www.sublimetext.com). También podés usar [Atom](https://atom.io/) o [Brackets](http://brackets.io/). Todos descargables de forma gratuita.
+
+Una vez instalado el editor de código que hayas elegido,&nbsp; dirigite a [https://p5js.org/es/download/](https://p5js.org/es/download/) y selecciona: `p5.js completo`. Descargá y extraé el archivo zip en la ubicación que te sea más cómoda de tu disco duro.
+
+El directorio p5 contiene un proyecto de ejemplo con el que puedes empezar a trabajar. Abri tu editor de código. Luego abri el directorio llamado emptyexample (ejemplo vacio) en tu editor de código. En la mayoría de los editores de código, podés hacer esto yendo al menú Archivo, usando la opción Abrir y luego seleccionado el directorio empty-example.
+
+Cuando abras el directorio empty-example, lo más probable es que veas una barra lateral con el nombre del directorio en la parte superior y una lista con los archivos contenidos en este directorio. Si haces click en alguno de estos archivos, verás los contenidos del archivo aparecer en el área principal.
+
+<Image src={img2} alt="" width="600"/>
+
+Un Sketch en p5.js está compuesto de varios lenguajes distintos usados en conjunto. HTML (HyperText Markup Language) brinda la columna vertebral, enlazando todos los otros elementos en la página. JavaScript (y la biblioteca p5.js) te permiten crear gráficas interactivas que puedes mostrar en tu página HTML. A veces se usa CSS (Cascading Style Sheets) para definir elementos de estilo en la página HTML.
+
+Si revisas el archivo index.html, te darás cuenta que contiene un poco de código HTML. Este archivo brinda la estructura a tu proyecto, enlazando la biblioteca p5.js y otro archivo llamado sketch.js, donde tú escribirás tu propio programa. El código que crea estos enlaces tiene la siguiente apariencia:
+
+```html
+<script language="javascript" type="text/javascript" src="../p5.js"></script>
+<script language="javascript" type="text/javascript" src="sketch.js"></script>
+```
+No necesitas hacer nada en el código HTML por el momento. 
+
+A continuación,haz click en sketch.js y revisa el código:
+
+```js
+function setup() {
+  // put setup code here
+}
+function draw() {
+  // put drawing code here
+}
+```
+
+Este es el archivo sobre el que escribirás tu sketch. Una vez escrito el código lo podés guardar con la opción Archivo → Guardar.
+
+Para crear un Sketch nuevo La forma más simple es ubicando el directorio empty-example en tu explorador de archivos, luego copiar y pegarlo para crear un segundo empty-example. Podes renombrar el directorio como quieras (por ejemplo, Proyecto-2).
+
+Ahora podés abrir este directorio en tu editor de código y empezar a hacer un nuevo sketch. Cuando quieras verlo en el navegador, abrí el archivo `index.html` ubicado en tu nuevo directorio Proyecto-2.
+
+Para ver el código en ejecución, podes abrir el archivo `index.html`, ya sea de la carpeta "empty-example" o "Proyecto-2" o cualquiera que hayas en creado, en cualquier navegador web (como Chrome, Firefox o Safari). 
+
+Simplemente navegá a esa carpeta en tu explorador de archivos y hacé doble click en `index.html` para abrirlo. Otra alternativa es hacerlo desde el navegador web, escogiendo Archivo→Abrir y seleccionar el archivo `index.html`.
+
+Por supuesto, al abrir este archivo en el navegador aun no vas a ver nada, porque no agregamos ningún código, así que comencemos a entender cómo es este nuevo lenguaje.
+
+---
+
+## 2. Elementos del código
+
+### 2.1. Sintaxis General
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=_NbmPlLiw4eCoTfM&amp;start=1664" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+El hecho de crear un programa implica recurrir a la escritura y aprender un lenguaje. Similar a cuando aprendemos un nuevo lenguaje oral o escrito, necesitamos aprender una sintaxis y una lógica. Escribir en un lenguaje humano es muy complicado. Posee ambigüedad en las palabras, y mucha flexibilidad para la construcción de párrafos. En ese sentido, el lenguaje de máquina es más sencillo, pero posee una dificultad clara: la lógica de la programación. Usualmente, un ser humano puede percatarse de un error de sintaxis y darlo por alto, restándole parcial o completa importancia. Sin embargo, en un lenguaje de máquina las cosas son de una forma o de otra: O está bien, o está mal.
+
+Por esto hay que tener principal atención en la sintaxis correcta a utilizar. Ejemplos de esto son las mayúsculas, para p5.js no es lo mismo una `C` que una `c`, por lo tanto no será lo mismo escribir `createcanvas` que escribir `createCanvas`. 
+
+### 2.2. Instrucciones
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=_NbmPlLiw4eCoTfM&amp;start=1776" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Si utilizamos una metáfora del lenguaje humano, podemos entender a la instrucción como si fuera una oración en la que le pedimos a nuestro programa que haga algo.
+
+Dentro de una instrucción se pueden realizar muchas acciones. Las instrucciones se escriben una tras otra y cada una representa una acción que nuestro programa irá interpretando de arriba a abajo y de izquierda a derecha, de a una a la vez. 
+
+Las instrucciones siempre se deben terminan con el signo punto y coma (;), por lo que no es importante si una instrucción está escrita en varias líneas o con espacios en blanco, p5.js interpreta que una instrucción comienza desde el último punto y coma hasta el próximo.
+
+Algunas de las instrucciones posibles son:
+
+- Ejecutar una función,
+- Definir una variable o array,
+- Asignar un valor a una variable (o valores a un array),
+- Construir un objeto
+
+Iremos viendo estas instrucciones a lo largo del desarrollo del curso. Por ahora comenzaremos con las funciones.
+
+### 2.3. Funciones
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=_NbmPlLiw4eCoTfM&amp;start=1875" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Las funciones permiten dibujar formas, colores, realizar cálculos matemáticos, entre otras variadas acciones.
+
+Por lo general se comienzan en minúsculas y seguidas por paréntesis. Algunas funciones aceptan parámetros, los cuales se escriben entre los paréntesis. Si acepta más de uno, son separados por una coma (,). Por ejemplo: `createCanvas(500, 600);`
+
+
+### 2.4. Bloques de programación
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=_NbmPlLiw4eCoTfM&amp;start=2023" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Las funciones para ser ejecutadas en nuestro programa deben estar incluidas dentro de un bloque de programación. Como vimos en los ejemplos del editor de p5.js y los locales, ambos vienen con dos bloques predefinidos `setup()` y `draw()`. Es condición fundamental para que nuestro programa funcione que tenga uno de estos dos bloques y es condición fundamental para que nuestras funciones se ejecuten que estén dentro de la llave de apertura y cierre de alguno de estos bloques.
+
+Veremos las características específicas de cada uno de estos en las clases posteriores. Por ahora nos limitaremos a escribir todas nuestras funciones dentro del bloque setup();
+
+
+### 2.5. Tamaño y fondo 
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=_NbmPlLiw4eCoTfM&amp;start=2091" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Dibujar en una pantalla de computadora es como trabajar en papel cuadriculado. Una pantalla de computadora es una matriz de elementos de luz llamados pixeles. 
+
+Para comenzar nuestro programa primero debemos establecer algunas características del entorno donde se va a desarrollar, como lo son el tamaño de la pantalla (es decir, la cantidad de pixeles de nuestra pantalla que vamos a utilizar) y por otro lado el color de  fondo que tendrá nuestra pantalla. 
+
+Para esto utilizamos dos funciones básicas: `createCanvas()` y `background()`.
+
+`createCanvas()`, nos permite definir las dimensiones de la ventana donde se muestran los  eventos, vendría a ser nuestro lienzo donde vamos a plasmar las figuras, como dijimos anteriormente las funciones pueden recibir parámetros que pondremos entre paréntesis separados por coma, en el caso de `createCanvas()` recibe dos parámetros numéricos, el primero corresponde a la cantidad de pixeles de ancho va ocupar el lienzo en nuestra pantalla y el segundo a la cantidad de pixeles de alto. `createCanvas(ancho, alto);` 
+
+Si no utilizamos la función `createCanvas()` el tamaño de lienzo por defecto va a ser de 100x100 pixeles.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/VwR7Wuejn" width="100%" height="500px"></iframe>
+</div>
+
+Como vemos en el ejemplo anterior, pareciera que no estamos visualizando nada. ¿Esto quiere decir que nuestro programa no funciona? No. 
+
+Nuestro programa funciona correctamente, pero como estamos visualizando nuestro lienzo sobre un fondo de pantalla gris y el color por defecto de nuestro lienzo también es gris, no podemos diferenciar nuestro lienzo del fondo en el que se encuentra.
+
+Para esto existe la función background. Con esta función podemos establecer un color de fondo pleno que ocupe todo nuestro lienzo.
+
+En el caso de background el argumento es un código de color determinado (en este caso valores desde 0 -negro- hasta 255 -blanco- con grises intermedios).
+
+Más adelante veremos cómo trabajar con más colores, pasando más parámetros a la función background.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/d814mBEfd" width="100%" height="500px"></iframe>
+</div>
+
+> Para jugar: probá cambiandole los números dentro de la función createCanvas y de la función background. 
+
+### 2.6. Comentarios y Consola
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=_NbmPlLiw4eCoTfM&amp;start=2733" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+El ejemplo anterior es bastante simple y corto, por lo que su interpretación no requiere demasiado esfuerzo. Pero a medida que nuestros programas empiecen a crecer, va a ser mas difícil interpretarlos de forma rápida, o recordar después de un tiempo lo que hace una parte específica del código o mismo que alguien más pueda entender nuestro código si lo compartimos.
+
+Para facilitar esto tenemos dos herramientas fundamentales en todos los lenguajes de programación, como son los comentarios y la consola.
+
+Los comentarios son notas que podemos agregar en nuestro código que van a ser ignorados por nuestro programa, pero que nosotros podemos ver en el editor. 
+
+
+Estos pueden ser de una solo línea utilizando dos barras:
+
+```js
+//esto es un comentario que cubre toda la línea
+```
+
+O multilínea utilizando barra y asterisco para la apertura y asterisco y barra para el cierre:
+
+```js
+/*este es
+un comentario
+multilinea*/
+```
+
+Al ser ignorados por el programa, también son útiles para marcar como comentario algunas instrucciones de nuestro código lo que nos permitirá aislar parte del programa para entenderlo mejor o depurarlo en busca de algún error que hubiese.
+
+Otra herramienta que nos permite depurar nuestro código es la consola. Como vimos, el editor online tiene un sector específico para la consola, donde nos informara si el programa tiene algún error al ser ejecutado.
+
+Pero además de esto, tenemos la posibilidad de escribir nuestros propios mensajes en la consola.
+
+Esto es util ya que cuando un programa es ejecutado, la computadora realiza acciones a tal velocidad que es imposible percibirlas para el ojo humano. Por lo tanto, es importante mirar la consola, no solo para errores, sino también para entender qué ocurre detrás del programa.
+
+Para utilizar la consola tenemos la función `console.log()`; a la que le podemos pasar cualquier texto que queramos como parámetro encerrado entre comillas y este será mostrado en la consola.
+
+De esta forma podemos utilizar la consola no solo para mostrar texto sino también, cuando avancemos y nuestros programas sean mas complejos, para mostrar el contenido de una variable, confirmar un evento o chequear datos externos que están ingresando. 
+
+Por ahora nos limitamos a imprimir texto y a tener en cuenta que tanto imprimir en la consola como utilizar los comentarios pueden hacer más clara la lectura del código.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/YDlpbUAs0" width="100%" height="500px"></iframe>
+</div>
+
+> Para jugar: Intenta cambiar el texto de los comentarios. Intenta marcar como comentario alguna función. Imprimí otros mensajes en la consola
+
+### 2.7. Ejemplos y Referencia 
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1PFSn4DUYFg?si=_NbmPlLiw4eCoTfM&amp;start=3197" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Aprender a programar con p5.js involucra explorar mucho código: ejecutarlo, alterarlo, romperlo y mejorarlo hasta que lo hayas reconfigurado y hecho algo novedoso. 
+
+Con esto en mente, el sitio web de p5.js tiene docenas de ejemplos que demuestran diferentes características. Visita la página de Ejemplos para verlos. https://p5js.org/es/examples/. 
+
+Podés jugar con ellos editando el código en la página y luego haciendo click en "Ejecutar". Los ejemplos están agrupados en distintas categorías según su función, como forma, color, e imagen. Encuentra un tema que te interese en la lista y prueba un ejemplo. 
+
+Otra página que tiene muchos ejemplos y un editor online para poder probarlos y modificarlos es https://www.openprocessing.org/
+
+Si ves una parte del programa con la que no estás familiarizado o sobre la que quieres aprender su funcionalidad, visita la Referencia de p5.js. https://p5js.org/es/reference/
+
+La Referencia de p5.js explica cada elemento de código con una descripción y ejemplos para saber con seguridad cual es la correcta sintaxis de cada una de las funciones, la cantidad de parámetros que recibe y la funcionalidad de cada parámetro.
+
+Por ejemplo, no recordamos cual de los parámetros de la función `createCanvas()` es el alto y cual es el ancho de la pantalla.
+
+Para esto visitamos la referencia, buscamos la función y encontraremos toda la información necesaria de la función deseada.
+
+<Image src={img3} alt="" width="600"/>
+
+---
+
+## 3. Dibujar
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+En este apartado conoceremos las figuras primitivas e iremos agregándolas a un ejemplo en el construiremos paso a paso un dibujo. Finalizado este apartado y el siguiente de color, podremos comprender como se genera el siguiente sketch:
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/embed/AhP3fHN4E" width="500" height="600"></iframe>
+</div>
+
+### 3.1. Coordenadas 
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=120" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Ya vimos como crear nuestro lienzo y ponerle un color de fondo. Ahora hay que saber cómo interpretarlo, por que va a ser necesario explicarle a p5.js donde queremos las cosas que dibujemos.
+
+El lienzo que creamos se debe comprender como un sistema de coordenadas X e Y. El eje X es el horizontal y el eje Y es el vertical.
+
+También hay que comprender que en p5.js el origen de este eje se encuentra en la esquina izquierda superior de la ventana.
+
+Además, si trabajamos en tres dimensiones tendremos un nuevo eje de coordenadas que será el Z e indicará la profundidad.
+
+<Image src={img4} alt="" width="600" />
+
+### 3.2 Pixels
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=201" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Como dijimos anteriormente, una pantalla de una pc es una grilla de pequeños elementos que brillan, que denominamos pixeles.
+
+Las pantallas pueden encontrarse en muchas resoluciones: 800x600, 1024x768, 1280x1024, etc.
+
+Estos tamaños definen la cantidad de pixeles que tiene una pantalla, y que justamente nos va a dar a nosotros una idea de la cantidad de puntos que podemos colorear.
+
+Las imágenes en una pc son dibujadas pixel por pixel . Mientras más cantidad de pixeles, y más pequeños sean, podemos dibujar más cosas y con mayor definición.
+
+Las resoluciones también se pueden medir por cantidad de pixeles por pulgada, lo que da una idea de con qué resolución podemos crear una imagen.
+
+### 3.3 Posición
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=256" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Una posición de la pantalla está comprendida por el eje de coordenadas X y el eje de coordenadas Y. El eje de coordenadas X es la distancia horizontal desde el origen y el eje de coordenadas Y es la distancia vertical.
+
+Como dijimos anteriormente, en p5.js, el origen es la esquina superior izquierda de la ventana de representación y coordina los valores hacia abajo y hacia la derecha. La imagen de la izquierda muestra el sistema de coordenadas, y la imagen de la derecha muestra varias posiciones en la rejilla:
+
+<Image src={img5} alt="" width="600" />
+
+Una posición se escribe con el valor del eje X seguido del valor del eje Y, separados por una coma. La notación para el origen es (0,0), la coordenada (50,50) tiene 50px de coordenada X y 50px de coordenada Y, y la coordenada (20,60) tiene 20px de coordenada X y 60px de coordenada Y. Si el tamaño de nuestro lienzo es de 100 píxeles de ancho y 100 píxeles de alto, el píxel de la esquina superior izquierda es (0,0), el píxel de la esquina superior derecha es (99,0), el píxel de la esquina inferior izquierda es (0,99), y el píxel de la esquina inferior derecha es (99,99) . Esto se verá más claro en el punto siguiente cuando usemos la función point().
+
+### 3.4 Figuras primitivas
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=403" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+En p5.js podemos contar con muchas funciones que se denominan primitivas.
+
+Las funciones primitivas de los lenguajes de programación son las que poseen una conformación básica y resuelven problemas básicos.
+
+Además en geometría se denomina primitivas a las figuras que tienen una constitución de forma básica (círculos, cuadrados, líneas, etc.)
+
+En muchos lenguajes de programación dibujar figuras en una pantalla puede volverse dificultoso debido a que un programa debe manejar la pantalla, la placa de video y además realizar muchas acciones para mostrar adecuadamente el dibujo.
+
+En p5.js estos problemas están en su mayoría resueltos, y en la mayoría de los casos solo tenemos que preocuparnos por el diseño y la ubicación de las cosas.
+
+Con pocas líneas de código se pueden hacer muchas cosas que con otros lenguajes sería muy difícil de realizar.
+
+### 3.5 Point
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=459" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+En primera instancia podemos dibujar un punto, que es el elemento visual más simple de encontrar.
+
+Para esto utilizamos la siguiente función:
+
+```js
+point(x,y);
+```
+
+<Image src={img6} alt="" width="600" />
+
+Esta función tiene dos parámetros: el primero es la coordenada X y el otro es la coordenada Y.
+
+Un punto es del tamaño de un sólo píxel, mas adelante veremos como cambiar el tamaño en caso que lo necesitemos
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/RZvDsiPCD" width="500" height="600"></iframe>
+</div>
+
+> Para tener en cuenta: Hay puntos dibujandose por fuera de nuestro lienzo. Por más que no los veamos estos puntos se están dibujando, solo que no se muestran.
+
+### 3.6 Line
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=634" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Una línea no es más que una serie de puntos. Es posible dibujar cualquier línea mediante puntos, pero p5.js tiene una función que simplifica esto: la función `line()`. Esta función tiene cuatro parámetros, dos por cada extremo:
+
+```js
+line(x1, y1, x2, y2);
+```
+
+<Image src={img7} alt="" width="600" />
+
+Los primeros dos parámetros establecen el punto donde la línea empieza y los dos últimos establecen la posición donde la línea termina. Con la información de esos dos puntos, p5.js se encarga de dibujar la línea que los une.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/K4YaePkGm" width="500" height="600"></iframe>
+</div>
+
+> Para Jugar: probá comentar las líneas de a una para reconocer cuál desaparece y saber cuál es cada una.
+
+### 3.7 Rect
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=834" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Los rectángulos se dibujan de una manera un poco diferente a las líneas. En lugar de definir cada punto, los cuatro parámetros establecen la posición y las dimensiones de la figura. La función `rect()` dibuja un rectángulo: 
+
+```js
+rect(x, y, ancho, alto);
+```
+
+<Image src={img8} alt="" width="600" />
+
+Los dos primeros parámetros establecen la localización del punto superior izquierdo, el tercero establece el ancho, y el cuarto el alto. Usando el mismo valor de ancho y alto se dibujará un cuadrado.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/YnCNPPQ5Z" width="500" height="600"></iframe>
+</div>
+
+> Para Tener en cuenta: rectángulos con mismo valor de ancho y alto forman cuadrados. Con mayor valor de alto forman un rectángulo vertical. Con mayor valor de ancho forman rectángulo horizontal
+
+También se pueden generar rectángulos con bordes redondeados agregando nuevos parámetros a la función de la siguiente forma:
+
+```js
+rect(x, y, ancho, alto, radio)
+rect(x, y, ancho, alto, si, sa, id, ii)
+```
+
+El parámetro radio corresponde al radio de redondeo. La versión con otros cuatro parámetros permite agregar un radio distinto de redondeo a cada esquina. Siendo `si` (superior izquierdo), `sa` (superior derecho), `id` (inferior derecho) e `ii` (inferior izquierdo).
+
+### 3.8 Ellipse
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1164" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Las elipses también se dibujan de forma diferente. los cuatro parámetros establecen la posición del centro de la figura y las dimensiones de ancho y alto. La función ellipse() dibuja una elipse en el lienzo:
+
+```js
+ellipse(x, y, ancho, alto);
+```
+
+<Image src={img9} alt="" width="600" />
+
+Los dos primeros parámetros establecen la localización del punto del centro de la elipse, el tercero establece el ancho de la elipse, y el cuarto la altura. Usando el mismo valor de ancho y de alto se dibujará un círculo.
+
+Los valores de ancho y alto hacen referencia a el total de pixeles de ancho y alto de nuestra figura. Como esta se calcula desde el punto central, si por ejemplo ponemos un valor de 100px de ancho, nuestra figura ocupará 50px de ancho hacia la izquierda del punto central y 50px a la derecha. Lo mismo ocurrirá con el alto.
+
+Reemplacemos los puntos por círculos en nuestro ejemplo:
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/QJKjihYqP" width="500" height="600"></iframe>
+</div>
+
+> Para Tener en cuenta: Como dijimos con los puntos podemos dibujar figuras por fuera de nuestro lienzo y solo se mostrará la parte que ingrese en la ventana que hayamos creado. Este ejemplo se ve claramente con los puntos.
+
+### 3.9 Triangle
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1290" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+La función `triangle()` dibuja un triángulo. Tiene seis parámetros, dos por cada punto, que representan cada uno de los vértices del triángulo:
+
+<Image src={img10} alt="" width="600" />
+
+El primer par define el primer punto, el segundo par el segundo punto y el último par el tercer punto. Cualquier triángulo puede ser dibujado conectando tres líneas, pero la función `triangle()` hace posible dibujar una figura con relleno. Triángulos de todas formas y tamaños pueden ser creados cambiando los valores de los parámetros. 
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/nZK6efGvs" width="500" height="600"></iframe>
+</div>
+
+> Para Jugar: probá comentar todo el resto del código con los caracteres de apertura `/*` y de cierre `*/` para reconocer solo los triángulos.
+
+### 3.10 Quad
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1335" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+La función `quad()` dibuja un cuadrilátero, osea,  un polígono de cuatro lados. Funciona de manera similar a los triángulos, ya que debemos establecer la ubicación de cada uno de los cuatro vértices. Por lo tanto, tiene ocho parámetros dos por cada punto:
+
+<Image src={img11} alt="" width="600" />
+
+Variando los valores de los parámetros se puede construir rectángulos, cuadrados, paralelogramos y cuadriláteros irregulares.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/RA0f1r8BH" width="500" height="600"></iframe>
+</div>
+
+### 3.11 Bezier
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1418" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+La función `bezier()` puede dibujar líneas que no son rectas. Una curva Bézier está definida por una serie de puntos de control y puntos de anclaje. Una curva es dibujada entre dos puntos de anclaje, y los puntos de control definen su forma:
+
+<Image src={img12} alt="" width="600" />
+
+Esta función requiere ocho parámetros para definir cuatro puntos. La curva se dibuja entre el primer punto y el cuarto, y los puntos de control están definidos por el segundo y tercer punto. 
+
+En los programas que se utilizan curvas Bézier, tales como Adobe Illustrator o Inkscape, los puntos de control son representados por pequeños nodos que sobresalen de los bordes de la curva.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/t0RvW5JYG" width="500" height="600"></iframe>
+</div>
+
+### 3.12 Orden de dibujo
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1505" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+El orden en que dibujamos las figuras en el código, define qué figuras aparecerán sobre otras en la ventana de representación. Como dijimos anteriormente, el editor lee las instrucciones una a una de arriba abajo, por lo tanto, si dibujamos un rectángulo en la primera línea de un programa y una elipse en la segunda línea, el rectángulo aparecerá debajo de la elipse cuando ejecutemos el programa, ya que primero se dibujara el rectángulo y luego la elipse. Revirtiendo el orden, el rectángulo se coloca arriba.
+
+<Image src={img13} alt="" width="150" />
+
+```js
+rect(15, 15, 50, 50); //Abajo
+ellipse(60, 60, 55, 55); //Arriba
+```
+
+<Image src={img14} alt="" width="150" />
+
+```js
+ellipse(60, 60, 55, 55); //Abajo
+rect(15, 15, 50, 50); //Arriba
+```
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/XiLgYkjm-" width="500" height="600"></iframe>
+</div>
+
+### 3.13 Contornos de Figuras
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1702" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Las figuras tienen una línea que configura su contorno. Los atributos de esta línea, están controlados por las funciones `strokeWeight()`, `strokeCap()` y `strokeJoin()`. 
+
+Cuando se escriba alguna de estas funciones afectarán a todas las figuras que se encuentren en las líneas posteriores de nuestro código, hasta que indiquemos otra cosa volviendo a asignarle un valor.
+
+La función `strokeWeight()` tiene un parámetro numérico que define el grosor en pixeles del contorno de las figuras. Cuando afecta a la función `line()` indicará el grosor de nuestra línea y con la función `point()` el tamaño de nuestro punto.
+
+<Image src={img15} alt="" width="600" />
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/zAJmOfb00" width="500" height="600"></iframe>
+</div>
+
+La función `strokeCap()` determina los puntos finales de las líneas. Recibe un solo parámetro que puede ser `ROUND`, `SQUARE` o `PROJECT`. 
+
+`ROUND` redondea los puntos finales,  `SQUARE` los vuelve cuadrados y `PROJECT` las extiende. Esta función se usa en líneas.
+
+Si no se escribe la función, se utiliza por defecto el valor `ROUND`.
+
+<Image src={img16} alt="" width="600" />
+
+La función `strokeJoin()` determina la forma en la que se unen los vértices de las figuras. Recibe un solo parámetro que puede ser `BEVEL`, `MITTER` o `ROUND`. 
+
+`BEVEL` corta en diagonal las esquinas cuadradas, `MITTER` cuadra las esquinas (es el valor por defecto) y `ROUND` redondea las esquinas.
+
+Si no se escribe la función, se utiliza por defecto el valor `MITTER`.
+
+<Image src={img17} alt="" width="600" />
+
+### 3.14 Modos de dibujo
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2020" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Cuando dibujamos elipses o rectángulos, los ubicamos como explicamos anteriormente, indicando el punto de arriba a la izquierda para los rectángulos e indicando el punto del centro para las elipses.
+
+Esto se puede cambiar con las funciones `ellipseMode()` y `rectMode()`.
+
+Cuando se escriba alguna de estas funciones afectarán a todas las figuras que se encuentren en las líneas posteriores de nuestro código, hasta que indiquemos otra cosa volviendo a asignarle un valor.
+
+ellipseMode recibe los parametros `CENTER`, `RADIUS`, `CORNER` y `CORNERS`, para definir desde donde se toma la coordenada de posición.
+
+El modo por defecto es `CENTER`, cuyos parámetros se explicaron en el apartado de la función ellipse().
+
+El modo `RADIUS` también utiliza los dos primeros parámetros para posicionar el centro, pero utiliza el tercer parámetro para definir la mitad del ancho y el cuarto parámetro para definir la mitad de la altura. De esta manera con `RADIUS`, los parámetros de ancho y alto definen el radio de la elipse, no el diámetro.
+
+Con `CORNER`, se define la posición de la elipse desde la esquina superior izquierda. Con `CORNERS` se define la posición con los dos primeros parámetros desde la posición superior izquierda y la extensión de la  elipse hasta las coordenadas indicadas en el parámetro 3 y 4.
+
+<Image src={img18} alt="" width="600" />
+
+Con un estilo similar, la función `rectMode()` afecta a cómo se dibujan los rectángulos. Requiere un parámetro que puede ser `CORNER`, `CORNERS` o `CENTER`. El modo por defecto es `CORNER` que funciona como fue explicado en el apartado de la función `rect()`.
+
+`CORNERS` causa que el tercer y cuarto parámetro de `rect()` se definan en la esquina contraria a la primera. El modo `CENTER` causa que el primer y segundo parámetro de `rect()` definan el centro del rectángulo y usa el tercer y cuarto parámetro para el ancho y el alto. 
+
+<Image src={img19} alt="" width="600" />
+
+<Image src={img20} alt="" width="600" />
+
+---
+
+## 4. Color
+
+### 4.1. Valores de grises
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2153" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Los ejemplos vistos anteriormente han usado el fondo por defecto de color gris claro, líneas negras, y figuras blancas. Para cambiar estos valores, es necesario introducir sintaxis adicional. Como ya vimos, la función `background()` establece el color de la ventana de representación con un número entre 0 y 255. Este rango puede ser incómodo si no estás familiarizado con programas de dibujo en la computadora. Los valores de los parámetros varían entre 0 y 255, donde 255 es blanco, 128 es gris medio y 0 es negro, con todo el rango de valores de grises intermedio. 
+
+<Image src={img21} alt="" width="600" />
+
+### 4.2. Fill y Stroke
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2216" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Al agregar las funciones `fill()` y `stroke()`  antes de dibujar podemos definir el color de cualquier forma deseada.
+
+La función `fill()` define el valor del relleno de las figuras, y la función `stroke()` define el valor del contorno de las figuras dibujadas. Si no se define un valor de relleno, se usa el valor por defecto 255 (blanco). Si no se define un valor de contorno, se usa el valor por defecto 0 (negro).
+
+Cuando se ha definido un valor de relleno o contorno, se aplica a todas las figuras dibujadas después. Para cambiar el valor de relleno o contorno, usamos la función `fill()` o `stroke()` de nuevo.
+
+```js
+background(255);    // Define el color del lienzo como blanco
+stroke(0);          // Define el contorno de la forma (stroke) como negro
+fill(150);          // Define el interior de la forma (fill) como gris
+```
+
+Tanto el contorno como el interior de la forma pueden ser eliminados con las funciones: `noStroke()` y `noFill()`. Instintivamente podríamos pensar en utilizar `stroke(0)` para eliminar el contorno, sin embargo, es importante recordar que 0 no significa "nada", sino que indica un color negro. Además, tené en cuenta de no eliminar ambos, con `noStroke()` y `noFill()`, porque no se verá ninguna figura.
+
+Adicionalmente si dibujamos dos figuras, p5.js siempre utilizará la última especificación de contorno y llenado, leyendo el código de arriba a abajo.
+
+<Image src={img22} alt="" width="600" />
+
+Un parámetro opcional adicional para `fill()` o `stroke()` regula la transparencia. Definiendo el parámetro a 255 hace que la figura sea totalmente opaca, y a 0 totalmente transparente:
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/zD5KoHX8e" width="500" height="600"></iframe>
+</div>
+
+### 4.3. Color por Números
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2703" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Cuando utilizamos algún pigmento como témperas, acrílicos, oleos, etc. si mezclamos los colores "primarios" se puede generar cualquier otro color. Mezclar todos los colores resulta en un color marrón oscuro, y mientras más pintura se añade más oscuro es el resultado.
+
+En el mundo digital los colores también se construyen mezclando los tres colores primarios, pero funciona un poco diferente. 
+
+Primero, los tres colores primarios son otros: rojo, verde y azul (en inglés red, green and blue, es decir, "RGB"). Luego, con los colores en tu pantalla estás mezclando luz, no pintura, por lo que las reglas de esta mezcla también son otras.
+
+La pantalla es una superficie negra y se añade luz coloreada, por lo que el negro aparece cuando hay ausencia de color, y el blanco aparece al mezclar todos los colores. Esto se conoce como color aditivo, en contraste con el modelo de color sustractivo de las pinturas.
+
+Esta imagen expone la diferencia entre los dos modelos:
+
+<Image src={img23} alt="" width="600" />
+
+- Rojo + Verde = Amarillo
+- Rojo + Azul = Violeta
+- Verde + Azul = Cian 
+- Rojo + Verde + Azul = Blanco
+- Ausencia de colores = Negro
+
+Lo anterior presupone que los colores son tan brillantes como sea posible, pero por supuesto, hay un rango de color disponible, por lo que un poco de rojo más un poco de verde y azul genera gris, mientras que un poco de rojo más un poco de azul genera violeta oscuro. Si bien puede tomar tiempo acostumbrarte a esto, mientras más programes y experimentes con color RGB, más rápido se hará instintivo.
+
+Así como en la escala de grises, los elementos de color son expresados en rangos desde 0 (ausencia del color) hasta 255 (presencia máxima del color), y son listados en orden R (rojo), G (verde) y B (azul).
+
+### 4.4. Ajuste de color
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2871" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Ya hemos visto como en p5.js, los colores están definidos por los parámetros de las funciones `background()`, `fill()` y `stroke()` cambiando el valor de los parámetros para controlar la escala de grises.
+
+Ahora bien, si queremos comenzar a trabajar con todo el espectro de colores, lo que debemos hacer es utilizar tres parámetros en estas funciones:
+
+```js
+background(valor1, valor2, valor3)
+background(valor1, valor2, valor3, alfa)
+fill(valor1, valor2, valor3)
+fill(valor1, valor2, valor3, alfa)
+stroke(valor1, valor2, valor3)
+stroke(valor1, valor2, valor3, alfa)
+```
+
+Por defecto, el parámetro valor1 define el componente de color rojo, valor2 el componente verde y valor3 el Azul. Estos valores van del rango 0 a 255. 
+
+Además de los componentes rojo, verde y azul de cada color, existe un parámetro opcional denominado "alfa". Alfa significa transparencia y es particularmente útil cuando deseas dibujar figuras que se superponen y a través de las cuales querés ver. 
+
+Los valores de alfa también se definen en un rango de 0 a 255, donde 0 es completamente transparente (es decir, 0% de opacidad) y 255 es completamente opaco (es decir, 100% opaco).
+
+De esta forma, con la combinación de cada uno de los componentes rojo, verde y azul, podremos generar colores que cubren todo el espectro visible.
+
+<div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/AhP3fHN4E" width="500" height="600"></iframe>
+</div>
+
+### 4.5. Modo de color RGB, HSB
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=3000" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+El modo RGB con rangos de 0 a 255 no es la única forma en que podemos manipular color en p5.js, de hecho p5.js nos permite pensar el color de la manera que deseemos. Por ejemplo, podés preferir pensar el color en rangos de 0 a 100 (como un porcentaje). Esto lo podés hacer estableciendo un modo específico de color con la función `colorMode()`.
+
+```js
+colorMode(modo)
+colorMode(modo, rango)
+colorMode(modo, rango1, rango2, rango3)
+```   
+
+Aunque rara vez sea conveniente, también podés definir distintos rangos para cada componente de color indicando el rango1, rango2, y rango3. 
+
+```js
+colorMode(RGB,100,500,10,255);
+```
+
+Finalmente, si bien es probable que tu código requiera solamente el modo de color RGB, también puedes especificar colores en el modo HSB (tono, saturación y brillo)
+
+<Image src={img24} alt="" width="600" />
+
+- Tono o Matiz—El tipo de color, valores por definición van de 0 a 255.
+- Saturación — La vivacidad del color, 0 a 255 por definición.
+- Brillo— Es el brillo del color, 0 a 255 por definición.
+
+Con `colorMode()` puedes definir tu propio rango de valores. Algunos prefieren un rango de 0-360 para el tono (como en los 360 grados de la rueda de color) y 0-100 para la saturación y brillo (como en 0-100%).
+
+```js
+colorMode(HSB,360,100,100);
+```
+
+### 4.6. Hexadecimal
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=3210" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+La notación hexadecimal (hex) es una notación alternativa para definir el color. Este método es popular entre diseñadores que trabajan en la Web porque estándares como HyperText Markup Language (HTML) y Cascading Style Sheets (CSS) usan esta notación. La notación Hex para el color codifica cada número desde el 0 al 255 en un valor de dos dígitos usando los números de 0 a 9 y las letras de A a F. De esta forma, tres valores RGB desde 0 a 255 se pueden escribir como un solo valor hex de seis dígitos. Unas pocas conversiones de ejemplo demuestran esta notación:
+
+```
+RGB               Hex
+
+255, 255, 255     #FFFFFF
+0, 0, 0           #000000
+102, 153, 204     #6699CC
+195, 244, 59      #C3F43B
+116, 206, 206     #74CECE
+```
+
+Cuando se usan valores de color codificados en notación hex, debemos colocar un # antes del valor para distinguirlo dentro del código, además el parámetro debe estar encerrado entre comillas.
+
+### 4.7. Figuras Personalizadas
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=3297" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Además de todas las figuras primitivas que vimos en esta clase, existen otras que pueden ser investigadas en la referencia de p5.js
+
+De todas formas, no es un límite usar estas figuras geométricas básicas, también se pueden dibujar cualquier tipo de figuras conectando una serie de puntos.
+
+La función `beginShape()` señala el comienzo de una nueva figura. La función `vertex()` es usada para definir cada par de coordenadas x e y que corresponde a los vértices de la figura. Finalmente, `endShape()` señala que la figura está completa:
+
+```js
+beginShape();
+vertex(180, 82);
+vertex(207, 36);
+vertex(214, 63);
+vertex(407, 11);
+vertex(226, 109);
+endShape(CLOSE);
+```
+
+La función `endShape()` puede recibir el parámetro `CLOSE` que sirve para cerrar la figura conectando el último vértice con el primero.
