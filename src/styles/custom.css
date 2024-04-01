@@ -28,3 +28,8 @@
   --sl-color-gray-7: #f3f7f9;
   --sl-color-black: #ffffff;
 }
+
+iframe {
+  width: 100% !important;
+  height: 810px !important;
+}

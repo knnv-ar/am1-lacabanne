@@ -104,9 +104,7 @@ Registrarnos como usuarios nos dará la posibilidad de guardar y compartir sketc
 
 En el editor online de p5.js vamos a poder ejecutar casi la totalidad de ejemplos y ejercicios que veremos a lo largo del curso. Pero puede haber situaciones en las que se desee trabajar sin la necesidad de estar conectados a Internet. Para eso veremos como generar Sketches y guardarlos localmente. Además estarán embebidos los ejemplos dentro de la plataforma para poder ir practicando a medida que se va avanzando como se muestra a continuación:
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/yDdIda7CB" width="100%" height="500px"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/yDdIda7CB"></iframe>
 
 ### 1.2. Trabajando con p5.js localmente
 
@@ -218,9 +216,7 @@ Para esto utilizamos dos funciones básicas: `createCanvas()` y `background()`.
 
 Si no utilizamos la función `createCanvas()` el tamaño de lienzo por defecto va a ser de 100x100 pixeles.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/VwR7Wuejn" width="100%" height="500px"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/VwR7Wuejn"></iframe>
 
 Como vemos en el ejemplo anterior, pareciera que no estamos visualizando nada. ¿Esto quiere decir que nuestro programa no funciona? No. 
 
@@ -232,9 +228,7 @@ En el caso de background el argumento es un código de color determinado (en est
 
 Más adelante veremos cómo trabajar con más colores, pasando más parámetros a la función background.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/d814mBEfd" width="100%" height="500px"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/d814mBEfd"></iframe>
 
 > Para jugar: probá cambiandole los números dentro de la función createCanvas y de la función background. 
 
@@ -277,9 +271,7 @@ De esta forma podemos utilizar la consola no solo para mostrar texto sino tambi�
 
 Por ahora nos limitamos a imprimir texto y a tener en cuenta que tanto imprimir en la consola como utilizar los comentarios pueden hacer más clara la lectura del código.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/YDlpbUAs0" width="100%" height="500px"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/YDlpbUAs0"></iframe>
 
 > Para jugar: Intenta cambiar el texto de los comentarios. Intenta marcar como comentario alguna función. Imprimí otros mensajes en la consola
 
@@ -309,21 +301,15 @@ Para esto visitamos la referencia, buscamos la función y encontraremos toda la 
 
 ## 3. Dibujar
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=0&end=120"/>
 
 En este apartado conoceremos las figuras primitivas e iremos agregándolas a un ejemplo en el construiremos paso a paso un dibujo. Finalizado este apartado y el siguiente de color, podremos comprender como se genera el siguiente sketch:
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/embed/AhP3fHN4E" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/embed/AhP3fHN4E"></iframe>
 
 ### 3.1. Coordenadas 
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=120" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=120&end=201"/>
 
 Ya vimos como crear nuestro lienzo y ponerle un color de fondo. Ahora hay que saber cómo interpretarlo, por que va a ser necesario explicarle a p5.js donde queremos las cosas que dibujemos.
 
@@ -337,9 +323,7 @@ Además, si trabajamos en tres dimensiones tendremos un nuevo eje de coordenadas
 
 ### 3.2 Pixels
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=201" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=201&end=256"/>
 
 Como dijimos anteriormente, una pantalla de una pc es una grilla de pequeños elementos que brillan, que denominamos pixeles.
 
@@ -353,9 +337,7 @@ Las resoluciones también se pueden medir por cantidad de pixeles por pulgada, l
 
 ### 3.3 Posición
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=256" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=256&end=403"/>
 
 Una posición de la pantalla está comprendida por el eje de coordenadas X y el eje de coordenadas Y. El eje de coordenadas X es la distancia horizontal desde el origen y el eje de coordenadas Y es la distancia vertical.
 
@@ -367,9 +349,7 @@ Una posición se escribe con el valor del eje X seguido del valor del eje Y, sep
 
 ### 3.4 Figuras primitivas
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=403" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=403&end=459"/>
 
 En p5.js podemos contar con muchas funciones que se denominan primitivas.
 
@@ -385,9 +365,7 @@ Con pocas líneas de código se pueden hacer muchas cosas que con otros lenguaje
 
 ### 3.5 Point
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=459" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=459&end=634"/>
 
 En primera instancia podemos dibujar un punto, que es el elemento visual más simple de encontrar.
 
@@ -403,17 +381,13 @@ Esta función tiene dos parámetros: el primero es la coordenada X y el otro es 
 
 Un punto es del tamaño de un sólo píxel, mas adelante veremos como cambiar el tamaño en caso que lo necesitemos
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/RZvDsiPCD" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/RZvDsiPCD"></iframe>
 
 > Para tener en cuenta: Hay puntos dibujandose por fuera de nuestro lienzo. Por más que no los veamos estos puntos se están dibujando, solo que no se muestran.
 
 ### 3.6 Line
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=634" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=634&end=834"/>
 
 Una línea no es más que una serie de puntos. Es posible dibujar cualquier línea mediante puntos, pero p5.js tiene una función que simplifica esto: la función `line()`. Esta función tiene cuatro parámetros, dos por cada extremo:
 
@@ -425,17 +399,13 @@ line(x1, y1, x2, y2);
 
 Los primeros dos parámetros establecen el punto donde la línea empieza y los dos últimos establecen la posición donde la línea termina. Con la información de esos dos puntos, p5.js se encarga de dibujar la línea que los une.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/K4YaePkGm" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/K4YaePkGm"></iframe>
 
 > Para Jugar: probá comentar las líneas de a una para reconocer cuál desaparece y saber cuál es cada una.
 
 ### 3.7 Rect
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=834" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=834&end=1164"/>
 
 Los rectángulos se dibujan de una manera un poco diferente a las líneas. En lugar de definir cada punto, los cuatro parámetros establecen la posición y las dimensiones de la figura. La función `rect()` dibuja un rectángulo: 
 
@@ -447,9 +417,7 @@ rect(x, y, ancho, alto);
 
 Los dos primeros parámetros establecen la localización del punto superior izquierdo, el tercero establece el ancho, y el cuarto el alto. Usando el mismo valor de ancho y alto se dibujará un cuadrado.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/YnCNPPQ5Z" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/YnCNPPQ5Z"></iframe>
 
 > Para Tener en cuenta: rectángulos con mismo valor de ancho y alto forman cuadrados. Con mayor valor de alto forman un rectángulo vertical. Con mayor valor de ancho forman rectángulo horizontal
 
@@ -464,9 +432,7 @@ El parámetro radio corresponde al radio de redondeo. La versión con otros cuat
 
 ### 3.8 Ellipse
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1164" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=1164&end=1290"/>
 
 Las elipses también se dibujan de forma diferente. los cuatro parámetros establecen la posición del centro de la figura y las dimensiones de ancho y alto. La función ellipse() dibuja una elipse en el lienzo:
 
@@ -482,17 +448,13 @@ Los valores de ancho y alto hacen referencia a el total de pixeles de ancho y al
 
 Reemplacemos los puntos por círculos en nuestro ejemplo:
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/QJKjihYqP" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/QJKjihYqP"></iframe>
 
 > Para Tener en cuenta: Como dijimos con los puntos podemos dibujar figuras por fuera de nuestro lienzo y solo se mostrará la parte que ingrese en la ventana que hayamos creado. Este ejemplo se ve claramente con los puntos.
 
 ### 3.9 Triangle
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1290" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=1290&end=1335"/>
 
 La función `triangle()` dibuja un triángulo. Tiene seis parámetros, dos por cada punto, que representan cada uno de los vértices del triángulo:
 
@@ -500,17 +462,13 @@ La función `triangle()` dibuja un triángulo. Tiene seis parámetros, dos por c
 
 El primer par define el primer punto, el segundo par el segundo punto y el último par el tercer punto. Cualquier triángulo puede ser dibujado conectando tres líneas, pero la función `triangle()` hace posible dibujar una figura con relleno. Triángulos de todas formas y tamaños pueden ser creados cambiando los valores de los parámetros. 
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/nZK6efGvs" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/nZK6efGvs"></iframe>
 
 > Para Jugar: probá comentar todo el resto del código con los caracteres de apertura `/*` y de cierre `*/` para reconocer solo los triángulos.
 
 ### 3.10 Quad
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1335" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=1335&end=1418"/>
 
 La función `quad()` dibuja un cuadrilátero, osea,  un polígono de cuatro lados. Funciona de manera similar a los triángulos, ya que debemos establecer la ubicación de cada uno de los cuatro vértices. Por lo tanto, tiene ocho parámetros dos por cada punto:
 
@@ -518,15 +476,11 @@ La función `quad()` dibuja un cuadrilátero, osea,  un polígono de cuatro lado
 
 Variando los valores de los parámetros se puede construir rectángulos, cuadrados, paralelogramos y cuadriláteros irregulares.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/RA0f1r8BH" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/RA0f1r8BH"></iframe>
 
 ### 3.11 Bezier
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1418" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=1418&end=1505"/>
 
 La función `bezier()` puede dibujar líneas que no son rectas. Una curva Bézier está definida por una serie de puntos de control y puntos de anclaje. Una curva es dibujada entre dos puntos de anclaje, y los puntos de control definen su forma:
 
@@ -536,15 +490,11 @@ Esta función requiere ocho parámetros para definir cuatro puntos. La curva se 
 
 En los programas que se utilizan curvas Bézier, tales como Adobe Illustrator o Inkscape, los puntos de control son representados por pequeños nodos que sobresalen de los bordes de la curva.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/t0RvW5JYG" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/t0RvW5JYG"></iframe>
 
 ### 3.12 Orden de dibujo
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1505" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=1505&end=1702"/>
 
 El orden en que dibujamos las figuras en el código, define qué figuras aparecerán sobre otras en la ventana de representación. Como dijimos anteriormente, el editor lee las instrucciones una a una de arriba abajo, por lo tanto, si dibujamos un rectángulo en la primera línea de un programa y una elipse en la segunda línea, el rectángulo aparecerá debajo de la elipse cuando ejecutemos el programa, ya que primero se dibujara el rectángulo y luego la elipse. Revirtiendo el orden, el rectángulo se coloca arriba.
 
@@ -562,15 +512,11 @@ ellipse(60, 60, 55, 55); //Abajo
 rect(15, 15, 50, 50); //Arriba
 ```
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/XiLgYkjm-" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/XiLgYkjm-"></iframe>
 
 ### 3.13 Contornos de Figuras
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=1702" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=1702&end=2020"/>
 
 Las figuras tienen una línea que configura su contorno. Los atributos de esta línea, están controlados por las funciones `strokeWeight()`, `strokeCap()` y `strokeJoin()`. 
 
@@ -580,9 +526,7 @@ La función `strokeWeight()` tiene un parámetro numérico que define el grosor 
 
 <Image src={img15} alt="" width="600" />
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/zAJmOfb00" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/zAJmOfb00"></iframe>
 
 La función `strokeCap()` determina los puntos finales de las líneas. Recibe un solo parámetro que puede ser `ROUND`, `SQUARE` o `PROJECT`. 
 
@@ -602,9 +546,7 @@ Si no se escribe la función, se utiliza por defecto el valor `MITTER`.
 
 ### 3.14 Modos de dibujo
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2020" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2020&end=2153"/>
 
 Cuando dibujamos elipses o rectángulos, los ubicamos como explicamos anteriormente, indicando el punto de arriba a la izquierda para los rectángulos e indicando el punto del centro para las elipses.
 
@@ -636,9 +578,7 @@ Con un estilo similar, la función `rectMode()` afecta a cómo se dibujan los re
 
 ### 4.1. Valores de grises
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2153" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2153&end=2216"/>
 
 Los ejemplos vistos anteriormente han usado el fondo por defecto de color gris claro, líneas negras, y figuras blancas. Para cambiar estos valores, es necesario introducir sintaxis adicional. Como ya vimos, la función `background()` establece el color de la ventana de representación con un número entre 0 y 255. Este rango puede ser incómodo si no estás familiarizado con programas de dibujo en la computadora. Los valores de los parámetros varían entre 0 y 255, donde 255 es blanco, 128 es gris medio y 0 es negro, con todo el rango de valores de grises intermedio. 
 
@@ -646,9 +586,7 @@ Los ejemplos vistos anteriormente han usado el fondo por defecto de color gris c
 
 ### 4.2. Fill y Stroke
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2216" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2216&end=2703"/>
 
 Al agregar las funciones `fill()` y `stroke()`  antes de dibujar podemos definir el color de cualquier forma deseada.
 
@@ -670,15 +608,11 @@ Adicionalmente si dibujamos dos figuras, p5.js siempre utilizará la última esp
 
 Un parámetro opcional adicional para `fill()` o `stroke()` regula la transparencia. Definiendo el parámetro a 255 hace que la figura sea totalmente opaca, y a 0 totalmente transparente:
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/zD5KoHX8e" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/zD5KoHX8e"></iframe>
 
 ### 4.3. Color por Números
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2703" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2703&end=2871"/>
 
 Cuando utilizamos algún pigmento como témperas, acrílicos, oleos, etc. si mezclamos los colores "primarios" se puede generar cualquier otro color. Mezclar todos los colores resulta en un color marrón oscuro, y mientras más pintura se añade más oscuro es el resultado.
 
@@ -704,9 +638,7 @@ Así como en la escala de grises, los elementos de color son expresados en rango
 
 ### 4.4. Ajuste de color
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=2871" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2871&end=3000"/>
 
 Ya hemos visto como en p5.js, los colores están definidos por los parámetros de las funciones `background()`, `fill()` y `stroke()` cambiando el valor de los parámetros para controlar la escala de grises.
 
@@ -729,15 +661,11 @@ Los valores de alfa también se definen en un rango de 0 a 255, donde 0 es compl
 
 De esta forma, con la combinación de cada uno de los componentes rojo, verde y azul, podremos generar colores que cubren todo el espectro visible.
 
-<div>
-<iframe src="https://editor.p5js.org/sebifly/sketches/AhP3fHN4E" width="500" height="600"></iframe>
-</div>
+<iframe src="https://editor.p5js.org/sebifly/sketches/AhP3fHN4E"></iframe>
 
 ### 4.5. Modo de color RGB, HSB
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=3000" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=3000&end=3210"/>
 
 El modo RGB con rangos de 0 a 255 no es la única forma en que podemos manipular color en p5.js, de hecho p5.js nos permite pensar el color de la manera que deseemos. Por ejemplo, podés preferir pensar el color en rangos de 0 a 100 (como un porcentaje). Esto lo podés hacer estableciendo un modo específico de color con la función `colorMode()`.
 
@@ -769,9 +697,7 @@ colorMode(HSB,360,100,100);
 
 ### 4.6. Hexadecimal
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=3210" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=3210&end=3297"/>
 
 La notación hexadecimal (hex) es una notación alternativa para definir el color. Este método es popular entre diseñadores que trabajan en la Web porque estándares como HyperText Markup Language (HTML) y Cascading Style Sheets (CSS) usan esta notación. La notación Hex para el color codifica cada número desde el 0 al 255 en un valor de dos dígitos usando los números de 0 a 9 y las letras de A a F. De esta forma, tres valores RGB desde 0 a 255 se pueden escribir como un solo valor hex de seis dígitos. Unas pocas conversiones de ejemplo demuestran esta notación:
 
@@ -789,9 +715,7 @@ Cuando se usan valores de color codificados en notación hex, debemos colocar un
 
 ### 4.7. Figuras Personalizadas
 
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1gRDsjZt6qI?si=0wJo4MiDyo47hZdo&amp;start=3297" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=3297"/>
 
 Además de todas las figuras primitivas que vimos en esta clase, existen otras que pueden ser investigadas en la referencia de p5.js
 
