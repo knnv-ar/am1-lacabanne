@@ -16,7 +16,7 @@ export default defineConfig({
 				'./src/styles/custom.css',
 			],
 			editLink: {
-				baseUrl: 'https://github.com/knnv-ar/am1-lacabanne/edit/main/docs/',
+				baseUrl: 'https://github.com/knnv-ar/am1-lacabanne/edit/main/',
 			},
 			social: {
 				github: 'https://github.com/knnv-ar/am1-lacabanne',
