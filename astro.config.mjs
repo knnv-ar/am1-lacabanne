@@ -6,6 +6,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'AM1 Lacabanne',
+			logo: {
+				light: './src/assets/una-m-light.svg',
+				dark: './src/assets/una-m-dark.svg',
+			},
 			customCss: [
 				// Relative path to your custom CSS file
 				'./src/styles/custom.css',
@@ -22,15 +26,19 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Guides',
+					label: 'Clases',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'Clases avanzadas', link: '/guides/clases-avanzadas/' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Acciones de Consolidación de Saberes (ACSs)',
+					autogenerate: { directory: 'acs' },
+				},
+				{
+					label: 'Trabajos Prácticos (TPs)',
+					autogenerate: { directory: 'tps' },
 				},
 			],
 		}),
