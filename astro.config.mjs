@@ -25,8 +25,10 @@ export default defineConfig({
 				{
 					label: 'Taller de p5.js',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Clase 1', link: '/taller-p5js/clase-1/' },
+						{
+							label: 'Clase 1',
+							autogenerate: { directory: 'taller-p5js/clase-1' },
+						},
 					],
 				},
 				{

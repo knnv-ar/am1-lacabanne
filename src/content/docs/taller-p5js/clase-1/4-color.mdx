@@ -1,0 +1,173 @@
+---
+title: '4. Color'
+description: 'Clase 1'
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img21 from './greyscale.png';
+import img22 from './last.png';
+import img23 from './colorModels.png';
+import img24 from './hsb.png';
+
+## 4. Color
+
+### 4.1. Valores de grises
+
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2153&end=2216"/>
+
+Los ejemplos vistos anteriormente han usado el fondo por defecto de color gris claro, líneas negras, y figuras blancas. Para cambiar estos valores, es necesario introducir sintaxis adicional. Como ya vimos, la función `background()` establece el color de la ventana de representación con un número entre 0 y 255. Este rango puede ser incómodo si no estás familiarizado con programas de dibujo en la computadora. Los valores de los parámetros varían entre 0 y 255, donde 255 es blanco, 128 es gris medio y 0 es negro, con todo el rango de valores de grises intermedio. 
+
+<Image src={img21} alt="" width="600" />
+
+### 4.2. Fill y Stroke
+
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2216&end=2703"/>
+
+Al agregar las funciones `fill()` y `stroke()`  antes de dibujar podemos definir el color de cualquier forma deseada.
+
+La función `fill()` define el valor del relleno de las figuras, y la función `stroke()` define el valor del contorno de las figuras dibujadas. Si no se define un valor de relleno, se usa el valor por defecto 255 (blanco). Si no se define un valor de contorno, se usa el valor por defecto 0 (negro).
+
+Cuando se ha definido un valor de relleno o contorno, se aplica a todas las figuras dibujadas después. Para cambiar el valor de relleno o contorno, usamos la función `fill()` o `stroke()` de nuevo.
+
+```js
+background(255);    // Define el color del lienzo como blanco
+stroke(0);          // Define el contorno de la forma (stroke) como negro
+fill(150);          // Define el interior de la forma (fill) como gris
+```
+
+Tanto el contorno como el interior de la forma pueden ser eliminados con las funciones: `noStroke()` y `noFill()`. Instintivamente podríamos pensar en utilizar `stroke(0)` para eliminar el contorno, sin embargo, es importante recordar que 0 no significa "nada", sino que indica un color negro. Además, tené en cuenta de no eliminar ambos, con `noStroke()` y `noFill()`, porque no se verá ninguna figura.
+
+Adicionalmente si dibujamos dos figuras, p5.js siempre utilizará la última especificación de contorno y llenado, leyendo el código de arriba a abajo.
+
+<Image src={img22} alt="" width="600" />
+
+Un parámetro opcional adicional para `fill()` o `stroke()` regula la transparencia. Definiendo el parámetro a 255 hace que la figura sea totalmente opaca, y a 0 totalmente transparente:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/zD5KoHX8e"></iframe>
+
+### 4.3. Color por Números
+
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2703&end=2871"/>
+
+Cuando utilizamos algún pigmento como témperas, acrílicos, oleos, etc. si mezclamos los colores "primarios" se puede generar cualquier otro color. Mezclar todos los colores resulta en un color marrón oscuro, y mientras más pintura se añade más oscuro es el resultado.
+
+En el mundo digital los colores también se construyen mezclando los tres colores primarios, pero funciona un poco diferente. 
+
+Primero, los tres colores primarios son otros: rojo, verde y azul (en inglés red, green and blue, es decir, "RGB"). Luego, con los colores en tu pantalla estás mezclando luz, no pintura, por lo que las reglas de esta mezcla también son otras.
+
+La pantalla es una superficie negra y se añade luz coloreada, por lo que el negro aparece cuando hay ausencia de color, y el blanco aparece al mezclar todos los colores. Esto se conoce como color aditivo, en contraste con el modelo de color sustractivo de las pinturas.
+
+Esta imagen expone la diferencia entre los dos modelos:
+
+<Image src={img23} alt="" width="600" />
+
+- Rojo + Verde = Amarillo
+- Rojo + Azul = Violeta
+- Verde + Azul = Cian 
+- Rojo + Verde + Azul = Blanco
+- Ausencia de colores = Negro
+
+Lo anterior presupone que los colores son tan brillantes como sea posible, pero por supuesto, hay un rango de color disponible, por lo que un poco de rojo más un poco de verde y azul genera gris, mientras que un poco de rojo más un poco de azul genera violeta oscuro. Si bien puede tomar tiempo acostumbrarte a esto, mientras más programes y experimentes con color RGB, más rápido se hará instintivo.
+
+Así como en la escala de grises, los elementos de color son expresados en rangos desde 0 (ausencia del color) hasta 255 (presencia máxima del color), y son listados en orden R (rojo), G (verde) y B (azul).
+
+### 4.4. Ajuste de color
+
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=2871&end=3000"/>
+
+Ya hemos visto como en p5.js, los colores están definidos por los parámetros de las funciones `background()`, `fill()` y `stroke()` cambiando el valor de los parámetros para controlar la escala de grises.
+
+Ahora bien, si queremos comenzar a trabajar con todo el espectro de colores, lo que debemos hacer es utilizar tres parámetros en estas funciones:
+
+```js
+background(valor1, valor2, valor3)
+background(valor1, valor2, valor3, alfa)
+fill(valor1, valor2, valor3)
+fill(valor1, valor2, valor3, alfa)
+stroke(valor1, valor2, valor3)
+stroke(valor1, valor2, valor3, alfa)
+```
+
+Por defecto, el parámetro valor1 define el componente de color rojo, valor2 el componente verde y valor3 el Azul. Estos valores van del rango 0 a 255. 
+
+Además de los componentes rojo, verde y azul de cada color, existe un parámetro opcional denominado "alfa". Alfa significa transparencia y es particularmente útil cuando deseas dibujar figuras que se superponen y a través de las cuales querés ver. 
+
+Los valores de alfa también se definen en un rango de 0 a 255, donde 0 es completamente transparente (es decir, 0% de opacidad) y 255 es completamente opaco (es decir, 100% opaco).
+
+De esta forma, con la combinación de cada uno de los componentes rojo, verde y azul, podremos generar colores que cubren todo el espectro visible.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/AhP3fHN4E"></iframe>
+
+### 4.5. Modo de color RGB, HSB
+
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=3000&end=3210"/>
+
+El modo RGB con rangos de 0 a 255 no es la única forma en que podemos manipular color en p5.js, de hecho p5.js nos permite pensar el color de la manera que deseemos. Por ejemplo, podés preferir pensar el color en rangos de 0 a 100 (como un porcentaje). Esto lo podés hacer estableciendo un modo específico de color con la función `colorMode()`.
+
+```js
+colorMode(modo)
+colorMode(modo, rango)
+colorMode(modo, rango1, rango2, rango3)
+```   
+
+Aunque rara vez sea conveniente, también podés definir distintos rangos para cada componente de color indicando el rango1, rango2, y rango3. 
+
+```js
+colorMode(RGB,100,500,10,255);
+```
+
+Finalmente, si bien es probable que tu código requiera solamente el modo de color RGB, también puedes especificar colores en el modo HSB (tono, saturación y brillo)
+
+<Image src={img24} alt="" width="600" />
+
+- Tono o Matiz—El tipo de color, valores por definición van de 0 a 255.
+- Saturación — La vivacidad del color, 0 a 255 por definición.
+- Brillo— Es el brillo del color, 0 a 255 por definición.
+
+Con `colorMode()` puedes definir tu propio rango de valores. Algunos prefieren un rango de 0-360 para el tono (como en los 360 grados de la rueda de color) y 0-100 para la saturación y brillo (como en 0-100%).
+
+```js
+colorMode(HSB,360,100,100);
+```
+
+### 4.6. Hexadecimal
+
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=3210&end=3297"/>
+
+La notación hexadecimal (hex) es una notación alternativa para definir el color. Este método es popular entre diseñadores que trabajan en la Web porque estándares como HyperText Markup Language (HTML) y Cascading Style Sheets (CSS) usan esta notación. La notación Hex para el color codifica cada número desde el 0 al 255 en un valor de dos dígitos usando los números de 0 a 9 y las letras de A a F. De esta forma, tres valores RGB desde 0 a 255 se pueden escribir como un solo valor hex de seis dígitos. Unas pocas conversiones de ejemplo demuestran esta notación:
+
+```
+RGB               Hex
+
+255, 255, 255     #FFFFFF
+0, 0, 0           #000000
+102, 153, 204     #6699CC
+195, 244, 59      #C3F43B
+116, 206, 206     #74CECE
+```
+
+Cuando se usan valores de color codificados en notación hex, debemos colocar un # antes del valor para distinguirlo dentro del código, además el parámetro debe estar encerrado entre comillas.
+
+### 4.7. Figuras Personalizadas
+
+<YouTube id="https://youtu.be/1gRDsjZt6qI" params="start=3297"/>
+
+Además de todas las figuras primitivas que vimos en esta clase, existen otras que pueden ser investigadas en la referencia de p5.js
+
+De todas formas, no es un límite usar estas figuras geométricas básicas, también se pueden dibujar cualquier tipo de figuras conectando una serie de puntos.
+
+La función `beginShape()` señala el comienzo de una nueva figura. La función `vertex()` es usada para definir cada par de coordenadas x e y que corresponde a los vértices de la figura. Finalmente, `endShape()` señala que la figura está completa:
+
+```js
+beginShape();
+vertex(180, 82);
+vertex(207, 36);
+vertex(214, 63);
+vertex(407, 11);
+vertex(226, 109);
+endShape(CLOSE);
+```
+
+La función `endShape()` puede recibir el parámetro `CLOSE` que sirve para cerrar la figura conectando el último vértice con el primero.

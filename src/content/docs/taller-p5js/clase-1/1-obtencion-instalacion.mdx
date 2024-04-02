@@ -1,0 +1,85 @@
+---
+title: '1. Obtención - Instalación'
+description: 'Clase 1'
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './ui.jpg';
+import img2 from './p5js-en-editor.png';
+
+## 1. Obtención - Instalación
+
+### 1.1. Trabajando con p5.js en línea
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=715&end=1367"/>
+
+La forma mas simple y rápida de comenzar es a través del [editor online de p5.js](https://editor.p5js.org/). A través de esta herramienta podremos probar nuestros sketches, completamente online sin necesidad de descargar nada adicional.
+
+Registrarnos como usuarios nos dará la posibilidad de guardar y compartir sketches, lo cual es recomendable. Veamos la interfaz en detalle:
+
+<Image src={img1} alt="" width="700"/>
+
+1. El panel de código. Acá es donde se escribe el código de p5.js
+
+2. El panel de previsualización. Acá es donde se verá nuestro sketch en base al código que escribimos en el panel 1.
+
+3. La consola. Nos muestra mensajes con los posibles errores que tenga nuestro código. Además podemos imprimir nuestros propios mensajes lo que nos servirá para depurar nuestro sketch (esto será explicado más adelante).
+
+4. Controles. Presionando el botón "Play" ( ▶ ) podremos ejecutar nuestro sketch. Presionando el boton "Stop" ( ⬛︎ ) lo detenemos. La opción "Auto-refresh" si está marcada va a hacer que el panel de previsualización se actualice periódicamente a medida que vamos escribiendo nuestro código, sin necesidad de ejecutarlo o detenerlo con los botones de Play y Stop. A la derecha de esto, se encuentra el nombre de nuestro sketch, el cual es generado aleatoriamente. Tocando en el icono del lápiz podemos escribir un nombre personalizado.
+
+5. Menú. En "File" tendremos la posibilidad de crear, guardar y abrir nuestros archivos. Una vez guardado, podremos compartir nuestro sketch, duplicarlo a agregarlo a una colección (que pueden ser creadas con las opciones del punto 6) También podremos ver infinidad de ejemplos que han subido otros usuarios y descargar el sketch a nuestra computadora. En "Edit" se encuentra la opción "Tidy Code" que nos tabulará correctamente nuestro código, ordenandolo para una mejor comprensión. Las opciones de "Find" nos sirve para buscar palabras específicas en nuestro código, lo cual es muy util cuando nuestros programas empiecen a crecer en cantidad de lineas. En "Sketch" podemos agregar archivos y carpetas a nuestro sketch, la funcionalidad de esto se explicara mas adelante. (Se puede ver la jerarquia de archivos de nuestro sketch haciendo click en el simbolo &gt; debajo del botón Play). También en "Sketch" tendremos las opciones de ejecutar y detener nuestro sketch tal como lo hacen los botones Play y Stop. Por ultimo la opción "Help" nos muestra la lista de atajos del teclado, el acceso a la referencia de p5.js (donde se explica cada una de las funciones) y links útiles en la opción "About".
+
+6. En el icono dentado de la derecha tendremos opciones de personalización visual del editor (color, tamaño de la fuente, etc) y opciones de accesibilidad. En el desplegable "My Account" tendremos links de acceso a nuestros sketches guardados, a nuestras colecciones donde tambien podremos agregar nuevas, para luego añadir sketches a estas como se explica en el punto 5. También se encuentra la opción "My Assets" que nos da la posibilidad de cargar archivos externos de medios como audios, videos e imagenes para utilizar en nuestros programas (veremos ejemplos de utilización de medios en las clases siguientes). Por ultimo tendremos opciones para cambiar nuestro nombre de usuario y password en la opción "Settings" y la opción de cerrar sesión.
+
+En el editor online de p5.js vamos a poder ejecutar casi la totalidad de ejemplos y ejercicios que veremos a lo largo del curso. Pero puede haber situaciones en las que se desee trabajar sin la necesidad de estar conectados a Internet. Para eso veremos como generar Sketches y guardarlos localmente. Además estarán embebidos los ejemplos dentro de la plataforma para poder ir practicando a medida que se va avanzando como se muestra a continuación:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/yDdIda7CB"></iframe>
+
+### 1.2. Trabajando con p5.js localmente
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=1367&end=1664"/>
+
+Antes que nada, vas a necesitar un editor de código. Un editor de código es similar a un editor de texto (como Bloc de notas), excepto que posee una funcionalidad especial para editar código en vez de texto plano. Podés usar cualquier editor que quieras; recomiendo [Sublime Text](https://www.sublimetext.com). También podés usar [Atom](https://atom.io/) o [Brackets](http://brackets.io/). Todos descargables de forma gratuita.
+
+Una vez instalado el editor de código que hayas elegido,&nbsp; dirigite a [https://p5js.org/es/download/](https://p5js.org/es/download/) y selecciona: `p5.js completo`. Descargá y extraé el archivo zip en la ubicación que te sea más cómoda de tu disco duro.
+
+El directorio p5 contiene un proyecto de ejemplo con el que puedes empezar a trabajar. Abri tu editor de código. Luego abri el directorio llamado emptyexample (ejemplo vacio) en tu editor de código. En la mayoría de los editores de código, podés hacer esto yendo al menú Archivo, usando la opción Abrir y luego seleccionado el directorio empty-example.
+
+Cuando abras el directorio empty-example, lo más probable es que veas una barra lateral con el nombre del directorio en la parte superior y una lista con los archivos contenidos en este directorio. Si haces click en alguno de estos archivos, verás los contenidos del archivo aparecer en el área principal.
+
+<Image src={img2} alt="" width="600"/>
+
+Un Sketch en p5.js está compuesto de varios lenguajes distintos usados en conjunto. HTML (HyperText Markup Language) brinda la columna vertebral, enlazando todos los otros elementos en la página. JavaScript (y la biblioteca p5.js) te permiten crear gráficas interactivas que puedes mostrar en tu página HTML. A veces se usa CSS (Cascading Style Sheets) para definir elementos de estilo en la página HTML.
+
+Si revisas el archivo index.html, te darás cuenta que contiene un poco de código HTML. Este archivo brinda la estructura a tu proyecto, enlazando la biblioteca p5.js y otro archivo llamado sketch.js, donde tú escribirás tu propio programa. El código que crea estos enlaces tiene la siguiente apariencia:
+
+```html
+<script language="javascript" type="text/javascript" src="../p5.js"></script>
+<script language="javascript" type="text/javascript" src="sketch.js"></script>
+```
+No necesitas hacer nada en el código HTML por el momento. 
+
+A continuación,haz click en sketch.js y revisa el código:
+
+```js
+function setup() {
+  // put setup code here
+}
+function draw() {
+  // put drawing code here
+}
+```
+
+Este es el archivo sobre el que escribirás tu sketch. Una vez escrito el código lo podés guardar con la opción Archivo → Guardar.
+
+Para crear un Sketch nuevo La forma más simple es ubicando el directorio empty-example en tu explorador de archivos, luego copiar y pegarlo para crear un segundo empty-example. Podes renombrar el directorio como quieras (por ejemplo, Proyecto-2).
+
+Ahora podés abrir este directorio en tu editor de código y empezar a hacer un nuevo sketch. Cuando quieras verlo en el navegador, abrí el archivo `index.html` ubicado en tu nuevo directorio Proyecto-2.
+
+Para ver el código en ejecución, podes abrir el archivo `index.html`, ya sea de la carpeta "empty-example" o "Proyecto-2" o cualquiera que hayas en creado, en cualquier navegador web (como Chrome, Firefox o Safari). 
+
+Simplemente navegá a esa carpeta en tu explorador de archivos y hacé doble click en `index.html` para abrirlo. Otra alternativa es hacerlo desde el navegador web, escogiendo Archivo→Abrir y seleccionar el archivo `index.html`.
+
+Por supuesto, al abrir este archivo en el navegador aun no vas a ver nada, porque no agregamos ningún código, así que comencemos a entender cómo es este nuevo lenguaje.

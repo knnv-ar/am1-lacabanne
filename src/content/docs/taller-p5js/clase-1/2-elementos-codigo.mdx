@@ -1,0 +1,151 @@
+---
+title: '2. Elementos del código'
+description: 'Clase 1'
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img3 from './sintaxis.png';
+
+## 2. Elementos del código
+
+### 2.1. Sintaxis General
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=1664&end=1776"/>
+
+El hecho de crear un programa implica recurrir a la escritura y aprender un lenguaje. Similar a cuando aprendemos un nuevo lenguaje oral o escrito, necesitamos aprender una sintaxis y una lógica. Escribir en un lenguaje humano es muy complicado. Posee ambigüedad en las palabras, y mucha flexibilidad para la construcción de párrafos. En ese sentido, el lenguaje de máquina es más sencillo, pero posee una dificultad clara: la lógica de la programación. Usualmente, un ser humano puede percatarse de un error de sintaxis y darlo por alto, restándole parcial o completa importancia. Sin embargo, en un lenguaje de máquina las cosas son de una forma o de otra: O está bien, o está mal.
+
+Por esto hay que tener principal atención en la sintaxis correcta a utilizar. Ejemplos de esto son las mayúsculas, para p5.js no es lo mismo una `C` que una `c`, por lo tanto no será lo mismo escribir `createcanvas` que escribir `createCanvas`. 
+
+### 2.2. Instrucciones
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=1776&end=1875"/>
+
+Si utilizamos una metáfora del lenguaje humano, podemos entender a la instrucción como si fuera una oración en la que le pedimos a nuestro programa que haga algo.
+
+Dentro de una instrucción se pueden realizar muchas acciones. Las instrucciones se escriben una tras otra y cada una representa una acción que nuestro programa irá interpretando de arriba a abajo y de izquierda a derecha, de a una a la vez. 
+
+Las instrucciones siempre se deben terminan con el signo punto y coma (`;`), por lo que no es importante si una instrucción está escrita en varias líneas o con espacios en blanco, p5.js interpreta que una instrucción comienza desde el último punto y coma hasta el próximo.
+
+Algunas de las instrucciones posibles son:
+
+- Ejecutar una función,
+- Definir una variable o array,
+- Asignar un valor a una variable (o valores a un array),
+- Construir un objeto
+
+Iremos viendo estas instrucciones a lo largo del desarrollo del curso. Por ahora comenzaremos con las funciones.
+
+### 2.3. Funciones
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=1875&end=2023"/>
+
+Las funciones permiten dibujar formas, colores, realizar cálculos matemáticos, entre otras variadas acciones.
+
+Por lo general se comienzan en minúsculas y seguidas por paréntesis. Algunas funciones aceptan parámetros, los cuales se escriben entre los paréntesis. Si acepta más de uno, son separados por una coma (,). Por ejemplo: `createCanvas(500, 600);`
+
+
+### 2.4. Bloques de programación
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=2023&end=2091"/>
+
+Las funciones para ser ejecutadas en nuestro programa deben estar incluidas dentro de un bloque de programación. Como vimos en los ejemplos del editor de p5.js y los locales, ambos vienen con dos bloques predefinidos `setup()` y `draw()`. Es condición fundamental para que nuestro programa funcione que tenga uno de estos dos bloques y es condición fundamental para que nuestras funciones se ejecuten que estén dentro de la llave de apertura y cierre de alguno de estos bloques.
+
+Veremos las características específicas de cada uno de estos en las clases posteriores. Por ahora nos limitaremos a escribir todas nuestras funciones dentro del bloque setup();
+
+
+### 2.5. Tamaño y fondo 
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=2091&end=2733"/>
+
+Dibujar en una pantalla de computadora es como trabajar en papel cuadriculado. Una pantalla de computadora es una matriz de elementos de luz llamados pixeles. 
+
+Para comenzar nuestro programa primero debemos establecer algunas características del entorno donde se va a desarrollar, como lo son el tamaño de la pantalla (es decir, la cantidad de pixeles de nuestra pantalla que vamos a utilizar) y por otro lado el color de  fondo que tendrá nuestra pantalla. 
+
+Para esto utilizamos dos funciones básicas: `createCanvas()` y `background()`.
+
+`createCanvas()`, nos permite definir las dimensiones de la ventana donde se muestran los  eventos, vendría a ser nuestro lienzo donde vamos a plasmar las figuras, como dijimos anteriormente las funciones pueden recibir parámetros que pondremos entre paréntesis separados por coma, en el caso de `createCanvas()` recibe dos parámetros numéricos, el primero corresponde a la cantidad de pixeles de ancho va ocupar el lienzo en nuestra pantalla y el segundo a la cantidad de pixeles de alto. `createCanvas(ancho, alto);` 
+
+Si no utilizamos la función `createCanvas()` el tamaño de lienzo por defecto va a ser de 100x100 pixeles.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/VwR7Wuejn"></iframe>
+
+Como vemos en el ejemplo anterior, pareciera que no estamos visualizando nada. ¿Esto quiere decir que nuestro programa no funciona? No. 
+
+Nuestro programa funciona correctamente, pero como estamos visualizando nuestro lienzo sobre un fondo de pantalla gris y el color por defecto de nuestro lienzo también es gris, no podemos diferenciar nuestro lienzo del fondo en el que se encuentra.
+
+Para esto existe la función background. Con esta función podemos establecer un color de fondo pleno que ocupe todo nuestro lienzo.
+
+En el caso de background el argumento es un código de color determinado (en este caso valores desde 0 -negro- hasta 255 -blanco- con grises intermedios).
+
+Más adelante veremos cómo trabajar con más colores, pasando más parámetros a la función background.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/d814mBEfd"></iframe>
+
+> Para jugar: probá cambiandole los números dentro de la función createCanvas y de la función background. 
+
+### 2.6. Comentarios y Consola
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=2733&end=3197"/>
+
+El ejemplo anterior es bastante simple y corto, por lo que su interpretación no requiere demasiado esfuerzo. Pero a medida que nuestros programas empiecen a crecer, va a ser mas difícil interpretarlos de forma rápida, o recordar después de un tiempo lo que hace una parte específica del código o mismo que alguien más pueda entender nuestro código si lo compartimos.
+
+Para facilitar esto tenemos dos herramientas fundamentales en todos los lenguajes de programación, como son los comentarios y la consola.
+
+Los comentarios son notas que podemos agregar en nuestro código que van a ser ignorados por nuestro programa, pero que nosotros podemos ver en el editor. 
+
+
+Estos pueden ser de una solo línea utilizando dos barras:
+
+```js
+//esto es un comentario que cubre toda la línea
+```
+
+O multilínea utilizando barra y asterisco para la apertura y asterisco y barra para el cierre:
+
+```js
+/*este es
+un comentario
+multilinea*/
+```
+
+Al ser ignorados por el programa, también son útiles para marcar como comentario algunas instrucciones de nuestro código lo que nos permitirá aislar parte del programa para entenderlo mejor o depurarlo en busca de algún error que hubiese.
+
+Otra herramienta que nos permite depurar nuestro código es la consola. Como vimos, el editor online tiene un sector específico para la consola, donde nos informara si el programa tiene algún error al ser ejecutado.
+
+Pero además de esto, tenemos la posibilidad de escribir nuestros propios mensajes en la consola.
+
+Esto es util ya que cuando un programa es ejecutado, la computadora realiza acciones a tal velocidad que es imposible percibirlas para el ojo humano. Por lo tanto, es importante mirar la consola, no solo para errores, sino también para entender qué ocurre detrás del programa.
+
+Para utilizar la consola tenemos la función `console.log()`; a la que le podemos pasar cualquier texto que queramos como parámetro encerrado entre comillas y este será mostrado en la consola.
+
+De esta forma podemos utilizar la consola no solo para mostrar texto sino también, cuando avancemos y nuestros programas sean mas complejos, para mostrar el contenido de una variable, confirmar un evento o chequear datos externos que están ingresando. 
+
+Por ahora nos limitamos a imprimir texto y a tener en cuenta que tanto imprimir en la consola como utilizar los comentarios pueden hacer más clara la lectura del código.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/YDlpbUAs0"></iframe>
+
+> Para jugar: Intenta cambiar el texto de los comentarios. Intenta marcar como comentario alguna función. Imprimí otros mensajes en la consola
+
+### 2.7. Ejemplos y Referencia 
+
+<YouTube id="https://youtu.be/1PFSn4DUYFg" params="start=3197"/>
+
+Aprender a programar con p5.js involucra explorar mucho código: ejecutarlo, alterarlo, romperlo y mejorarlo hasta que lo hayas reconfigurado y hecho algo novedoso. 
+
+Con esto en mente, el sitio web de p5.js tiene docenas de ejemplos que demuestran diferentes características. Visita la página de Ejemplos para verlos. https://p5js.org/es/examples/. 
+
+Podés jugar con ellos editando el código en la página y luego haciendo click en "Ejecutar". Los ejemplos están agrupados en distintas categorías según su función, como forma, color, e imagen. Encuentra un tema que te interese en la lista y prueba un ejemplo. 
+
+Otra página que tiene muchos ejemplos y un editor online para poder probarlos y modificarlos es https://www.openprocessing.org/
+
+Si ves una parte del programa con la que no estás familiarizado o sobre la que quieres aprender su funcionalidad, visita la Referencia de p5.js. https://p5js.org/es/reference/
+
+La Referencia de p5.js explica cada elemento de código con una descripción y ejemplos para saber con seguridad cual es la correcta sintaxis de cada una de las funciones, la cantidad de parámetros que recibe y la funcionalidad de cada parámetro.
+
+Por ejemplo, no recordamos cual de los parámetros de la función `createCanvas()` es el alto y cual es el ancho de la pantalla.
+
+Para esto visitamos la referencia, buscamos la función y encontraremos toda la información necesaria de la función deseada.
+
+<Image src={img3} alt="" width="600"/>
