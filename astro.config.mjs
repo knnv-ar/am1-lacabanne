@@ -3,6 +3,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://am1-lacabanne.netlify.app/',
 	integrations: [
 		starlight({
 			title: 'AM1 Lacabanne',
@@ -14,8 +15,11 @@ export default defineConfig({
 				// Relative path to your custom CSS file
 				'./src/styles/custom.css',
 			],
+			editLink: {
+				baseUrl: 'https://github.com/knnv-ar/am1-lacabanne/edit/main/docs/',
+			},
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/knnv-ar/am1-lacabanne',
 			},
 			sidebar: [
 				{
