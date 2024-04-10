@@ -23,27 +23,35 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
-					label: 'Taller de p5.js',
+					label: 'Clases',
 					items: [
 						{
 							label: 'Clase 1',
-							autogenerate: { directory: 'taller-p5js/clase-1' },
+							collapsed: false,
+							autogenerate: { directory: 'clases/clase-1' },
+							/*badge: 'Nuevo',*/
+							badge: { text: 'nuevo', variant: 'default' },
+						},
+						{
+							label: 'Clase 2',
+							collapsed: true,
+							autogenerate: { directory: 'clases/clase-2' },
+						},
+						{
+							label: 'Avanzadas',
+							collapsed: true,
+							autogenerate: { directory: 'clases/avanzadas' },
 						},
 					],
 				},
 				{
-					label: 'Clases',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Clases avanzadas', link: '/guides/clases-avanzadas/' },
-					],
-				},
-				{
 					label: 'Acciones de Consolidación de Saberes (ACSs)',
+					collapsed: true,
 					autogenerate: { directory: 'acs' },
 				},
 				{
 					label: 'Trabajos Prácticos (TPs)',
+					collapsed: true,
 					autogenerate: { directory: 'tps' },
 				},
 			],

@@ -1,0 +1,59 @@
+---
+title: '1. Estructuras de programación'
+description: 'Estructuras de programación'
+sidebar:
+  order: 5
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+//import img21 from './greyscale.png';import img22 from './last.png';import img23 from './colorModels.png';import img24 from './hsb.png';
+
+El código que vemos en la mayoría de los sketchs y ejemplos que encontramos contiene dos bloques, o funciones: `setup()` y `draw()`. Podés escribir tu código en cualquiera de los dos lugares, y cada lugar tiene un propósito específico.
+
+### 1.1. `setup()`
+
+El bloque `setup()` se ejecuta una sola vez al correr el programa, osea que el interpretador de código va a leer las líneas de arriba hacia abajo hasta la última que encuentre en este bloque y luego va a continuar con lo siguiente. De esto se interpreta que generalmente el código que pondremos en este bloque, va a ser el referido a las funciones que solo requieren ser ejecutadas una vez y que intervienen en las cuestiones de configuración de nuestro sketch y del estado inicial del mismo. Ejemplo de esto puede ser definir el tamaño del lienzo, la velocidad del programa, el grosor del trazado inicial, etc.
+
+Como ya vimos, la forma de llamar a setup es la siguiente:
+
+```javascript
+function setup() {
+  //instrucciones
+}
+```
+
+### 1.2 `draw()`
+
+El código dentro del bloque `draw()` se ejecuta desde el principio hasta el final, de arriba a abajo y es ejecutado en un continuo loop (repetición) hasta que se cierra el programa o cuando se cierra la ventana. Cada vez que el código dentro del bloque `draw()` es terminado de leer en su última línea, se muestra en la ventana de representación y vuelve a leerse desde la primer línea (siempre dentro del bloque `draw()`).
+
+Cada una de estas lecturas repetitivas o iteraciones de `draw()` se llama cuadro y es ejecutado por defecto 60 veces por segundo (60 fps), aunque esto puede ser modificado mediante la función `frameRate()` pasándole como parámetro un número menor de fps o mayor en caso que nuestra computadora lo soporte. 
+
+La forma de llamar a draw es la siguiente:
+
+```javascript
+function draw() {
+  //instrucciones
+}
+```
+
+Los programas deben tener un solo bloque draw o setup. En el caso de escribir más de uno de estos bloques, no nos devolverá error pero tomará siempre el último bloque escrito para ejecutarse.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/KSpuwt0hm"></iframe>
+
+> Para jugar: utilizá la función `frameRate()` o la variable `frameCount` como parámetro de alguna función de dibujo.
+
+
+Como se puede ver en el ejemplo anterior, dependiendo de donde ponemos la función background puede variar el comportamiento de nuestro programa, ya que si la ponemos en `setup()` esta se ejecuta una sola vez, por lo tanto todo lo que se dibuje en la función `draw()` va a sobrescribir una y otra vez ese fondo en cada iteración (esto es notorio en la transición de color que sucede si dibujamos figuras con transparencia). 
+
+Si en cambio quisiéramos ver la figura con el color fijo, colocando la función background en las primeras líneas del `draw()`, el fondo se volverá a dibujar en cada iteración, impidiendo que el color de la figura genere una transición.
+
+> Para tener en cuenta: En algunos navegadores, en vez de escribir lo que se imprime en la consola una y otra vez, lo imprimirá solamente una vez, y después por cada vez adicional, incrementará un número junto a la línea, representando el número total de veces que la línea ha sido impresa sucesivamente.( La función `print()` realiza la misma acción que `console.log()`, pero debido a que `console.log()` es una función específica de javascript funciona más rápido)
+
+### 1.3 `frameRate()` y `frameCount`
+
+La función `frameRate()` como dijimos puede utilizarse para cambiar la cantidad de cuadros por segundo de nuestro programa, pero si no le pasamos ningún parámetro nos sirve para obtener la información de los fps a los que está corriendo nuestro programa. 
+
+`frameCount` como vemos en nuestro ejemplo no se escribe con paréntesis. Esto sucede porque no es una función sino que es una variable. Veremos lo que es una variable en detalle en el próximo tema, pero por ahora diremos que `frameCount` siempre contiene el número de cuadros que se ejecutaron desde que el programa fue iniciado. Un programa que posee un bloque draw() siempre variará el número de cuadros (1, 2, 3, 4, 5, 6...) hasta que el programa sea detenido, la computadora agote su capacidad de procesamiento o se pierda la fuente de tensión que la alimenta.
