@@ -1,0 +1,131 @@
+---
+title: '1. Funciones de usuario'
+description: '1. Funciones de usuario'
+sidebar:
+  order: 1
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './fn-1.png';
+import img2 from './fn-2.png';
+import img3 from './fn-3.png';
+
+Así como vimos que existen los bloques de programación `setup()` y `draw()`, pueden existir otros en p5.js, tanto propios del lenguaje que se ejecutan en base a eventos en nuestro programa, como creados por nosotros mismos que se ejecutan cuando los llamamos en nuestro código.
+
+Estos bloques son conocidos como funciones y son fundamentales en los programas hechos en p5.js.
+
+### 1.1. Funciones de usuario
+
+En los ejemplos vistos hasta aquí ya nos acostumbramos a llamar a funciones, la función `createCanvas()`, la función `line()`, la función `fill()`, etc. Todas ellas son funciones propias de p5.js, osea que es un bloque de programación que se ejecuta cuando lo llamamos escribiendo su nombre y pasándole parámetros entre paréntesis. Como son propias de la librería p5.js, no debemos preocuparnos en incluirlas en nuestro código, ya que se vuelven accesibles al trabajar con la librería.
+
+Pero así como existen estas, podemos generar nuestras propias funciones escribiéndolas por fuera de `setup()` o `draw()` y pueden ser llamadas en cualquier sección de nuestro código.
+
+Las funciones son útiles si queres realizar una acción una y otra vez. Por ejemplo dibujar una forma más compleja como un árbol. La función para dibujar un árbol puede estar compuesta de funciones de p5.js, como `line()`, Después de que el código para dibujar el árbol es escrito, no necesitas pensar en los detalles para dibujar un árbol nuevamente - podés simplemente escribir `arbol()` (o algún otro nombre que le hayas puesto a la función) para dibujar la figura. 
+
+Las funciones permiten que una secuencia compleja de declaraciones pueda ser abstraída, para que te puedas enfocar en una meta de alto nivel (como dibujar un árbol), y no en los detalles de la implementación (las funciones `line()` que definen la forma del árbol). Una vez que una función es definida, el código dentro de la función no necesita ser repetido.
+
+Al igual que con las funciones de p5.js, las funciones de usuario pueden recibir parámetros que modifiquen el resultado obtenido.
+
+Una función puede ser imaginada como una caja con una serie de mecanismos dentro que permiten actuar sobre una serie de datos. Por lo general hay datos de entrada y código dentro de la caja, los cuales producen datos de salida:
+
+<Image src={img1} alt="" width="700"/>
+
+Por ejemplo, una función puede utilizarse para sumar 10 a un número o multiplicar dos:
+
+<Image src={img2} alt="" width="700"/>
+
+El ejemplo anterior es sumamente simple, pero el concepto puede extenderse a cuestiones que no sean necesariamente tan obvias:
+
+<Image src={img3} alt="" width="700"/>
+
+p5.js ejecuta el código de a una línea a la vez. Cuando una función es ejecutada, salta a donde la función está definida y corre el código ahí, luego vuelve a donde estaba anteriormente.
+
+En el siguiente ejemplo nos queremos concentrar en la parte del código que genera el movimiento, pero a la vez queremos que se dibuje un fondo antes de la figura. Para que el código esté más acomodado y podamos trabajar fácilmente en la sección que nos interesa, dibujamos todo el fondo dentro de una función a la que llamamos con una sola línea de código al principio de nuestro `draw()`.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/EUu_RubWS"></iframe>
+
+### 1.2. Sintaxis de las funciones
+
+Como se desprende del ejemplo visto previamente la correcta sintaxis para generar nuestras propias funciones es la siguiente:
+
+```javascript
+function dibujar () {
+  //acciones
+}
+```
+
+Lo primero que se pone es la palabra function para declarar que es una función. A continuación elegiremos el nombre de la función, que al igual que las variables podrá ser cualquiera que elijamos, pero se recomienda que guarde alguna relación con el código que ejecuta en su interior. Luego se pondrá entre paréntesis cada uno de los parámetros que recibirá separados por comas. Esto puede ser visto como una declaración de variables, un nombre que luego será utilizado dentro de la función, aunque no debemos declararlos con la palabra var cómo lo hacemos con las variables. 
+
+Por último irá el bloque de código que se ejecutará, encerrado este entre llaves.
+
+Para llamar a la función solo tendremos que escribir el nombre de esta y pasarle la cantidad de parámetros que está necesite. Los parámetros enviados deberán ser la misma cantidad de los esperados por la función, de lo contrario nos dará error.
+
+
+Veamos un ejemplo de uso de una función pasándole parámetros y para que nos sirven estos:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/6aJYptMF2"></iframe>
+
+Como vemos en el ejemplo anterior, creamos 4 parámetros para controlar la posición de nuestra figura, su tamaño y la cantidad de divisiones que se generan dentro de ella.
+
+Las acciónes que realiza la función son siempre las mismas y modificando los parámetros obtenemos resultados diferentes.
+
+### 1.3. ¿Por qué generar funciones?
+
+Una de las razones es acotar el programa para que sea más modular haciendolo más sencillo de leer, modificar y expandir. 
+
+Algo muy común, como vimos en el ejemplo anterior es dibujar una figura en pantalla repetidas veces. 
+
+En el primer ejemplo dibujamos el fondo en una función para concentrarnos en la figura. También podemos copiar el código que dibuja la figura y ponerlo dentro de una función para poder repetirla varias veces en diferentes lugares en nuestro código, controlando el flujo de lo que se dibuja primero y después, evitando así tener que multiplicar el código.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/aPfSbJ3Uk"></iframe>
+
+Cada vez que la función es usada con el `draw()`, las líneas de código dentro de la función son ejecutadas. El flujo del programa es interrumpido por la función. Una vez terminada la ejecución del código dentro de la función, se dispone a leer lo que sigue en el bloque `draw()`:
+
+```
+------------------ Inicia leyendo el código del setup()
+------------------ Entra al draw(), se desvía a la función figura
+------------------ Vuelve al draw(), se desvía a la función fondo
+------------------ Vuelve al draw(), se desvía a la función figura por segunda vez
+------------------ Comienza desde el principio del draw() nuevamente
+```
+
+Ahora que la función está trabajando, podemos crear tantas figuras como queramos. De esta forma dejaremos de preocuparnos por como la figura es dibujada, y nos concentraremos en ubicarla correctamente en nuestro código enviándole los parámetros necesarios.
+
+Una vez que tenemos nuestras funciones definidas y conocemos sus acciones, una buena práctica es mantener todas estas en un archivo .js diferente al de nuestro sketch principal, facilitándonos la lectura y modificación de nuestro código principal y por otro lado la utilización de estas mismas funciones en un sketch diferente al incluirlas.
+
+Para que nuestro sketch principal las pueda utilizar, debemos incluir la llamada a este nuevo archivo en nuestro index.html.
+
+Lo importante a la hora de escribir una función, es tener la idea clara de lo que se va a hacer. ¿Dibujará una figura?¿Calculará un número? Una vez que se piensa en que se quiere hacer, hay que pensar en los parámetros que recibirá. De este modo se construirá una función en pocos pasos.
+
+### 1.4. Valores de retorno
+
+En los ejemplos anteriores, la salida producida por una función dibuja una figura o una forma en la pantalla.
+
+No obstante, hay veces que preferimos que la propia salida que se produce sea un tipo de dato. A esto se lo llama valor de retorno.
+
+Las funciones pueden hacer un cálculo y luego retornar un valor al programa principal. 
+
+Ya hemos usado funciones de este tipo, incluyendo `random()` y `sin()`. Cuando esta función aparece, el valor de retorno es generalmente asignado a una variable:
+
+```javascript
+var r = random(1, 10);
+```
+
+En este caso, la función `random()` retorna un valor entre 1 y 10, el que luego es asignado a la variable r.
+
+Las funciones que retornan un valor también son usadas frecuentemente como un parámetro de otra función, como por ejemplo:
+
+```javascript
+point(random(width), random(height));
+```
+
+En este caso, los valores de `random()` no son asignados a una variable sino que son pasados como parámetros a la función `point()` y son usados para posicionar el punto dentro del lienzo.
+
+Para hacer que una función retorne un valor, especica el dato a ser retornado con la palabra clave return. La acción de utilizar return es usualmente usada en la última línea de la función, puesto que inevitablemente saldrá de la función una vez usada.  
+
+En este ejemplo se incluye una función llamada `pesoMarte()` que calcula el peso de una persona u objeto en nuestro planeta vecino Marte:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/tessfMpNX"></iframe>

@@ -1,0 +1,214 @@
+---
+title: '3. Condicionales'
+description: '3. Condicionales'
+sidebar:
+  order: 3
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './cond-1.png';
+import img2 from './cond-2.png';
+import img3 from './cond-3.png';
+
+### 3.1. Expresiones relacionales
+
+¿Qué es la verdad? Esta gran cuestión filosófica es muy sencilla de responder en la programación. Sencillamente, si algo es `true` (verdadero) es una verdad, y si algo es `false` (falso) es todo lo contrario. Se trata tan sólo de una noción lógica, no es necesario que se trate realmente de una “verdad”. Sin embargo, si en la lógica del programa, eso es una verdad, entonces el programa devolverá un valor true, de lo contrario devolverá un valor false. Tan sencillo como un 1 o un 0.
+
+Las expresiones relacionales nos informan la condición de verdad de dicha expresión. Una expresión relacional compara dos valores y evalúa si el resultado es verdadero (`true`) o falso (`false`):
+
+| Expresión Relacional | Evaluación |
+| :------------------- |:---------- |
+|  3 < 5               | true       |
+|  3 > 5               | false       |
+|  5 < 3               | false       |
+|  5 > 3               | true       |
+
+Cualquiera de estas expresiones puede leerse en español. ¿El número tres es menor al número cinco? Si la respuesta es "si" expresa el valor true (verdadero). Al comparar dos valores con una expresión relacional, solo pueden dar dos resultados posibles: true o false. A continuación, una tabla con los valores relacionales y su significado:
+
+| Operador | Significado |
+| :------- |:----------- |
+|  \>       | Mayor que       |
+|  \<       | Menor que       |
+|  \>=      | Mayor o igual a |
+|  \<=      | Menor o igual a |
+|  \==      | Igual a         |
+|  \!=      | Distinto de     |
+
+Las siguientes líneas de código muestran el resultado de comparar dos valores con una expresión relacional:
+
+```javascript
+console.log(3 > 5); //Imprime false
+console.log(5 > 3); //Imprime true
+console.log(5 > 5); //imprime false
+console.log(3 < 5); //Imprime true
+console.log(5 < 3); //Imprime false
+console.log(5 < 5); //imprime false
+console.log(3 >= 5); //Imprime false
+console.log(5 >= 3); //Imprime true
+console.log(5 >= 5); //imprime true
+console.log(3 <= 5); //Imprime true
+console.log(5 <= 3); //Imprime false
+console.log(5 <= 5); //imprime true
+```
+
+El operador de igualdad (`==`) determina si los dos valores que se evalúan son equivalentes. Devuelve true si la igualdad se cumple. En cambio, el operador de diferenciación (`!=`) evalúa si dos valores son diferentes. Devuelve true si la desigualdad se cumple.
+
+```javascript
+console.log(3 == 5); //Imprime false
+console.log(5 == 3); //Imprime false
+console.log(5 == 5); //imprime true
+console.log(3 != 5); //Imprime true
+console.log(5 != 3); //Imprime true
+console.log(5 != 5); //imprime false
+```
+  
+### 3.2. Estructura condicional: `if`
+
+Hasta ahora hemos visto que las instrucciones se ejecutan de forma lineal, es decir desde la primera hasta la última línea de código, una tras otra. Este tipo de construcción genera un resultado que no contempla variaciones en lo estructural, sino que presenta una sola forma de resolución.
+
+Pero, ¿qué ocurriría si deseamos generar una construcción que contemple dos, tres o más variaciones estructurales?  Las estructuras condicionales le permiten a un programa saber que línea de código ejecutar y cuáles no. Las líneas de código sólo serán "visibles" para el programa si se cumple una condición. Permiten al programa diferenciar acciones dependiendo el valor de variables. Por ejemplo, rellena con un color diferente una figura dependiendo el valor de una variable. Las estructura `if` es usada en p5.js para tomar esas decisiones:
+
+```javascript
+if(condición){
+  acciones;
+}
+```
+
+<Image src={img1} alt="" width="400"/>
+
+La condición debe ser una expresión que se resuelve con true o false. Si la condición es true, el código que este desde la apertura de la llave(`{`) hasta el cierre del mismo (`}`), se ejecuta. En caso de ser false, el programa directamente no "lee" las acciones. 
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/hYyjiGwri"></iframe>
+
+### 3.3. Estructura condicional: `else`
+
+En el caso específico de que la condición de como resultado false, y estemos deseando que aún así, ocurra algún evento, se utilizará, como agregado a la estructura IF, la estructura ELSE. La estructura ELSE extiende a la estructura IF, permitiendo agregar acciones cuando la condición devuelve un resultado false.
+
+<Image src={img2} alt="" width="400"/>
+
+> **Si desmarcamos como comentario la sección que dice //IF -----ELSE ---- de nuestro ejemplo veremos como funciona esto.**
+
+Los condicionales pueden estar “encadenados” una dentro de otra para tener completo control de las líneas de código. 
+
+> **Si desmarcamos como comentario la sección que dice //IF -----ELSE ----IF de nuestro ejemplo veremos como funciona esto.**
+
+
+### 3.4. Estructura condicional: `if` ... `else if`
+
+A continuación veremos un tercer tipo de estructura condicional, if/else if:
+
+```javascript
+if (condición 1) {
+acciones 1
+} else if (condición 2){
+acciones 2
+}
+```
+
+Cuando el programa se encuentre con esta estructura se ejecutarán las acciones 1 siempre y cuando la evaluación de la condición 1 resulte verdadera; por otra parte, si dicha evaluación resultase falsa, se evaluará una segunda condición, condición 2, y en caso de resultar verdadera, se ejecutarán las acciones 2.
+
+> **Si desmarcamos como comentario la sección que dice  //IF -----ELSE IF---- de nuestro ejemplo veremos como funciona esto.**
+
+<Image src={img3} alt="" width="400"/>
+
+### 3.5. Operadores lógicos
+
+En lógica proposicional se utilizan conectivas lógicas, también llamadas operadores lógicos. En programación se los utilizan para combinar valores de verdad y obtener nuevos valores que determinen el flujo de control de un algoritmo o programa.
+
+Los operadores lógicos presentes en p5.js se usan para considerar más de una condición de forma simultánea al combinar dos o más expresiones relacionales. También se los utiliza para invertir los valores lógicos en el caso de !NOT.
+
+```
+**Operador**              **Significado**
+&&                        AND (Y – conjunción lógica)
+||                        OR (O – disyunción "inclusiva" lógica)
+!                         NOT (NO – negación)
+```
+
+### 3.6. Tablas de verdad
+
+Repasemos entonces las tablas de verdad de dichos operadores:
+
+En relación al operador lógico `AND`, se ve que para que la evaluación general sea verdadera, necesita que todas las evaluaciones parciales de las expresiones relacionales componentes sean Verdaderas.
+
+| Expresión | Evaluaciones parciales | Evaluación general |
+| :-------: |:---------------------- |:------------------ |
+|  a&&b                | true && true           | true               |
+|  ...      | true && false          | false              |
+|  ...      | false && true          | false              |
+|  ...      | false && false         | false              |
+
+También podemos verlo en binario:
+
+**AND**
+
+| A | B | Salida |
+| :-: |:-: |:--: |
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+Ahora, hablando del operador lógico `OR`, la evaluación general será verdadera tan sólo si alguna de las evaluaciones parciales resultase verdadera.
+
+| Expresión | Evaluaciones parciales | Evaluación general |
+| :-------: |:---------------------- |:------------------ |
+|  a\|\|b   | true \|\| true           | true               |
+|  ...      | true \|\| false          | true               |
+|  ...      | false \|\| true          | true               |
+|  ...      | false \|\| false         | false              |
+
+También podemos verlo en binario:
+
+**OR**
+
+| A | B | Salida |
+| :-: |:-: |:--: |
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+Por último, la utilización del operador NOT, invierte el valor de verdad, si es verdadero cambia a falso y viceversa:
+
+**NOT**
+
+| Expresión | Evaluaciones parciales | Evaluación general |
+| :-------: |:---------------------- |:------------------ |
+|  !a       | !true                  | false              |
+|  ...      | !false                 | true               |
+
+Los procesos de lógica se descomponen en pasos. Los paréntesis son utilizados para delimitar las componentes y así simplificar el trabajo. En las siguientes líneas se muestra un breve paso a paso de como debe interpretarse:
+
+```
+var a = 10;
+var b = 20;
+Paso 1 (a > 5) || (b < 30)
+Paso 2 (10 > 5) || (20 < 30)
+Paso 3 true || true
+Paso 4 true
+```
+
+> **Si desmarcamos como comentario la sección que dice  //IF -----ELSE IF---- AND ---- de nuestro ejemplo veremos como funciona esto.**
+
+### 3.7 Estructura condicional: `switch`
+
+La estructura switch funciona como una estructura if, sin embargo es conveniente utilizar switch cuando se necesita seleccionar una opción entre muchas.
+
+```javascript
+switch (expresión) {
+  case etiqueta 1:
+    instrucciones 1
+  case etiqueta 2: 
+    instrucciones 2 
+  ...
+  default: 
+    instrucciones 3 
+}
+```
+
+Cuando el programa se encuentre con una estructura switch, se ejecutarán las instrucciones correspondientes al case cuya etiqueta equivalga al valor de la expresión. Por otro lado, todas las demás instrucciones que le sigan serán ejecutadas a menos que se les interponga un break.
+
+> **Si desmarcamos como comentario la sección que dice  //SWITCH ------------ de nuestro ejemplo veremos como funciona esto.**

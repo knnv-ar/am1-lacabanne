@@ -1,0 +1,174 @@
+---
+title: '1. 3D con WebGL'
+description: '1. 3D con WebGL'
+sidebar:
+    order: 1
+    hidden: false
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+### 1.1. WebGL
+
+En p5.js hay dos motores de renders diferentes: `P2D` (el que se utiliza por defecto si no aclaramos cual usar) y `WEBGL`. 
+
+Cuando utilizamos `WEBGL`, podemos dibujar ademas de en 2 dimensiones, en una tercera dimensión (3D).
+
+Para habilitar WebGL tenemos que especificarlo como tercer parámetro en nuestra función `createCanvas()`.
+
+```javascript
+function setup() {
+    createCanvas(200, 200, WEBGL);
+}
+```
+
+### 1.2. Sistemas de coordenadas 3D
+
+Como venimos viendo hasta aquí, el sistema de coordenadas para ubicar las figuras en nuestro lienzo se basa en las dos dimensiones obtenidas por el eje X y el eje Y . Cuando trabajamos en tres dimensiones, se agrega un nuevo eje a nuestro sistema de coordenadas que es el Z. El eje Z se representaría como el que apunta hacia tu lugar comenzando desde la pantalla, es decir que si hacemos que una figura aumente su ubicación en el eje Z, esta dará la sensación de estar acercándose, en cambio si hacemos que la ubicación en el eje Z disminuya, dará la sensación de estar alejándose.
+
+Esto podemos verificarlo si usamos la función translate para mover nuestra figura, tal como vemos en el siguiente ejemplo.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/WD-ZV93pL"></iframe>
+
+Un punto importante a tener en cuenta es que en nuestro sistema de coordenadas XYZ el punto 0,0,0 se encuentra en el centro de nuestro lienzo.
+
+### 1.3. Primitivas
+
+Así como podemos hacer uso de las figuras primitivas en dos dimensiones que conocimos hasta ahora, cuando trabajamos en tres dimension podemos utilizar  nuevas primitivas especificas. 
+
+Cada una de estas primitivas reciben sólo parámetros de tamaño y no de ubicación, por lo que para ubicarlas hacemos uso de la función translate agregando el nuevo eje de coordenadas como vimos en el ejemplo anterior.
+
+Las primitivas cuando trabajamos en tres dimensiones son 7:
+
+- `box()`
+- `plane()`
+- `sphere()`
+- `ellipsoid()`
+- `cone()`
+- `cylinder()`
+- `torus()`
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/2CSKmWdcG"></iframe>
+
+### 1.4. Rotación
+
+Así como usamos translate para ubicar las figuras podemos utilizar la trasnfromación rotate como hacíamos con las figuras en dos dimensiones. La diferencia aquí radica en que podemos hacer rotar las figuras en cada uno de los tres ejes con tres funciones diferentes: `rotateX()`, `rotateY()` y `rotateZ()`:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/tlqUhC5jM"></iframe>
+
+### 1.5. Figuras personalizadas
+
+De la misma forma que no debemos limitarnos a las figuras primitivas cuando trabajamos en 2D sucede lo mismo en 3D. Podemos utilizar las funciones `beginShape()` y `endShape()` que ya conocemos para realizar las figuras personalizadas que se nos ocurran, siempre teniendo en cuenta que a cada punto debemos agregarle su ubicación en el eje de coordenadas Z.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/iUTzBJmXj"></iframe>
+
+### 1.6. Luces
+
+Como estamos viendo en los ejemplos anteriores, nuestras figuras se ven con lineas que la forman como un conjunto de algo así como triángulos. Esto es así porque nuestras figuras en 3D no son más que un conjunto de polígonos unidos que generan la figura más compleja que estamos dibujando.
+
+Si queremos dejar de ver esas lineas sobre nuestras figuras, solo debemos llamar a la función `noStroke()`.
+
+Pero vemos, al llamar a esa función que nuestras figuras ahora pierden definición y no se reconocen muy bien los bordes ni las caras, algo fundamental para una figura en tres dimensiones. Esto es porque sobretodo lo que nos da la sensación de una figura en tres dimensiones tiene que ver con cómo rebota la luz en esos objetos. Para generar una luz ambiente en nuestro sketch que rebote en los objetos, llamamos a la función `lights()`, si por el contrario no queremos que haya luces, llamamos a la función `noLights()`.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/ogI4ytUmt"></iframe>
+
+La función `lights()` nos genera una luz ambiental predefinida, pero tenemos la posibilidad de iluminar nuestro sketch de muchas formas personalizadas. Para eso existen cuatro tipo de luces: luz direccional, luz focalizada y luz puntual y luz ambiental.
+
+La luz direccional brilla en una dirección que le especifiquemos sin tener un punto específico de origen, por lo tanto no puede ser posicionada mas cerca o lejos de nuestras figuras. Cuando una luz direccional choca contra una superficie se dispersa en todas las direcciones. Puede ser agregada a nuestro sketch llamando a la función `directionalLight()` que recibe seis parametros los tres primeros para el color y los tres últimos para indicarle la dirección a la que apunta:
+
+```javascript
+directionalLight (r, g, b, x y, z);
+```
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/emOuQ4SjW"></iframe>
+
+La luz puntual se diferencial de la luz direccional en cuanto a que tiene un punto de origen especifico, por que refleja en las figuras de una manera diferente estando mas cerca o más lejos. Además como su nombre lo indica, es una luz más concentrada en un punto por lo que no se dispersa tanto como la luz direccional. Recibe seis parámetros de la misma forma que la luz direccional, solo que en este caso los tres últimos parámetros indican la posición desde donde proviene la fuente de luz.
+
+```javascript
+pointLight (r, g, b, x y, z);
+```
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/nWegCmC5R"></iframe>
+
+La luz focal puede ser agregada a nuestro sketch llamando la función `spotLight()`. Es una mezcla de las dos anteriores ya que podemos decirle la dirección a la que apunta la luz desde la ubicación específica que le asignemos. Por lo tanto, la función recibe 9 parámetros, siendo los tres primeros los colores, los tres del medio la ubicación de la fuente de luz y los tres últimos la dirección a la que apunta.
+
+```javascript
+spotLight(r, g, b, x, y, z,dirX, dirY, dirZ);
+```
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/Lr4QaXILx"></iframe>
+
+La luz ambiental no proviene de una dirección específica ni tiene una dirección, sino que baña con una luz pareja a todas las figuras. Podemos agregar esta luz a nuestro sketch llamando a la función `ambientLight()`. Generalmente es utilizada en combinación con otras luces y es muy util para suavizar sombras. 
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/ThP7mDQL3"></iframe>
+
+### 1.7. Materiales
+
+En el mundo real, como refleja la luz en los objetos no tiene que ver solo con las caracteristicas de la luz sino tambien con la superficie material de los objetos sobre los que la luz rebota. En p5.js podemos simular los materiales de los que estan compuestas nuestras figuras para que la luz rebote de manera diferente. Podemos utilizar tres funciones para simular tres materiales diferentes: `normalMaterial()`, `ambientMaterial()` y `specularMaterial()`.
+
+`normalMaterial()` no recibe ningun parametro sino que genera un efecto de material por defecto que sirve como referencia. 
+
+`ambientMaterial()` es parecido a `fill()`, recibe los mismos paramétros, pero se diferencia de fill ya que este color se verá afectado por las luces que lo preceden.
+
+`specularMaterial()` es el más realista de los tres materiales. Esto es un material que refleja la luz en una dirección única de forma más brillante que el resto. Generalmente es percibido como un efecto de vidrio o cristal.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/9K5UfXZyh"></iframe>
+
+### 1.8. Texturas
+
+Una textura es como una piel que envuelve a nuestra figura. Podemos cargar como textura cualquiera de los medios que vimos en las anteriores clases, ya sea imágenes, gráficos o videos.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/cQ8Wm1pAe"></iframe>
+
+### 1.9. Cámara
+
+Podemos agregar una cámara para cambiar el punto de vista de nuestro sketch. Esto se hace con la función `camera()` que recibe 9 parámetros. Los tres primeros indican la ubicación XYZ de la cámara, los tres del medio la dirección a la que apunta y los tres últimos la inclinación sobre cada eje.
+
+```javascript
+camera(ubicacionX, ubicacionY, ubicacionZ, direccionX,direccionY, direccionZ, inclinacionX, inclinacionY, inclinacionZ);
+```
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/WnFEYsQUV"></iframe>
+
+Se puede agregar la función `debugMode()` que nos agrega unos ejes y una grilla de referencia para entender la ubicación de nuestros objetos. También si agregamos la función `orbitControl()`, podremos mover la cámara con el mouse. Estas funciones suelen utilizarse como referencias utiles cuando se está desarrollando el sketch.
+
+Para agregar mas funcionalidades a la camara de una forma mas sencilla, investigar la libreria `p5.EasyCam` en https://github.com/freshfork/p5.EasyCam.
+
+Aca hay un tutorial paso a paso en openprocessing: 
+
+https://www.openprocessing.org/sketch/756182
+
+
+### 1.10 Referencias
+
+1. Introduction to WebGL in p5.js
+    <YouTube id="https://youtu.be/nqiKWXUX-o8"/>
+
+2. 3D Geometries
+    <YouTube id="https://youtu.be/6TPVoB4uQCU"/>
+
+3. Light and Material
+    <YouTube id="https://youtu.be/k2FguXvqp60"/>
+
+4. Texture
+    <YouTube id="https://youtu.be/O1mYw-3Wl_Q"/>
+
+5. Camera and Perspective
+    <YouTube id="https://youtu.be/BW3D9WwalQE"/>
+
+6. `createGraphics()` as WebGL Texture
+    <YouTube id="https://youtu.be/3tTZlTq4Cxs"/>
+
+7. Loading OBJ Model
+    <YouTube id="https://youtu.be/FUI7HEEz9B0"/>
+
+8. 3D Custom Shapes
+    <YouTube id="https://youtu.be/DZlw-IS5OkI"/>
+
+https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5
+
+https://processing.org/tutorials/p3d/
+
+https://www.openprocessing.org/sketch/794227
+
+https://www.openprocessing.org/sketch/766713

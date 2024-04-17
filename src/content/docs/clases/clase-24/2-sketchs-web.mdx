@@ -1,0 +1,109 @@
+---
+title: '2. Subir nuestros sketchs a la web'
+description: '2. Subir nuestros sketchs a la web'
+sidebar:
+    order: 2
+    hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './web-1.png';
+import img2 from './web-2.png';
+import img3 from './web-3.png';
+import img4 from './web-4.png';
+import img5 from './web-5.png';
+import img6 from './web-6.png';
+import img7 from './web-7.png';
+
+En el caso que queramos compartir nuestros sketchs online por fuera del editor de p5.js necesitamos hacer uso de un servidor que aloje y muestre nuestros archivos en la web. Hay varios servicios pagos como `Amazon`, `GoDaddy` o una opción argentina es `DonWeb`. Pero si no queremos invertir en uno de estos servidores pagos, podemos hacer uso de servidores gratuitos. Existen varios, pero nos focalizaremos en `000webhost`.
+
+### Subir ejemplos a `000webhost`
+
+1. Ingresamos a https://ar.000webhost.com/ y hacemos click en el boton "Empezar":
+
+    <Image src={img1} alt="" width="700"/>
+
+2. Hacemos click en la opción registro gratis:
+
+    <Image src={img2} alt="" width="700"/>
+
+3. En esta pantalla nos da la posibilidad de registrarnos o ingresar con alguna cuenta de google o facebook que ya tengamos. Si tenemos alguna de esas cuentas y queremos utilizarlas, elegimos una de esas opciones y sino, hacemos click en el botón "registrate" y llenamos el formulario.
+
+4. Una vez logueados hacemos click en el botón "create new site":
+
+    <Image src={img3} alt="" width="700"/>
+
+5. Elegimos un nombre de dominio y una contraseña: `@%JK3zXIfH$7Rf@^2W^T`:
+
+    <Image src={img4} alt="" width="700"/>
+
+6. Una vez creado seleccionamos la opción file manager para poder subir archivos:
+
+    <Image src={img5} alt="" width="700"/>
+
+7. En el gestor de archivos, seleccionamos la carpeta `public_html` que es la que va a ser accesible. Dentro de esta carpeta podemos crear nuevas carpetas para diferenciar cada sketch:
+
+    <Image src={img6} alt="" width="700"/>
+
+8. Si queremos subir un sketch que trabajamos en el editor de p5.js simplemente ingresamos al sketch desde el editor. Seleccionamos `File -> Download` y descargamos el archivo comprimido a nuestra computadora. Luego descomprimimos la el archivo y ya está listo para subirse. Si estuvimos trabajando localmente, ya los archivos van a estar preparados para subirse.
+
+9. Generalmente si es un proyecto que solo usa p5.js sin librerias ni archivos de medios, tendremos los archivos `index.html`, `sketch.js`, `p5.js` y `style.css`. Si estamos usando librerias o medios, van a estar en sa misma carpeta. Seleccionamos todos los archivos de nuestro proyecto y los arrastramos a la carpeta que creamos en el gestor de archivos de `000webhost`.
+
+    <Image src={img7} alt="" width="700"/>
+
+10. Una vez subido los archivos, ya está todo listo. Simplemente tenemos que dirigirnos a la URL que creamos cuando armamos el sitio y creamos una carpeta donde alojamos el proyecto poner la barra `/` y el nombre de la carpeta. En este ejemplo sería: https://ejemplosp5.000webhostapp.com/ejemplo1/
+
+### Modificar la apariencia de nuestra página
+
+Si queremos que nuestro lienzo esté mejor integrado a la página, podemos centrarlo y ponerle un color de fondo de la siguiente forma:
+
+- Abrimos el archivo `style.css` de nuestro proyecto en algún editor de texto de los mencionados en la primer clase (`Visual Studio Code`, `sublimeText2`, `Dreamweaver`, etc)
+- Vamos a encontranos con este código:
+
+```css
+html, body {
+    margin: 0;
+    padding: 0;
+}
+canvas {
+    display: block;
+}
+```
+
+
+- Debajo de `padding:0;` agregamos las líneas:
+
+```css
+    background-color: salmon;
+    text-align:-webkit-center;
+```
+
+- `background-color` funciona de la manera muy similar a la función background de p5.js que ya conocemos. Le damos los valores de 0 a 255 de cada componente rgb y el último valor es el alfa. En este caso el alfa va de 0 a 1 y los valores decimales intermedios
+
+- `text-align` nos sirve para alinear el contenido de la página. Podemos ponerle como valor `-webkit-center` para que esté centrado o `-webkit-left` para que esté alineado a la izquierda o `-webkit-right` para que esté alineado a la derecha. 
+
+- Hechas las modificaciones nuestro archivo `style.css` quedaría de la siguiente forma:
+
+```css
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: salmon;
+    text-align:-webkit-center;
+}
+canvas {
+    display: block;
+}
+```
+
+- Finalmente, guardamos el archivo y lo volvemos a subir en nuestro gestor de archivos de `000webhost`.
+
+Para conocer más sobre `css` recomiendo este video de Daniel Shiffman:
+
+<YouTube id="https://youtu.be/zGL8q8iQSQw"/>
+
+Y en caso de que quieran conocer más en profundidad la dinámica de `html+css+javascript`, les recomiendo que miren toda la playlist que esta acá:
+
+<YouTube id="https://youtu.be/URSH0QpxKo8"/>

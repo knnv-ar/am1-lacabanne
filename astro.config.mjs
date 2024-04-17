@@ -23,19 +23,44 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
+					label: 'Organización',
+					collapsed: true,
+					autogenerate: { directory: 'organizacion' },
+				},
+				{
 					label: 'Clases',
 					items: [
 						{
 							label: 'Clase 1',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'clases/clase-1' },
+						},
+						{
+							label: 'Clase 2',
+							collapsed: false,
+							autogenerate: { directory: 'clases/clase-2' },
 							/*badge: 'Nuevo',*/
 							badge: { text: 'nuevo', variant: 'default' },
 						},
 						{
-							label: 'Clase 2',
+							label: 'Clase 6',
 							collapsed: true,
-							autogenerate: { directory: 'clases/clase-2' },
+							autogenerate: { directory: 'clases/clase-6' },
+						},
+						{
+							label: 'Clase 17',
+							collapsed: true,
+							autogenerate: { directory: 'clases/clase-17' },
+						},
+						{
+							label: 'Clase 20',
+							collapsed: true,
+							autogenerate: { directory: 'clases/clase-20' },
+						},
+						{
+							label: 'Clase 24',
+							collapsed: true,
+							autogenerate: { directory: 'clases/clase-24' },
 						},
 						{
 							label: 'Avanzadas',

@@ -1,0 +1,118 @@
+---
+title: '2. Estructuras de repetición'
+description: '2. Estructuras de repetición'
+sidebar:
+  order: 2
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './for.png';
+import img2 from './for-steps.png';
+import img3 from './for-ex-1.png';
+import img4 from './for-ex-2.png';
+
+### 2.1. Iteración
+
+Las estructuras repetitivas son encargadas de producir iteraciones. Es decir, a través de pocas líneas de código se puede repetir, prácticamente, infinitas veces una misma línea de código. Esto ayuda a un mejor rendimiento del programa, pero especialmente a un mejor rendimiento del programador, que con simples estructuras puede reducir notablemente el tiempo y, por ende, errores. Para esto, se utiliza una estructura denominada FOR, la cual es encargada de repetir un ciclo las veces que queramos.
+
+### 2.2. Estructura iterativa: `for` 
+
+Tomemos el siguiente caso: nos disponemos a dibujar 13 líneas verticales equidistantes entre sí, a una distancia de 10 píxeles. Todas ellas tendrán el mismo tamaño. Supongamos que utilizaremos el siguiente código:
+
+```javascript
+line(20, 20, 20, 180);
+line(30, 20, 30, 180);
+line(40, 20, 40, 180);
+line(50, 20, 50, 180);
+line(60, 20, 60, 180);
+line(70, 20, 70, 180);
+line(80, 20, 80, 180);
+line(90, 20, 90, 180);
+line(100, 20, 100, 180);
+line(110, 20, 110, 180);
+line(120, 20, 120, 180);
+line(130, 20, 130, 180);
+line(140, 20, 140, 180);
+```
+
+Podemos notar varias cosas a partir del código anterior:
+
+1. la posición del eje y en las coordenadas de origen y destino en cada instrucción tienen el mismo valor: 20 y 180.
+2. la posición del eje x en las coordenadas de origen y destino en cada instrucción se incrementan a una paso de 10 unidades positivas. Ambas comienzan en el valor 20 y llegan hasta 140.
+
+Por lo tanto, ¿se puede expresar esta construcción de una manera más simple? ¡La respuesta es sí! Utilizando una estructura `for`. 
+
+La estructura `for` perfecciona las repeticiones, pudiendo simplificarse el código básico en esta simple y funcional estructura:
+
+```javascript
+for(iniciador, condición, actualización){
+  acciones;
+}
+```
+
+Los paréntesis asociados a esta estructura corresponden a tres acciones internas: iniciador, condición y actualización. Las acciones dentro del bloque del código se ejecutan constantemente, siempre y cuando la condición devuelva un true (verdadero). El iniciador asigna el valor inicial de la iteración, mientras que la actualización modifica el valor del iniciador con cada bucle.
+
+Veamos como sería el código optimizado a continuación:
+
+```javascript
+for (var i = 20; i < 150; i += 10) {
+  line(i, 20, i, 180);
+}
+```
+
+<Image src={img1} alt="" width="700"/>
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/Dub_ndD7s"></iframe>
+
+> Al principio puede parecer medio complicado, hasta que nos acostumbramos a leerlo. Veamos cómo podemos decodificarlo.
+
+El bloque for  se lee así:
+
+1. Se ejecuta la instrucción de inicialización o contador interno `var i = 20;`, que se encarga de inicializar el valor de la variable de control (`i`) del bloque `for`. En este caso se inicia en `20`.
+2. Luego pasamos a la instrucción de evaluación `i < 150;`, encargada de determinar si la variable de control se encuentra dentro del rango de valores contemplados en la condición (es decir, que `i` sea un valor `menor a 150`). Si dicha evaluación resulta verdadera continuamos con el paso 3. Si resulta falsa saltamos al paso 5.
+3. Se ejecutan las instrucciones dentro del bloque marcado entre llaves. Notar que se utiliza la variable de control como variable dinámica que devuelve los valores correspondientes al eje x en coordenadas de origen y destino.
+4. A continuación se ejecuta la instrucción de actualización `i += 10`, encargada de renovar el valor de la variable de control. A continuación se salta al paso 2.
+5. Se sale de la estructura de iteración y continúa la ejecución del programa. De esta forma se procede con cada estructura for que nos encontremos.
+
+<Image src={img2} alt="" width="700"/>
+
+<Image src={img3} alt="" width="700"/>
+
+<Image src={img4} alt="" width="700"/>
+
+En los ejemplos de las imágenes anteriores al declarar la variable tener en cuenta que en p5.js solo se declara `let` y no *int* o *float* como sucede en la versión Java de Processing.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/bXSd1iwU1"></iframe>
+
+### 2.3. Iteración anidada
+
+La estructura `for` produce repeticiones en una dimensión. Anidando iteraciones podemos crear efectos sumamente interesantes. Por ejemplo, teniendo tan solo dos coordenadas de puntos, si los anidamos en una estructura `for`, podemos cambiar una simple dimensión a una figura de dos dimensiones.
+
+La técnica es muy útil para crear fondos, texturas y los conocidos patterns. Los números producidos por las variables de control de repeticiones pueden aplicarse a la posición, al color, al tamaño, a la transparencia o a cualquier otra cosa de atributo visual.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/QTzhrWBF4"></iframe>
+
+### 2.4. Estructura iterativa: `while` 
+
+La otra estructura iterativa que contamos en p5.js es while, que a diferencia de for, se utiliza de forma conjunta con una variable de control externa al bloque. Por lo tanto, la estructura while ejecuta una serie de instrucciones de manera continua mientras que la expresión condicional sea verdadera. La expresión debe ser actualizada durante la iteración, de lo contrario nunca saldremos del bucle while.
+
+```javascript
+while (expresión) {
+  instrucciones (alguna de ellas será la de actualización)
+}
+``` 
+
+Esta estructura puede resultar peligrosa para los programadores novatos ya que el código dentro del bucle while no se detendrá hasta que la expresión dentro del mismo resulte falsa. Bloqueará cualquier otro código a ser utilizado. Por lo tanto, debemos ser cautelosos ya que podemos llegar a inmovilizar el código (y hasta a veces el entorno p5.js mismo) si se usa de manera incorrecta.
+
+A continuación un ejemplo simple:
+
+```javascript
+var i=0;
+while (i < 80) {
+  line(30, i, 80, i);
+  i = i + 5;
+}
+```

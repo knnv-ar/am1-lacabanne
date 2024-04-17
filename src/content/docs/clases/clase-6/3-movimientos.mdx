@@ -1,0 +1,186 @@
+---
+title: '3. Movimientos'
+description: '3. Movimientos'
+sidebar:
+  order: 3
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './easing.png';
+import img2 from './seno.gif';
+
+La animación en la pantalla es creada dibujando una imagen, luego otra, y así. La ilusión de movimiento fluido es creada por persistencia de visión. Cuando un conjunto de imágenes similares es presentado a una tasa suficiente, nuestros cerebros interpretan estas imágenes como movimiento.
+
+### 3.1. Movimiento implícito en una dirección
+
+Para poner una figura en movimiento, siempre necesitaremos de al menos una variable que cambie al menos una de sus propiedades en cada cuadro que se ejecuta la función `draw()`. 
+
+Para que la figura no deje un rastro, necesitamos limpiar la pantalla antes de dibujar la figura actualizada. Para esto, pondremos la función `background()` al principio de la estructura `draw()`, de esta forma estaremos limpiando cada cuadro antes de dibujar en el. 
+
+El siguiente ejemplo presenta un movimiento implícito, es decir un movimiento rectilíneo uniforme que no contempla posición de origen ni de destino:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/CsaqreIwL"></iframe>
+
+Como vemos en este ejemplo, la variable `x` que es la que le da la posición en el eje x a la figura dibujada, está constantemente afectada por la variable velocidad en nuestro bloque `draw()`. De esta forma, la posición del círculo se actualiza en cada frame y la posición anterior es borrada al redibujar el fondo con la función `background()`, dando así la sensación de movimiento.
+
+También en este ejemplo se agrega un condicional que verifica si la posición del círculo es mayor al ancho de la pantalla, para que en este caso se redibuje nuevamente en el inicio. Esto lo podemos ver al quitar los comentarios entre la linea 58 y la 62.
+
+Por otro lado, si preferimos que en vez que comience desde el inicio, nuestra figura rebote en los bordes, debemos quitar los comentarios en el ejemplo a partir de la linea 64 y en la linea 22. Por supuesto, comentar lo que reemplaza.
+
+### 3.2 Movimiento implícito en dos direcciones
+
+También podemos utilizar un segundo conjunto de variables para aprovechar el movimiento en el eje Y:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/00T3k0Kf5"></iframe>
+
+### 3.3. Técnica de aligeramiento (easing)
+
+La técnica de animación llamada easing, es en realidad una técnica de interpolación entre dos puntos. Al mover en cada cuadro una fracción de la distancia total de una figura, el movimiento de esta parece desacelerarse al acercarse a la ubicación de destino.
+
+El siguiente diagrama muestra qué ocurre cuando un punto siempre se mueve la mitad del recorrido entre su posición actual y la posición de destino:
+
+<Image src={img1} alt="" width="700"/>
+
+A medida que la figura se acerca a la posición de destino, la distancia recorrida disminuye en cada fotograma, por lo tanto el movimiento de la misma parece "ralentizarse".
+
+En el siguiente ejemplo la variable `x` corresponde a la posición horizontal actual de la figura y la variable `destinoX` corresponde a la posición de destino. La variable `easing` dispone la fracción de la distancia entre la posición actual de la figura y la posición del mouse que la figura se mueve en cada cuadro. El valor de esta variable cambia la velocidad con que el círculo llega al destino. El valor de `easing` debe estar siempre entre 0.0 y 1.0, y los números cercanos a 0.0 causan que el movimiento se ralentice más. Un valor de `easing` de 0.5 hará que el círculo se mueva la mitad de la distancia en cada cuadro, mientras que un valor de 0.01 hará que el círculo se mueva una centésima de la distancia en cada cuadro. 
+
+Ahora sí veamos el ejemplo:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/jksvCNydQ"></iframe>
+
+### 3.4. Aleatoreidad
+
+A diferencia del movimiento linear y suave típico en las gráficas por computadora, el movimiento en el mundo físico es usualmente más impredecible. Podemos simular estas cualidades del mundo generando números aleatorios. La función `random()` calcula estos valores; podemos definir un rango para afinar la cantidad de desorden en un programa. 
+
+```javascript
+random(minimo, maximo);
+```
+
+Veamos cómo sería un ejemplo usando valores de la función `random()` para modificar la posición de líneas en el lienzo. Cuando el mouse está en la izquierda del lienzo, el cambio es pequeño; si se mueve a la derecha, los valores de `random()` aumentan y el movimiento se torna más exagerado. Como la función random() está dentro del bucle for, se calcula un nuevo valor aleatorio para cada punto de cada línea:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/bV4VMbZfX"></iframe>
+
+```javascript
+function setup() {
+  createCanvas(240, 120);
+}
+function draw() {
+  background(204);
+  for (var x = 20; x < width; x += 20) {
+    var mx = mouseX / 10;
+    var desplazamientoA = random(-mx, mx);
+    var desplazamientoB = random(-mx, mx);
+    line(x + desplazamientoA, 20, x - desplazamientoB, 100);
+  }
+}
+```
+
+### 3.5. `sin()` y `cos()`
+
+La trigonometría requiere de cálculos matemáticos complejos, pero no debemos tener estos conocimientos en profundidad para poder aplicarlos en nuestros sketchs.
+
+No entraremos en los detalles matemáticos, pero sí mostraremos unas pocas aplicaciones para generar movimiento fluido.
+
+<Image src={img2} alt="" width="700"/>
+
+La figura anterior muestra una visualización de valores de la onda sinusoidal y cómo se relacionan con ángulos. En la parte superior e inferior de la onda, se puede ver cómo la tasa de cambio (el cambio en el eje vertical) desacelera, se detiene y luego cambia de dirección. Es esta cualidad de la curva lo que genera un movimiento ondulatorio interesante.
+
+Las funciones `sin()` y `cos()` de p5.js retornan valores entre -1 y 1 para la función seno y coseno del ángulo especificado. Los ángulos deben ser escritos en radianes. Para ser útil para dibujar, los valores retornados por `sin()` y `cos()` son usualmente multiplicados por un valor más grande.
+
+El trazado de los valores de seno de un ángulo que se mueve alrededor de un círculo resulta en una onda sinusoidal.
+
+Este ejemplo muestra cómo los valores de `sin()` oscilan entre -1 y 1 a medida que el ángulo aumenta. Con la función `map()`, la variable valorSeno es convertida desde este rango a valores de 0 a 255. Este nuevo valor es usado para definir el color del fondo del lienzo:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/UDqM2I2f3"></iframe>
+
+```javascript
+var angulo = 0.0;
+function draw() {
+  var valorSeno = sin(angulo);
+  var gris = map(valorSeno, -1, 1, 0, 255);
+  background(gris);
+  angulo += 0.1;
+}
+```
+
+Este ejemplo muestra cómo estos valores pueden ser convertidos en movimiento:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/d7mGO3zSv"></iframe>
+
+```javascript
+var angulo = 0.0;
+var desplazamiento = 60;
+var escalar = 40;
+var velocidad = 0.05;
+function setup() {
+  createCanvas(240, 120);
+}
+function draw() {
+  background(0);
+  var y1 = desplazamiento + sin(angulo) * escalar;
+  var y2 = desplazamiento + sin(angulo + 0.4) * escalar;
+  var y3 = desplazamiento + sin(angulo + 0.8) * escalar;
+  ellipse( 80, y1, 40, 40);
+  ellipse(120, y2, 40, 40);
+  ellipse(160, y3, 40, 40);
+  angulo += velocidad;
+}
+```
+
+### 3.6. Movimiento circular
+
+Cuando las funciones sin() y cos() son usadas en conjunto, pueden producir movimiento circular. Los valores de la función cos() proveen los valores de la coordenada x y los valores de la función sin() proveen la coordenada y . Ambas son multiplicados por una variable llamada escalar para modificar el radio del movimiento y son sumadas con un valor offset (desfase) para situar el centro de un movimiento circular:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/IqyrU-A_Y"></iframe>
+
+```javascript
+var angulo = 0.0;
+var desplazamiento = 60;
+var escalar = 30;
+var velocidad = 0.05;
+function setup() {
+  createCanvas(120, 120);
+  background(204);
+}
+function draw() {
+  var x = desplazamiento + cos(angulo) * escalar;
+  var y = desplazamiento + sin(angulo) * escalar;
+  ellipse(x, y, 40, 40);
+  angulo += velocidad;
+}
+```
+
+### 3.7. Espirales
+
+Un pequeño cambio hecho para aumentar el valor escalar en cada cuadro produce una espiral en vez de un círculo:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/KcMSJ7ukq"></iframe>
+
+```javascript
+var angulo = 0.0;
+var desplazamiento = 60;
+var escalar = 2;
+var velocidad = 0.05;
+function setup() {
+  createCanvas(120, 120);
+  fill(0);
+  background(204);
+}
+function draw() {
+  var x = desplazamiento + cos(angulo) * escalar;
+  var y = desplazamiento + sin(angulo) * escalar;
+  ellipse(x, y, 2, 2);
+  angulo += velocidad;
+  escalar += velocidad;
+}
+```
+
+### 3.8. Movimientos en conjunto
+
+En este ejemplo final, aplicamos todas las técnicas vistas en esta clase.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/RQEKepo4PT"></iframe>

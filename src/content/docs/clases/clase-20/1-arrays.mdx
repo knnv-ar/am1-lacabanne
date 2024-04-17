@@ -1,0 +1,187 @@
+---
+title: '1. Arrays'
+description: '1. Arrays'
+sidebar:
+  order: 1
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './array-1.png';
+import img2 from './array-2.png';
+import img3 from './array-3.png';
+
+### 1.1. Definición - Utilización
+
+Un array es una lista de variables que comparten el mismo nombre. Los arrays son útiles porque hacen posible trabajar con más variables sin crear un nombre nuevo para cada una. Esto hace que el código sea más corto, más fácil de leer y de actualizar.
+
+Los arrays pueden almacenar números, caracteres, cadenas de texto, valores booleanos, datos de posición de vértices correspondientes a una figura compleja, teclas pulsadas, clics de botones de ratón, datos leídos de un archivo de texto, etc.
+
+<Image src={img1} alt="" width="700"/>
+
+Veamos un ejemplo: queremos almacenar cinco datos (*elementos*) dentro de un array, en este caso cinco números enteros, correspondientes a un conjunto ordenado de datos que llamaremos fechas:
+
+<Image src={img2} alt="" width="700"/>
+
+Los elementos de un array son numerados a partir del número cero. El primer elemento se encuentra en la `posición [0]`, el segundo en la `posición [1]`, etc. La posición de cada elemento es determinada por el desplazamiento desde el inicio del array. El primer elemento se encuentra en la `posición [0]` ya que no existe desplazamiento; el segundo elemento se encuentra en la `posición [1]` ya que su lugar se encuentra desplazado a una distancia de un espacio desde el inicio del array, etc. La última posición se calcula mediante la sustracción de 1 a la longitud (cantidad total de elementos) del array. En esta imagen vemos como el ultimo elemento se encuentra en la `posición [9]` ya que tenemos un total de cdiez elementos en el array.
+
+<Image src={img3} alt="" width="700"/>
+
+Los arrays pueden facilitar mucho la programación dada su extrema utilidad. Si bien su uso no es obligatorio, son estructuras valiosas y eficaces para la administración de conjuntos de datos relacionados. A continuación veremos a través de ejemplos, algunos de los beneficios de utilizar arrays en lugar de un gran número de variables.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/xXn8qi1A2"></iframe>
+
+Como vemos en  este ejemplo si tenemos tres círculos iguales que queremos que se muevan de la misma forma, lo único que hacemos es generar una variable que controle la posición en el eje y de cada uno.
+
+¿Pero qué pasa si queremos tener cinco círculos o diez o cien? Esto significaría que tendriamos que generar esa misma cantidad de variables y luego actualizar cada una de ellas.
+
+En lugar de eso podemos usar arrays:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/gU4PurWQ9"></iframe>
+
+### 1.2. Construir un array
+
+Cada ítem en el array es llamado un elemento, y cada uno tiene un valor de índice para señalar su posición dentro del array. 
+
+Cada array puede darnos información sobre su composición. De esta forma si accedemos a la propiedad *length* del array poniendo `.length` después de su nombre obtendremos la cantidad de índices que tiene el mismo.
+
+Usar arrays es similar a trabajar con variables únicas, sigue los mismos patrones. Como ya sabés, con este código puedes crear una sola variable llamada `x`:
+
+```javascript
+var x;
+```
+
+Para crear un array, basta con definir que el valor de la variable sea un par de corchetes vacíos:
+
+```javascript
+var x = [];
+```
+
+Observá que no es necesario declarar por adelantado la longitud del array, la longitud es determinada por el número de elementos que vos pones en él.
+
+Un array puede almacenar todos los diferentes tipos de datos (boolean, number, string, etc.). También se pueden mezclar y combinar diferentes tipos de datos en un mismo array.
+
+Existen dos pasos cuando se trabaja con array:
+
+1. Declarar el array.
+2. Asignar valores a cada elemento.
+
+Al igual que con las variables, cada paso puede ocurrir en una línea distinta, o se pueden combinar los dos pasos en uno. 
+
+Si vemos en el ejemplo anterior en la primera línea comentada, declaramos y agregamos manualmente los valores en cada indice del array. En cambio si dejamos esa línea comentada, vemos que declaramos el array solo con los corchetes y luego le asignamos los valores a través de un ciclo for.
+
+### 1.3. Agregar items al array
+
+Los arrays tienen un método llamado `push()`. A través de este podemos agregar un nuevo item al final del array indicandole el valor que tendrá. Veamos en el siguiente ejemplo cómo funciona:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/bA5QNcs1v"></iframe>
+
+> *Para tener en cuenta: al acceder a la propiedad length del array podemos asegurarnos que nuestro ciclo for siempre lo recorra hasta el final por más que el tamaño del array se esté modificando en cada click.*
+
+### 1.4. Array multidimensional
+
+Supongamos que en el ejemplo anterior quisiéramos además poder controlar individualmente la posición x de cada una de nuestras figuras.
+
+Esto se puede solucionar de diferentes formas. Una de ellas es, como veremos en el siguiente ejemplo utilizar dos arrays, uno que contenga la posición x de cada círculo y otro que contenga la posición y. De esta forma, el valor del array x con índice 0 corresponderá al valor  array y con índice 0, el del índice 1 de x con el índice 1 de y, así sucesivamente:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/b0wufQNBe"></iframe>
+
+Esto está bien y funciona, pero existe una mejor forma de solucionarlo que nos permitirá que el código sea más claro y escalable. Estos son los arrays multidimensionales.
+
+De esta forma podremos agregar valores relacionados dentro del array. Básicamente lo que estamos haciendo es agregar un array dentro de otro. La sintaxis sería la siguiente
+
+```javascript
+var xy = [[10, 30],[40, 20],[37,82]];
+```
+
+Si quisiéramos agregar un valor nuevo en vez de pasar un número como valor pasariamos el array de la siguiente forma:
+
+```javascript
+xy.push([24, 25]);
+```
+
+Al crear un array dentro de otro lo que obtendremos es que nuestro array xy tendra como valor en cada uno de sus indices un nuevo array con dos indices. Por lo tanto si imprimimos esto:
+
+```javascript
+console.log(xy[0]);
+```
+
+Lo que obtendremos será:
+
+```javascript
+[10, 30]
+```
+
+Para obtener uno de esos dos valores hay que agregar el nuevo índice del array interior:
+
+```javascript
+console.log(xy[0][1]); // muestra 10
+```
+
+De esta manera podemos modificar el ejemplo anterior para hacerlo mas claro usando las nuevas dimensiones de nuestro array:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/xKlKol3w_"></iframe>
+
+#para tener en cuenta: en el ejemplo hacemos uso del método splice para eliminar los elementos del array que ya no se muestran. Los arrays en javascript tienen muchos métodos que pueden verse en el siguiente link https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array.
+
+Dentro de cada índice de nuestro array principal podemos agregar nuevos arrays del tamaño que queramos generando arrays no solo de 2 sino de infinitas dimensiones.
+
+Como vimos esto es muy útil para ordenar el código y hacerlo más claro, pero si suponemos un caso en el que tenemos arrays de muchas dimensiones, va a llegar un punto en el que va a ser difícil recordar a qué propiedad refiere cada una de ellas.
+
+Para esto hay una forma más simple que es trabajar con objetos.
+
+### 1.5. Objetos simples
+
+En la mayoría de los lenguajes de programación puede utilizarse un paradigma que es la programación orientada a objetos (*OOP*). Está implica que podemos construir variables que adentro tengan propiedades y métodos, relacionados en una clase. 
+
+La programación orientada a objetos es una técnica muy útil pero más compleja y escapa a los alcances de este curso.
+
+Más allá de esto, javascript posee una forma simple de generar objetos con sus propiedades sin tener que utilizar el paradigma. Podemos generar objetos simples sin construir métodos para esos objetos.
+
+Dentro de un objeto se pueden guardar múltiples valores como en un array, pero cada uno accesible a través de una llave (*key*) y no a través de un índice numérico.
+
+La sintaxis para generar objetos es:
+
+```javascript
+var objs = {llave1: 100, llave2: 460, llave3: 17};
+```
+
+Acá vemos como creamos el objeto objs y dentro le agremos tres llaves diferentes con diferentes valores. El nombre de las llaves puede ser cualquiera como si fuese una variable más.
+
+Para acceder a alguno de estos valores simplemente hay que escribir lo siguiente:
+
+```javascript
+console.log(objs.llave1)//imprime 100
+```
+
+También se pueden modificar los valores dentro de cada llave tal como si fuese una variable más:
+
+```javascript
+objs.llave1 = 20;
+```
+
+Es muy común que estos objetos estén dentro de un array. La sintaxis correcta para agregar objetos a un array es la siguiente:
+
+```javascript
+var objs = [
+  {llave1: 14, llave2: 12.2, llave3: 17},
+  {llave1: 3, llave2: 8.9, llave3: 12},
+  {llave1: 8, llave2: 11.0, llave3: 99}
+];
+```
+
+Y para acceder a cada uno de los valores se realiza de la siguiente forma:
+
+```javascript
+console.log(objs[indice].llave);
+```
+
+De esta manera vemos que en nuestro ejemplo es mucho más simple agregarle nuevas propiedades para generar nuevos efectos:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/jC9bLlfZbG"></iframe>
+
+Así podemos generar múltiples figuras que tengan el mismo comportamiento pero cada una con sus propios parámetros:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/gqUunPpWX"></iframe>

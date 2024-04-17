@@ -1,0 +1,91 @@
+---
+title: '4. Métodos de entrada'
+description: '4. Métodos de entrada'
+sidebar:
+  order: 4
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+### 4.1. `mouseX` y `mouseY`
+
+Como el código está ejecutándose continuamente, podemos seguir la posición del mouse y usar estos números para mover elementos en la pantalla.
+
+La variable `mouseX` almacena la *coordenada x*, y la variable `mouseY` almacena la *coordenada y*. Veamos que pasa si utilizamos esas variables como parámetros para posicionar alguna de nuestras figuras:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/cc0I4vtd3"></iframe>
+
+También podemos hacer uso de estas variables, para dibujar una figura continuamente que persiga al cursor.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/N9LNsVxtq"></iframe>
+
+Al hacer esto vemos que un círculo rojo persigue al mouse, lo que resulta bastante aburrido. Pero qué pasaría si quisiéramos utilizar ese circulo rojo como un pincel para colorear el fondo de nuestro sketch.
+
+Para realizar esto simplemente lo que debemos hacer es quitar la función background del bloque `draw()` y colocarla en el bloque `setup()`. De esta manera, nuestro fondo se dibuja una sola vez y luego nuestro circulo se va dibujando en todas las interaciones del `draw()` en la posición específica del mouse, lo que genera el efecto de pincel.
+
+Como la función de relleno está configurada para ser parcialmente transparente, las áreas rojas más densas muestran dónde el mouse estuvo más tiempo o se movió más lento. 
+
+Los círculos que están más separados muestran dónde el mouse estuvo moviéndose más rápido.
+
+### 4.2 `pmouseX` y `pmouseY`
+
+Ahora bien, si queremos que nuestro pincel funcione mejor y no deje espacios vacíos por el movimiento mas veloz del mouse, podemos hacer uso de otras variables que son muy utilizadas en p5js: `pmouseX` y `pmouseY`.
+
+Estas variables almacenan la posición del ratón en el cuadro anterior. Al igual que mouseX y mouseY, estas variables especiales son actualizadas cada vez que se ejecuta `draw()`. Al combinarlas, pueden ser usadas para dibujar líneas continuas al conectar las posiciones actual y más reciente:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/RWK23db7O"></iframe>
+
+Tener en cuenta que también generamos una variable anchoPincel que es utilizada en el `strokeWeight()` de nuestra línea, por lo que modificando el valor de esa variable, modificaremos el el ancho de nuestro pincel.
+
+
+### 4.3. Click
+
+Supongamos que ahora quisiéramos que nuestro pincel no dibuje todo el tiempo sino solo cuando hacemos click con el mouse.
+
+Tenemos suerte, ya que además de la ubicación del mouse, p5.js también mantiene registro de si el botón del mouse es presionado o no. La variable mouseIsPressed tiene un valor distinto cuando el botón del mouse está presionado. 
+
+mouseIsPressed es una variable booleana, lo que significa que solo tiene dos valores posibles: `true` (verdadero) y `false` (falso). El valor de mouseIsPressed es true cuando un botón está siendo presionado.
+
+La variable `mouseIsPressed` es usada en conjunto con la declaración `if` para determinar si una línea de código será ejecutada o no.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/Gp3314eLX"></iframe>
+
+> Para tener en cuenta: las variables `mouseX`, `mouseY` y `mouseIsPressed` funcionan también tocando la pantalla en dispositivos con pantalla tactil.
+
+p5.js también lleva registro de qué botón del mouse es presionado. La variable `mouseButton` puede tener uno de estos tres valores: `LEFT` (izquierdo), `CENTER` (centro), o `RIGHT` (derecho).
+
+Para revisar cuál botón es presionado, se necesita el operador `==`. Veamos como hacer para cambiar el color de nuestro pincel cada vez que se presionado un botón diferente.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/Uh_FXmbzho"></iframe>
+
+> Para tener en cuenta: Como estamos en un navegador, al tocar el click derecho del mouse se nos va a abrir el menu contextual del navegador. Para evitar esto se debe agregar en nuestro programa el sigueinte código por fuera de las estructuras `draw()` y `setup()`.
+
+```javascript
+document.oncontextmenu = function() {
+  return false;
+}
+```
+
+### 4.4. Ubicación
+
+Combinando las estructuras condicionales que estuvimos conociendo, con los valores `mouseX` y `mouseY`, podemos reconocer la ubicación del mouse en nuestro sketch y realizar diferentes acciones según esa ubicación.
+
+También si queremos escribir programas que tengan interfaces gráficas de usuario (botones, casillas, barras deslizadoras, etc.) necesitamos escribir código que sepa cuando el cursor está dentro de un área de la pantalla. Por ejemplo cuando queremos comprobar si el cursor está dentro de un rectángulo hacemos cuatro pruebas separadas para saber si está en el lado correcto de cada uno de los lados del rectángulo, luego comparamos cada resultado de las pruebas y si todas son true, entonces sabemos que el cursor está dentro.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/VwdnU3mz-"></iframe>
+
+### 4.5 Teclado
+
+p5.js mantiene el registro de cualquier tecla que sea presionada en el teclado, además de la última tecla presionada. Tal como la variable `mouseIsPressed`, la variable `keyIsPressed` es true cuando cualquier tecla es presionada, y es false cuando no hay teclas presionadas.
+
+La variable key almacena la tecla presionada más reciente. A diferencia de la variable boolean `keyIsPressed`, que se revierte a false cada vez que una tecla es soltada, la variable key mantiene su valor hasta que la siguiente tecla es presionada. 
+
+Cuando revisamos si está siendo presionada por ejemplo la tecla A o la Z, necesitamos revisar tanto para las letras en mayúscula como en minúscula, en caso de que alguien presione la tecla `Shift` o tenga la función `Caps Lock` activada para esto utilizamos el operador lógico `OR` que conocimos en el tema anterior.
+
+Algunas teclas son más difíciles de detectar, porque no están asociadas a una letra en particular. Teclas como `Shift`, `Alt`, y las *teclas de flecha* están codificadas. 
+
+Tenemos que revisar el código con la variable `keyCode` para saber qué tecla es. Los valores más frecuentes de `keyCode` son `ALT`, `CONTROL`, y `SHIFT`, además de las teclas de flechas, `UP_ARROW` (arriba), `DOWN_ARROW` (abajo), `LEFT_ARROW` (izquierda), y `RIGHT_ARROW` (derecha).
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/WocW_LL7K"></iframe>

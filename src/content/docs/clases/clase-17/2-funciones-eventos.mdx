@@ -1,0 +1,74 @@
+---
+title: '2. Funciones disparadas por eventos'
+description: '2. Funciones disparadas por eventos'
+sidebar:
+  order: 2
+  hidden: false
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+Como dijimos anteriormente, además de las funciones creadas por nosotros, hay otro tipo de funciones que podemos utilizar; las funciones disparadas por eventos. 
+
+Estas funciones son un bloque de código que se va a ejecutar sin que debamos llamarlos explícitamente en nuestro programa, sino que serán ejecutadas cuando suceda algún evento en particular como veremos a continuación.
+
+### 2.1 Eventos del Mouse
+
+Los eventos del mouse más utilizados que se pueden capturar son `mousePressed()`, `mouseReleased()`, `mouseMoved()`,  `mouseDragged()` y `mouseWheel()`:
+
+| Función de evento | Descripción |
+| :---------------- | :--------------------------------------------------------------------------------------------- |
+| `mousePressed()`  | El código dentro se ejecuta cuando un botón del mouse es oprimido.                             |
+| `mouseReleased()` |  El código dentro se ejecuta cuando un botón del mouse es liberado.                            |
+| `mouseMoved()`    |  El código dentro se ejecuta cuando el cursor se mueve.                                        |
+| `mouseDragged()`  |  El código dentro se ejecuta cuando el cursor se mueve mientras un botón del mouse es oprimido |
+| `mouseWheel()`    | El código dentro se ejecuta cuando se mueve la rueda vertical del mousel.                      |
+
+### 2.2 Mouse presionado: `mousePressed()`
+
+La función `mousePressed()` se ejecuta de forma diferente a la variable mousePressed. El valor de la variable mousePressed es un true hasta que el botón sea liberado. En cambio, el código dentro de un bloque `mousePressed()` se ejecuta una sola vez cuando el botón del mouse es oprimido y se volverá a ejecutar una vez que se suelte el botón y se vuelva a oprimir. En el siguiente ejemplo se puede ver como el fondo del programa cambia gradualmente su nivel de azul a medida que un botón del mouse es oprimido reiteradas veces lo que funcionaría diferente si usaramos la variable `mouseIsPressed`.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/DIN272kuq"></iframe>
+
+### 2.3 Mouse liberado: `mouseReleased()`
+
+En el siguiente ejemplo se ejecuta lo mismo que el ejemplo anterior, con la diferencia que lo que controla el nivel de gris es el evento de liberar el botón del mouse `mouseReleased()`. La diferencia puede apreciarse manteniendo apretado el botón del mouse por un largo tiempo y así advertir que el fondo se altera cuando dicho botón es liberado.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/CPRYa7Zrq"></iframe>
+
+### 2.4 Movimientos del mouse: `mouseMoved()` y `mouseDragged()`
+
+El código de las funciones `mouseMoved()` y `mouseDragged()` se ejecuta cuando hay algún cambio de posición en el cursor. El código dentro de `mouseMoved()` se ejecuta cuando la posición del mouse cambia y no es presionado ningún botón. En cambio, el código dentro de `mouseDragged()` se ejecuta cuando la posición del cursor es alterada a la vez que es oprimido el botón del mouse.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/zHkkA19a-"></iframe>
+
+### 2.5 scroll: `mouseWheel()`
+
+Se ejecuta cada vez que la rueda para hacer scroll del mouse es movida.
+
+La propiedad event.delta retorna el monto que el mouse ha avanzado. Estos valores pueden ser positivos o negativos, dependiendo de la dirección de navegación (en OS X con natural scrolling, los signos son invertidos).
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/b_z7gEV5b"></iframe>
+
+### 2.6 Eventos del Teclado
+
+Los eventos del teclado más utilizados que pueden ser capturados son `keyPressed()` y `keyReleased()`:
+
+| Función de evento | Descripción                                                                                    |
+| :---------------- | :--------------------------------------------------------------------------------------------- |
+| `keyPressed()`    | El código dentro de este bloque se ejecuta cuando un tecla es presionada                       |
+| `keyReleased()`   | El código dentro de este bloque se ejecuta cuando un tecla es liberada                         |
+
+### 2.7 Tecla Presionada: `keyPressed()`
+
+Cada vez que una tecla es presionada podemos registrar el evento y relacionarlo a una serie de acciones. Notar que al igual que como sucede con el mouse, la función `keyPressed()` es llamada cada vez que se aprieta la tecla y no continuamente como si utilizaramos la variable `keyIsPressed`. 
+
+Veamos esto en un ejemplo:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/Ad9TnuRPm"></iframe>
+
+### 2.8 Tecla Liberada:  `keyReleased()`
+
+Cada vez que una tecla es liberada el código dentro de `keyReleased()` es ejecutado. En el siguiente ejemplo vemos además como podemos leer y analizar los valores de entrada por el teclado combinándolos con datos del tipo `String`.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/A5dPSCQiX"></iframe>

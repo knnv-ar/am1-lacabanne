@@ -1,0 +1,168 @@
+---
+title: '2. Datos'
+description: '2. Datos'
+sidebar:
+  order: 2
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+### 2.1. Datos y tipos
+
+Los datos son características asociadas a algo. Una información concreta sobre hechos, elementos, etc., que permite ser estudiado, analizado o conocido.
+
+En los sistemas informáticos, los datos pueden ser guardados y accedidos como números y caracteres. Por ejemplo, las computadoras están constantemente recibiendo datos del mouse y el teclado. Cuando se crea un programa, pueden guardarse datos de, por ejemplo, una forma, un color, o el cambio constante de la posición del mouse. 
+
+En p5.js, como en la mayoría de los lenguajes de programación, tenemos la posibilidad de almacenar datos de diferentes fuentes en la memoria para ser utilizados en nuestros sketchs. 
+
+Estos datos pueden ser de diferentes tipos Algunos de los más usados son:
+
+- Números enteros.
+- Números decimales.
+- Letras y palabras.
+- Colores.
+- Valores booleanos.
+
+### 2.2. Variables
+
+Podemos entender una variable como un contenedor que nos permite almacenar un tipo de dato. Las variables permiten la reutilización de datos en un programa tantas veces como se necesite.
+
+En términos de informática, la variable es un espacio de memoria que nuestra computadora utiliza para recordar el valor asignado y poder utilizarlo a lo largo de todo nuestro programa.
+
+Si una variable almacena el valor 21 y es llamada `edad`, el nombre "edad" puede aparecer muchas veces en el programa. Cuando el programa se ejecute, la palabra `edad` cambiará por el valor de 21. 
+
+El nombre de una variable no puede ser modificado una vez declarado pero sí es posible reasignar fácilmente otro valor las veces que sea necesario mientras el programa está siendo ejecutado. 
+
+La razón principal por la que usamos variables es para evitar repetirnos en el código. Si estás escribiendo el mismo número una y otra vez, considerá usar una variable para que tu código sea más general y más fácil de actualizar.
+
+Otra de las razones para utilizar variables es realizar operaciones aritméticas y almacenar sus resultados como veremos más adelante.
+
+Cuando haces tus propias variables, podés determinar el nombre y el valor. El nombre puede ser prácticamente cualquier cosa que contenga letras o números o guión bajo `_`, no se pueden utilizar símbolos ni espacios en blanco. Es conveniente elegir un nombre que sea indicativo de lo que está almacenado en la variable, de forma consistente y no muy largo. 
+
+Por ejemplo, el nombre de variable `radio` será mucho más claro que `r` cuando leas tu código. Las variables primero deben ser declaradas, lo que reserva espacio en la memoria de la computadora para almacenar la información. 
+
+Cuando declaras una variable, usas la palabra var, para indicar que estás creando una nueva variable, seguida del nombre. Después de que el nombre es fijado, se le puede asignar un valor a la variable:  
+
+```javascript
+var x; // Declara la variable x 
+x = 12; // Asigna un valor a x 
+```
+
+Este código hace lo mismo, pero es más corto: 
+
+```javascript
+var x = 12; // Declara la variable x y le asigna un valor 
+```
+
+La palabra var en la línea de código que declara la variable se escribe una sola vez, no se debe escribir de nuevo al utilizarla o al asignarle otro valor. Cada vez que se escribe var antes del nombre de una variable, la computadora piensa que estás tratando de declarar una nueva variable. Por lo tanto, no podés tener dos variables con el mismo nombre en la misma sección del programa, ya que el programa podría comportarse extrañamente: 
+
+```javascript
+var x; // Declara la variable x 
+var x = 12; // ¡ERROR! Ya existe una variable x 
+```
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/zEUeju8YL"></iframe>
+
+En el ejemplo creamos diferentes variables con diferentes tipos de datos que pueden ser utilizadas en nuestro sketch, entre otras cosas, como parámetros de funciones.
+
+Vemos la utilidad del uso de variables por ejemplo en la llamada `maxcolor`. Esta fue creada para reemplazar los valores máximos de color que aparecían a lo largo de nuestro sketch. De esta manera, solo con cambiar el valor de maxcolor podemos generar un efecto de oscurecimiento o iluminación en nuestros colores, sin tener que buscar en cada lugar de nuestro código ese valor, reemplazarlo de a uno y ejecutar el programa para percibir los cambios. Esto facilita tener una retroalimentación perceptiva mucho más veloz y eficiente cuando estamos dibujando o diseñando un programa y ademas permiten separar las líneas de código que cambian de las que no cambian, lo que hace que los programas sean fáciles de modificar. 
+
+También en las variables centroCirculo y seiscientos que son utilizadas en parámetros de ubicación o extensión de las figuras y vemos que al reemplazar el valor de estas, las ubicaciones y tamaños de algunas figuras se modifican de manera relacionada.
+
+Otra cosa que vemos en el ejemplo es que las variables están declaradas antes del `setup()` y el `draw()`. Esto tiene que ver con el ámbito de la variable.
+
+### 2.3 Ámbito de la variable
+
+Existen dos ámbitos de ejecución de las variables: el global y el local. Cuando trabajamos con los bloques `setup()` y `draw()` es necesario tomar consciencia de donde declaramos y asignamos cada variable. La localización de la variable determina donde prodrá ser utilizada. 
+
+La regla para entender esto es muy simple: si la variable está declarada dentro de la llave de apertura y cierre de una estructura, esa variable es local y puede usarse solamente dentro de esa estructura; si la variable está declarada en el programa, fuera de cualquier estructura, esa variable es global y puede usarse en cualquier estructura.
+
+De esto se infiere que las variables declaradas en el `setup()` pueden usarse solo en el `setup()`, las variables declaradas en el `draw()` pueden usarse solo en el `draw()` y las variables declaradas por fuera de ambas estructuras podrán utilizarse en todo el programa.
+
+```javascript
+var x = 51; //La variable d es global, puede ser usada donde sea
+function setup() {
+  createCanvas(x, 100);
+  var valor =20; //La variable local valor, puede ser usada solo en el //setup()
+  fill(valor); 
+}
+function draw() {
+  var y = 60; //La variable local y, puede ser usada solo en el draw()
+  line(0, y, x, y);
+  y = 25;
+  line(0, y, x, y);
+}
+```
+
+La implementación de variables locales y globales permite que se pueda tener dos o más variables con el mismo nombre. Aún así, no se recomienda el trabajo con variables del mismo nombre ya que puede producir confusión en quien programa.
+
+Cuando nos referimos a estructuras debemos tener en cuenta que no existen solo las que ya conocemos `setup()` y `draw()` sino todas aquellas que tengan llave de apertura y cierre como pueden ser `if(){}` y `for{}` que veremos más adelante. Esto se aclara ya que hay otra forma de declarar variables que encontraremos en ejemplos. Esta otra forma es let que  funciona de la misma manera que var . La única diferencia es que si declaramos una variable con var dentro de alguna estructura que no sea `setup()` y `draw()` o cualquiera que empiece con la palabra function, el programa nos indicará una advertencia si queremos utilizarla por fuera de ese bloque aunque correrá igual. En cambio con let directamente el programa nos devolverá un error y no podremos correrlo.
+
+
+### 2.4. Variables especiales
+
+p5.js posee una serie de variables especiales para almacenar información sobre el programa mientras se ejecuta. Se las denomina variables del programa o variables del sistema. Ya vimos anteriormente la variable freameCount que nos devuelve el valor del número de frame que se esta ejecutando.
+
+Otras variables del sistema muy utlizadas son width y height, que almacenan el ancho y la altura del lienzo. Estos valores son definidos por la función `createCanvas()`. Pueden ser usados para dibujar elementos relativos al tamaño del lienzo, incluso si la línea de código `createCanvas()` es modificada.
+
+Existen también variables especiales que mantienen registro del estado del mouse y de los valores del teclado, entre otras, que veremos en el siguiente tema.
+
+
+### 2.5. Operadores aritméticos
+
+La gente a menudo asume que las matemáticas y la programación son lo mismo. Aunque un poco de conocimiento de matemáticas puede ser útil para ciertos tipos de programación, la aritmética básica alcanza para cubrir lo más importante.
+
+En programación, las propiedades visuales de una imagen son asignadas por números. Esto quiere decir que podemos controlarlas de forma aritmética.  Muchas veces nos vamos a encontrar con que dentro de p5.js se vuelve importante hacer operaciones matemáticas, ya sea para dibujar funciones más raras, o para resolver algún tipo de condición, por lo tanto podemos realizar estos tipos de acciones aritméticas. En p5.js se podrán utilizar las opciones de suma, resta, multiplicación división, módulo, sumar uno, restar uno, restricción de números, etc.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/8G6DP9x4G"></iframe>
+
+En el código, símbolos como `+`, `−` y `*` son llamados operadores. Cuando se encuentran entre dos valores, crean una **expresión**.
+
+Por ejemplo, `5 + 9` y `1024 - 512` son expresiones. Los operadores para operaciones matemáticas básicas son:
+
+```
++     Suma
+−     Resta
+*     Multiplicación
+/     División
+=     Asignación
+%     Módulo
+```
+ 
+
+Los signos `+`, `-`, `*`, `/` y `=` posiblemente sean muy familiares, pero el signo `%` es mucho más exótico. El operador `%` es el de módulo. Determina cuando un número es dividido por otro, o sea, da como resultado el resto del mismo. El número a la izquierda es dividido por el que pongamos a la derecha. Devolverá como resultado el resto de la operación.
+
+  
+### 2.6. Prioridad en el operador. Agrupación.
+
+La prioridad del ordenador determina que operaciones se realizan antes que otras. Esto es de gran importancia ya que puede ser determinante para nuestro resultado. Por ejemplo, la expresión `3 + 4 * 5`, nos dará como resultado `23`, puesto que tiene prioridad la multiplicación. Primero, `4 * 5` resultará en 20 y a continuación se le sumará 3, dando por resultado `23`. La prioridad puede ser cambiada agregando paréntesis.
+
+Si tuviéramos la expresión `(3 + 4) * 5`, entonces la prioridad estaría en la suma, dando como resultado final `35`.
+
+La siguiente tabla, a modo explicativo, muestra que elementos tiene prioridad sobre otros. Siendo que los que se encuentran más arriba, tienen más prioridad que los que están debajo:
+
+```
+Parentesis        ()
+Multiplicativos   * / %
+Aditivos          + -
+Asignación        =
+```
+
+### 2.7. Atajos
+
+Algunos cálculos son usados tan frecuentemente en programación que se han elaborado atajos, lo que es útil para ahorrar tiempo al escribir. Por ejemplo, puedes sumar a o restar una variable con un solo operador:
+
+```javascript
+x += 10; // Es equivalente a x = x + 10
+y −= 15; // Es equivalente a y = y - 15
+```
+
+También es común sumar o restar 1 a una variable, así que también existe un atajo. Los operadores `++` y `−−` hacen esto:
+
+```javascript
+x++; // Es equivalente a x = x + 1
+y−−; // Es equivalente a y = y - 1
+```

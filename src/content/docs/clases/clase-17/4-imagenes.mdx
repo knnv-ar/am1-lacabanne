@@ -1,0 +1,95 @@
+---
+title: '4. Imágenes'
+description: '4. Imágenes'
+sidebar:
+  order: 4
+  hidden: false
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+Además de las figuras y los textos que vimos hasta ahora, p5.js nos da también la posibilidad de trabajar con imágenes.
+
+### 4.1 Agregar imágenes al directorio
+
+Para poder cargar las imagenes estas tienen que estar en una carpeta dentro del directorio de nuestro sketch. 
+
+Si estamos trabajando con el editor online de p5.js, esto es tan simple como extender la sección del directorio de nuestro ejemplo, hacer click en la flecha a la derecha de `Sketch Files` y seleccionar `Create Folder` poniendole el nombre que querramos.
+
+Una vez creada nuestra carpeta debemos hacer click en la flecha a la derecha de esta y seleccionar la opción `upload file`.
+
+En la ventana que nos abre simplemente arrastramos nuestro archivo o hacemos click y seleccionamos el archivo desde la ubicación en la que lo tenemos guardado en nuestra computadora.
+
+Ya agregado el archivo en nuestro directorio, podremos cargarlo en nuestro sketch.
+
+En el caso que estemos trabajando localmente si queremos cargar una imagen externa tu navegador no lo va a permitir. Si revisás la consola, te encontrarás con un error que contiene el término *cross-origin* (origen cruzado). Esto significa que para cargar archivos externos, tenes que correr un servidor . Un servidor responde cuando escribis una URL en la barra de direcciones, y te sirve los archivos correspondientes para que los puedas visualizar.
+
+Existen diferentes maneras de correr servidores. Visita https://github.com/processing/p5.js/wiki/Servidor-local  para ver las instrucciones de cómo correr un servidor en sistemas Mac OS X, Windows y Linux. Una vez que lo tengas configurado podrás cargar imágenes localmente.
+
+### 4.2 Cargar imágenes en el sketch
+
+Existen tres pasos que tenes que realizar antes de que puedas dibujar una imagen en la pantalla:
+
+1. Añadir la imagen al directorio del sketch.
+2. Crear una variable para almacenar la imagen.
+3. Cargar la imagen en la variable con loadImage().
+
+Para cargar una imagen, introduciremos una nueva función llamada `preload()`. La función `preload()` se ejecuta una vez y antes de que la función `setup()` se ejecute. Generalmente deberías cargar tus imagenes y otros archivos en `preload()` para asegurarte que estén completamente cargadas antes de que tu programa empiece a correr. 
+
+Después de que los tres pasos son completados, podes dibujar la imagen en la pantalla con la función `image()`. 
+
+```javascript
+image(imagen, x, y, ancho, alto);
+```
+
+El primer parámetro de `image()` especifica la imagen a dibujar, el segundo y tercero son las coordenadas x e y. Los parámetros opcionales cuarto y quinto determinan el ancho y altura de la imagen a dibujar. Si no se usan los parámetros cuarto y quinto, la imagen es dibujada en su tamaño original.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/HD3oe9EYt"></iframe>
+
+El siguiente ejemplo muestra cómo trabajar con más de una imagen en el mismo programa y cómo escalar una imagen y agregarle una mínima interacción.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/NmeUsXejj"></iframe>
+
+Cuando una imagen es mostrada más grande o pequeña que su tamaño original, puede distorsionarse. Tené cuidado al preparar tus imágenes en los tamaños en que serán usadas. Cuando el tamaño de la imagen es modificado con la función `image()`, el archivo original en tu directorio no cambia.
+
+p5.js puede cargar y mostrar imágenes en los formatos `JPEG`, `PNG`, y `GIF`, además de imágenes vectoriales formato SVG. Podes convertir imágenes a los formatos JPEG, PNG, GIF y SVG usando programas como GIMP, Photoshop e Illustrator. 
+
+Las imágenes GIF, PNG y SVG soportan transparencia, lo que significa que los pixeles pueden ser invisibles o parcialmente visibles.
+
+### 4.3. Asincronicidad
+
+¿Por qué necesitamos cargar las imágenes en `preload()`? ¿Por qué no usamos `setup()`? Hasta este punto, hemos estado asumiendo que nuestros programas corren desde la parte superior a la inferior, con cada línea de código siendo ejecutada completamente antes de avanzar a la siguiente. Aunque esto es cierto generalmente, en el caso de algunas funciones como cargar imágenes, tu navegador empezará el proceso de cargar la imagen, pero saltará a la siguiente línea antes de que la imagen haya terminado de cargarse. Esto recibe el nombre de asincronicidad, o de función asíncrona. Esto es un poco inesperado al principio, pero permite que las páginas carguen y corran más rápido en la web.
+
+Si pusiéramos nuestra función `loadImage()` en el `setup()` la imágen no sería visible desde el inicio de nuestro programa, ya que el sketch primero ejecuta la función `setup()`, y luego ejecuta la función `draw()`. En la línea de `loadImage()` empieza a cargar la imagen, pero continúa con el resto de `setup()` y con `draw()` antes de que la imagen esté completamente cargada. Si llamamos a la función `image()` en el `draw()` esta no será capaz de dibujar una imagen que todavía no esta cargada.
+
+Para solucionar con este problema, p5.js posee la función `preload()`. A diferencia de `setup()`, `preload()` fuerza al programa a esperar hasta que todo esté cargado antes de continuar. Es mejor ejecutar las instrucciones para cargar archivos dentro de `preload()`, y hacer toda la configuración en `setup()`.
+
+
+### 4.4 Color de la Imagen y Transparencia
+
+Las imágenes pueden ser coloreadas con la función `tint()`. Esta actúa del mismo modo que `fill()` y `stroke()`, solo que afecta únicamente a las imágenes.
+
+Todas las imágenes que se dibujan luego de declarada la función `tint()`, será pintada por ella. Si en algún momento se desea que no se pinte, se puede utilizar la función `noTint()`.Para generar transparencia simplemente utilizaremos la misma función `tint()` pero con un valor de blanco, agregandole el paramétro de la transparencia.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/WCaWp3Vuu"></iframe>
+
+
+### 4.5 Píxeles
+
+Como ya dijimos, una imagen es una cuadrícula rectangular de píxeles en la que cada elemento es un número que especifica un color. Debido a que la pantalla en sí es una imagen, los píxeles individuales se definen también como números. Por lo tanto, los valores de color de los píxeles individuales se pueden leer y cambiar.
+
+### 4.6 Leyendo Píxeles
+
+Cuando un programa de p5.js se ejecuta, lo primero que inicia es la ventana de representación, establecida con los valores que se incluyen en `createCanvas()`. El programa gana el control de dicha área y establece el color de cada píxel.
+
+La función `get()` puede leer los datos de cualquier píxel de la pantalla. Hay tres versiones de dicha función, una para cada uso:
+
+```javascript
+get(x, y)
+```
+
+La función `get()` obtiene los píxeles actuales mostrados en pantalla. Eso quiere decir que no solo puede ser una captura de formas del programa, sino también de una imagen que esté cargada.
+
+Cada imagen tiene su propia función `get()` para conseguir píxeles de la imagen. Esto permite a los píxeles ser obtenidos de la imagen, independientemente de los píxeles que se muestran en pantalla. Se puede acceder a su función `get()` con el operador del punto.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/3cSESaVCW"></iframe>

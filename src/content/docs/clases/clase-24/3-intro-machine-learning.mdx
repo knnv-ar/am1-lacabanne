@@ -1,0 +1,134 @@
+---
+title: '3. Introducción al Machine Learning'
+description: '3. Introducción al Machine Learning'
+sidebar:
+    order: 3
+    hidden: true
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './intro-ml-1.png';
+import img2 from './intro-ml-2.png';
+import img3 from './intro-ml-3.png';
+
+### 3.1. ml5.js
+
+Es una librería desarrollada en javascript que podemos utilizar en nuestros sketchs de p5.js. Utiliza como base otras librerías como `tensoflow.js` pero su particularidad es que ofrece un acercamiento muy simple para utilizar modelos pre entrenados de inteligencia artificial en nuestros sketchs.
+
+De esta manera, podemos usar funciones para realizar acciones como clasificación de imágenes, reconocimiento facial, reconocimiento corporal, etc.
+
+Para conocer sobre esta librería, encontrar ejemplos y ver su referencia, toda la información necesaria se encuentra en https://ml5js.org/
+
+Veremos algunos ejemplos subidos en el editor de p5.js por `ml5`. Podés ver el resto en el siguiente enlace: https://editor.p5js.org/ml5/sketches
+
+### 3.2.Comenzando con ml5
+
+Para comenzar a utilizar esta librería podemos descargarla desde aca: https://github.com/ml5js/ml5-boilerplate/releases y agregarla a nuestro sketch o directamente incluir en el index.html de nuestro proyecto el link a la librería:
+
+```html
+<script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+```
+
+### 3.3.Clasificación de imágenes
+
+Para reconocer objetos en las imágenes, ml5 tiene que hacer uso de un modelo pre entrenado para reconocer los objetos. Podemos hacer uso de modelos ya entrenados que son accesibles a través de ml5.
+
+En el siguiente ejemplo, vemos un modelo llamado “MobileNet”, este modelo fue entrenado para reconocer una cierta cantidad de objetos y es pasado como parámetro a el método `imageClassifier()` de `ml5`. Guardando el resultado de esta función en una variable, crearemos un objeto al que podemos pasarle imágenes  para que sean clasificadas llamando al método `classify` y pasándole como parámetro la imagen previamente cargada y diciéndole que al obtener el resultado llame a una función para realizar alguna acción.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/nUGR84s8H"></iframe>
+
+
+Por supuesto todo modelo es limitado y está entrenado para reconocer cierta cantidad de objetos. En este caso MobileNet está entrenado para reconocer 1000 objetos diferentes. Podes ver el listado acá https://github.com/ml5js/ml5-library/blob/main/src/utils/IMAGENET_CLASSES.js
+
+### 3.4. Entrenando nuestro propio modelo
+
+Todo esto se vuelve más interesante si entrenamos nuestro propio modelo. Existe una forma muy simple de entrenar un modelo para que reconozca imágenes y poder utilizarlo en nuestros sketchs. Esto se realiza a través de una nueva herramienta de google llamada Teachable Machine. https://teachablemachine.withgoogle.com/
+
+Podemos ingresar a la web de teachable machine y vamos a ver que tiene una interfaz muy simple para crear nuestros modelos pudiendo elegir desde un principio si queremos que nuestro modelo reconozca imágenes, sonidos o posturas del cuerpo humano.
+
+<Image src={img1} alt="" width="700"/>
+
+Una vez elegido el tipo de proyecto que queremos realizar ingresamos a la interfaz del proyecto:
+
+<Image src={img2} alt="" width="700"/>
+
+Como vemos en la izquierda tenemos dos categorías. Estas categorías van a corresponder a lo que queremos que nuestro modelo reconozca. Para que puede diferencia entre estas categorías, primero debemos entrenar a cada uno con su contenido específico.
+
+En este caso como elegí entrenar un modelo para que reconozca imágenes lo puedo entrenar de dos maneras: subiendo archivos con imágenes o tomando imágenes desde la webcam de mi dispositivo. De esta manera podemos subir muestras de archivos que tengan un objeto en particular o captarlo con nuestra webcam para cada categoría. De más está decir que no debemos limitarnos solo a dos categorías sino que podemos agregar muchas más. Además, vemos que cada una tiene un título que podemos modificar, es recomendable que le pongamos un título que haga referencia a la particularidad de esta categoría porque nos va a resultar más simple cuando trabajemos en nuestro sketch.
+
+Una vez que tenemos preparado nuestro modelo hacemos click en el botón `Preparar modelo`. Esperamos a que se procese la información y cuando esté listo, podemos probarlo en la sección vista previa mostrandole diferentes imágenes. En esa sección nos mostrará un porcentaje de probabilidad de acierto de cada categoría.
+
+Si consideramos que nuestro modelo se encuentra listo, hacemos click en el botón `Exportar modelo` lo que nos dará diferentes opciones:
+
+<Image src={img3} alt="" width="700"/>
+
+Como estamos trabajando en javascript, seleccionamos arriba de todo la opción `Tensorflow.js`. Luego tenemos la opción para descargar el modelo o subirlo. La forma más fácil es subirlo en el caso que tengamos conexión a internet donde ejecutemos el sketch que va a hacer uso del modelo.
+
+Una vez que subimos el modelo, vemos abajo que directamente podemos elegir una opción que dice p5.js. Podemos copiar el código e ir a pegarlo a nuestro editor online de p5.js o a un nuevo archivo en nuestro proyecto local. (Aclaración: la parte del código que se nos muestra que va en nuestro archivo sketch.js es la que comienza desde la linea `//Classifier Variable`, el resto son las inclusiones de la librería que deben ir en nuestro archivo `index.html`).
+
+Cuando ya tenemos nuestro código armado, podemos ejecutarlo y ver que nos indica mediante etiquetas lo que reconoce a través de la imagen que toma en nuestra webcam. Haciendo uso de estas etiquetas (que son las categorías que generamos al principio) podemos realizar cualquier tipo de acción en base a lo que nuestro modelo reconoce, como se muestra en el siguiente ejemplo:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/c2Fv9jYdf"></iframe>
+
+### 3.5. Reconocimiento corporal
+
+Existen modelos ya entrenados para reconocer el cuerpo humano. Uno de ellos es PoseNet que puede ser utilizado a través de `ml5`.
+
+PoseNet puede reconocer en  imágenes, videos o la cámara de nuestro dispositivo, un solo cuerpo o varios cuerpos y a su vez reconocer diferentes partes del cuerpo de cada uno. Las partes que puede reconocer son: los ojos, la nariz, las orejas, los hombros, los codos,las muñecas, las caderas, las rodillas y los tobillos, como podemos ver en el siguiente ejemplo:
+
+<iframe src="https://editor.p5js.org/ml5/sketches/rP8x1mML0O"></iframe>
+
+Lo que vuelve más interesante trabajar con este modelo es que podemos obtener la información individual de cada una de esas partes accediendo al array `pose[]` y pasandole como indice alguna de estas partes del cuerpo con su nombre en inglés:
+
+- `nose`
+- `leftEye`
+- `rightEye`
+- `leftEar`
+- `rightEar`
+- `leftShoulder`
+- `rightShoulder`
+- `leftElbow`
+- `rightElbow`
+- `leftWrist`
+- `rightWrist`
+- `leftHip`
+- `rightHip`
+- `leftKnee`
+- `rightKnee`
+- `leftAnkle`
+- `rightAnkle`
+
+
+De esta manera podemos utilizar esa información para realizar alguna acción como vemos en el siguiente ejemplo:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/VMNzm69wP"></iframe>
+
+### 3.6.Reconocimiento de figura corporal sobre fondo 
+
+Otro modelo que podemos utilizar con ml5 es `BodyPix`. Este modelo también reconoce el cuerpo humano, pero a diferencia de posenet que reconoce ciertos puntos anclas, puede reconocer la figura corporal diferenciaándola del fondo y se puede ajustar el umbral de reconocimiento para que sea aún más preciso. También puede segmentar entre 24 partes diferentes del cuerpo.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/oI43a47qb"></iframe>
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/y1kDEJJFC"></iframe>
+
+### 3.7.Reconocimiento Facial
+
+Ml5 permite utilizar un modelo llamado `FaceAPI` que permite detectar múltiples puntos característicos en la cara de una persona. Originalmente, el modelo `FaceAPI` puede reconocer, edades, géneros o incluso de quien es la cara que se está mostrando. En la implementación de `ml5`, solo podemos obtener la información de esos puntos, pero el resto no es accesible por cuestiones éticas.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/aaPM5SWGY"></iframe>
+
+### 3.8.Detección de frecuencia de los sonidos
+
+Además de reconocer imágenes, con `ml5` podemos reconocer sonidos. Con el modelo de `pitchDetection` podemos reconocer la frecuencia fundamental de los sonidos que tome nuestro micrófono.
+
+<iframe src="https://editor.p5js.org/ml5/sketches/PitchDetection"></iframe>
+
+### 3.9 Reconocimiento de palabras
+
+En este caso no utilizamos la libreria `ml5` sino otra librería llamada `p5.speech.js` que podemos obtener en el siguiente enlace https://idmnyu.github.io/p5.js-speech/
+
+Esta librería nos permite utilizar el modelo de reconocimiento de palabras de google para poder hablar en el micrófono de nuestro dispositivo y realizar acciones en base a las palabras dichas:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/7Xia6bI1j"></iframe>

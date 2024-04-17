@@ -1,0 +1,119 @@
+---
+title: '3. Video'
+description: '3. Video'
+sidebar:
+  order: 3
+  hidden: false
+---
+
+import { Image } from 'astro:assets';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import img1 from './video-1.jpg';
+import img2 from './video-2.png';
+import img3 from './video-3.jpg';
+
+Trabajar con codificación y decodificación de video es una tarea compleja. Es por esto que p5.js no resuelve estas tareas por su cuenta sino que hace uso del objeto `<video>` ya existente en HTML5 y la capacidad de los navegadores modernos para reconocer y decodificar los videos en orden de reproducirlos.
+
+En anteriores versiones de p5.js se incluía una librería llamada `p5.dom`, que es la que permitía poder manipular elementos html de la página en la que se muestra nuestro sketch. Hoy en día esas funciones ya vienen incluidas en p5.js lo que resulta en una forma simple de poder utilizar y controlar videos a través de nuestro sketch como veremos en los sucesivos ejemplos.
+
+### 3.1. Reproducir videos por fuera del lienzo
+
+Para poder reproducir video en nuestro sketch primero tenemos que seguir el mismo proceso que realizamos con las imágenes o el sonido. Debemos agregar el archivo de video a nuestro proyecto, ya sea a subiendo el archivo si trabajamos en el editor online de p5.js o agregándolo en la carpeta que contiene nuestro proyecto si trabajamos localmente.
+
+Una vez hecho eso llamamos a la función `createVideo()` pasándole la ruta y el nombre de nuestro archivo de video:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/hW_R60ZTO"></iframe>
+
+Como se puede ver en el ejemplo anterior se llama a la función `createCanvas()` con su ancho y alto correspondiente pero el video se está dibujando por fuera de nuestro lienzo. Esto es por lo dicho anteriormente, el video se está reproduciendo en la página html posteriormente a nuestro lienzo.
+
+### 3.2. Reproducir videos dentro del lienzo
+
+Si lo que queremos es reproducir videos dentro del lienzo de nuestro sketch, para poder hacerlo convivir con cualquier otro elemento gráfico de los que venimos viendo, lo que debemos hacer es esconder el video que se crea por defecto al llamar a la función `createVideo()`. Esto se realiza mediante el método `hide()`.
+
+Una vez escondido el video, podemos mostrarlo con la función image de nuestro sketch y trabajarlo de la misma manera que lo hacíamos con las imágenes fijas.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/PcreXW4ZY"></iframe>
+
+Como vemos en los ejemplos, el video se carga solo una vez y luego puede ser mostrado todas las veces que queramos sin tener que sobrecargar el rendimiento de la computadora. Se puede sobrecargar en el caso de que llamemos a algunos de los efectos que utiliza la función image, como en el caso de tint, ya que son efectos que realizan cálculos complejos sobre cada imágen en particular.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/isMMpOjCy"></iframe>
+
+### 3.3. Elementos de control de reproducción: `stop()`, `pause()`
+
+Al igual que sucede con el sonido, tenemos diferentes métodos que podemos utilizar para controlar la reproducción de nuestros videos.
+
+Como vimos en los anteriores ejemplos llamando al método `.loop()` reproducimos el video y volverá a  reproducirse desde el principio una vez que llegue al final. Con el método `.play()` se reproducirá el video deteniéndose una vez que llegue al final.
+
+Para detener el video llamamos al método `.stop()` que además llevará al tiempo de reproducción al principio, de modo que una vez que lo volvamos a reproducir comenzará en el segundo 0. Si queremos que el video se detenga pero que se vuelva a reproducir desde el lugar que fue detenido, llamamos al método `.pause()`.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/ktpPrLnDF"></iframe>
+
+### 3.4. Tiempo de reproducción: `time()`, `duration()`
+
+También los videos tienen sus propios métodos para manipular el tiempo de reproducción, ya sea para obtener estos datos o para indicar que el video se reproduzca en un tiempo específico.
+
+Para obtener el tiempo en segundos transcurridos en la reproducción del video llamamos al método `.time()`. A la vez, si a este método le pasamos un parámetro numérico, forzaremos a que la reproducción del video se realice a partir de ese parámetro que corresponderá a los segundos transcurridos.
+
+También podemos obtener la duración total en segundos de nuestro archivo de video, llamando al método `.duration()`.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/y5a4mWylW"></iframe>
+
+### 3.5. Velocidad y audio: `speed()`, `volume()`
+
+También podemos modifcar algunos parametros en la reproducción del video. Podemos modifcar el volumen de la misma forma que lo hacemos con los archivos de audio llamando al método `volume()` y pasandole como parámetro un número de 0.1 a 1, siendo 1 el volumen más alto.
+
+Por otro lado, podemos modificar la velocidad de reproducción del video llamando al método `speed()` y pasandole como parámetro un valor numérico que corresponde al porcentaje de velocidad siendo 1 el 100% de la velocidad (velocidad normal), valores por debajo de 1 velocidades más lentas (ej: 0.5 = 50% de velocidad) o valores por encima de 1 velocidades más rápida (ej: 3 = 300% de velocidad).
+
+Como vemos en este ejemplo, al cambiar la velocidad de reproducción de un video, no modifica la altura (*pitch*) del audio.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/X0R16GQQh"></iframe>
+
+### 3.6. Capture
+
+Además de trabajar con archivos de video externos, p5.js posee la habilidad de utilizar la propia cámara del dispositivo que estamos utilizando para obtener las imágenes de video. De esta forma podemos llamar a la función `createCapture()` para obtener ese video y utilizarlo de la misma manera que con los videos externos.
+
+Si a la función `createCapture()` no le pasamos ningún parámetro obtendrá tanto el video como el audio de nuestro dispositivo. Si queremos obtener solo el video o el audio podemos pasarle como parámetro las palabras `VIDEO` o `AUDIO` respectivamente.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/xzxt32_KC"></iframe>
+
+### 3.7. Operaciones avanzadas con video
+
+Al igual que sucedía con las imágenes, podemos obtener la información de los pixeles de nuestro video con el método `get()`. Si no le pasamos parámetros nos devolvera la información de todos los pixeles en el momento que la llamemos. En cambio le podemos pasar dos parámetros para obtener un pixel en particular en la posición x-y indicada o pasarle cuatro parámetros y obtener una cantidad de pixeles de ancho y de alto en la posición *x-y* indicada. 
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/whyScMvmk"></iframe>
+
+También podemos utilizar los arrays que vimos al principio de la clase para obtener muchas copias en diferentes momentos de la imagen y mostrarlas en diferentes lugares como se ve en el ejemplo siguiente:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/z0fBkqenG"></iframe>
+
+Como el video es dinámico y las imagenes van cambiando en cada frame, si quisieramos  realizar alguna intervención obteniendo la informacion de todos los pixeles en cada frame de video, debemos utilizar el método `loadPixels()`. Cuando llamamos a este método nos crea un array con el que podemos acceder a la información de cada pixel en cada frame de video.
+
+La lógica dictaria que si nuestros pixeles tienen una ubicación x e y deberiamos poder acceder a este array simplemente pasandole como indices la ubicación x e y que queremos obtener. Pero por una cuestión de rendimiento, el array de pixeles del video es de una sola dimensión: 
+
+<Image src={img1} alt="" width="700"/>
+
+Por lo tanto, para obtener el valor de un pixel en este array deberemos realizar el siguiente calculo:
+
+```javascript
+localización = X+(Y*ANCHO);
+```
+
+Además en este array, hay un indice para cada componente de color de ese pixel (rgba), por lo tanto por cada pixel tendremos cuatro índices. 
+
+<Image src={img2} alt="" width="700"/>
+
+<Image src={img3} alt="" width="700"/>
+
+De esta forma podemos realizar el siguiente calculo para obtener el componente de color de cada uno:
+
+```javascript
+localizacionR=((y*ANCHO)+x)*4;
+localizacionG=localizacionR+1;
+localizacionB=localizacionG+1;
+localizacionA=localizacionB+1;
+```
+
+Obteniendo cada uno de los componentes podemos modificar el valor de cada componente de cada uno de los pixeles para generar intervenciones y modificaciones en nuestro video:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/lH24ALAs_"></iframe>

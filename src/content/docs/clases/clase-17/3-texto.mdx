@@ -1,0 +1,110 @@
+---
+title: '3. Texto'
+description: '3. Texto'
+sidebar:
+  order: 3
+  hidden: false
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+### 3.1 `text()`
+
+Además de escribir texto en nuestra consola, también podemos dibujaar texto en nuestros sketchs. Para esto existe la función `text()` en p5.js
+
+```javascript
+text(string, x, y, tamañoX, tamañoY);
+```
+
+El primer parámetro que recibe va a ser una variable del tipo string, esto es un texto encerrado entre comillas.
+
+El segundo y tercer parámetro especifican la ubicación x e y de nuestro sketch donde será mostrado el texto.
+
+Por último, el cuarto y quinto parámetro son opcionales y especifican el tamaño en el eje x y en el eje y de un área rectangular donde se mostrará el texto El texto que no cabe completamente dentro del rectángulo especificado no será dibujado en pantalla.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/dujod2Eqh"></iframe>
+
+Como vemos en el ejemplo existen varias maneras de manipular una cadena de texto. En la referencia de p5.js podemos encontrarlas.
+
+### 3.2 Tipos de letra
+
+p5.js puede mostrar texto en fuentes distintas además de la que toma por defecto. Podés usar cualquier fuente que esté en tu computadora (llamadas fuentes del sistema). Tené en cuenta que si estás compartiendo esto en la web, otra gente necesitará añadir la fuente de sistema para poder ver el texto en la fuente que escogiste. Existe un número de fuentes que la mayor parte de los computadores y dispositivos tienen, son las llamadas fuentes seguras para la web; estas incluyen "Arial," "Courier," "Courier New," "Georgia," "Helvetica," "Palatino," "Times New Roman," "Trebuchet MS," y "Verdana."
+
+Podes usar la función `textFont()` para configurar la fuente actual y afectará a todas las funciones `text()` que la sigan.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/NtEB4xSeL"></iframe>
+
+### 3.3 Fuentes personalizadas
+
+Si no queres estar limitado a esta pequeña lista de fuentes, podes usar una de la web. Dos sitios web que son buenos recursos para encontrar fuentes web con licencias abiertas para usar con p5.js son *GoogleFonts* y la *Open Font Library*.
+
+Para usar una *webfont* en tu programa, deberás referenciarla en tu archivo `index.html`. Cuando elegís una fuente de cualquiera de estas bibliotecas mencionadas, te mostrará una línea de código para añadir a tu archivo HTML. Cuando copias y pegas este código en cualquier parte dentro de la sección `<head>` de tu HTML, tu archivo se verá parecido a esto:
+
+```html  ins="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap"
+<html>
+  <head>
+    <script type="text/javascript" src="../lib/p5.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <script type="text/javascript" src="sketch.js"></script>
+  </body>
+</html>
+```
+
+Después de que hayas enlazado la fuente, podes usarla con `textFont()` igual que las fuentes de sistema:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/N-kkWsQEF"></iframe>
+
+p5.js también puede mostrar texto usando tipografías TrueType (`.ttf`) y OpenType (`.otf)`. En este ejemplo, cargaremos la fuente `Pacifico-Regular.ttf` TrueType.
+
+En este caso estamos agregando la fuente en nuestro sistema de archivos en vez de cargarlos a traves de la web. 
+
+Los pasos que debes seguir para incluir una tipografía personalizada en tu programa son:
+
+    Agregá la tipografía a tu carpeta del sketch.
+    Creá una variable para almacenar la tipografía.
+    Cargá la tipografía en la variable con `loadFont()`.
+
+
+Usa la función `textFont()` para definir la tipografía actual:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/-rFsh39K5"></iframe>
+
+### 3.4 Atributos de texto
+
+p5.js incluye funciones para controlar la forma en la que el texto se muestra (por ejemplo, alterando su tamaño o alineación). 
+
+Para cambiar el tamaño de la fuente utilizamos la función `textSize()`.
+
+```javascript
+textSize(tamaño)
+```
+
+El parámetro tamaño define la dimensión que ocuparán las letras en unidades de píxeles.
+
+La función textStyle Define el estilo de la tipografía. 
+
+```javascript
+textStyle(estilo)
+```
+
+El parámetro estilo puede ser `NORMAL`, `ITALIC `(cursiva) o `BOLD` (destacado).
+
+Además, el texto puede ser alineado al centro, a la izquierda o a la derecha utilizando la función `textAlign()`:
+
+```javascript
+textAlign(MODO)
+```
+
+En este caso, el modo es una constante que puede ser `CENTER` (centro), `RIGHT` (derecha) y `LEFT` (izquierda), y se refiere simplemente a la alineación que tendrá el texto mostrado en pantalla.
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/4dF5rpLb9"></iframe>
+
+Estos son solo algunos de los atributos que se le pueden agregar a nuestro texto para modificar el modo en que se ven. Si necesitamos modificar algún atributo que no encontramos aquí, seguramente se encuentre en la referencia de p5.js.
+
+### 3.5 Trazo y relleno
+
+Tal como las figuras, el texto es afectado por las funciones `stroke()` y `fill()` como vemos en el siguiente ejemplo:
+
+<iframe src="https://editor.p5js.org/sebifly/sketches/9usKQmblD"></iframe>

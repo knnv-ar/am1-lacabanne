@@ -2,14 +2,23 @@
 title: '1. Estructuras de programación'
 description: 'Estructuras de programación'
 sidebar:
-  order: 5
+  order: 1
   hidden: false
 ---
 
 import { Image } from 'astro:assets';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
-//import img21 from './greyscale.png';import img22 from './last.png';import img23 from './colorModels.png';import img24 from './hsb.png';
+import './style.css';
+
+import { obraLocal } from './sketch.js';
+
+
+import Lienzo from './../../../../components/Lienzo.astro';
+
+<Lienzo code={obraLocal} client:load />
+
+---
 
 El código que vemos en la mayoría de los sketchs y ejemplos que encontramos contiene dos bloques, o funciones: `setup()` y `draw()`. Podés escribir tu código en cualquiera de los dos lugares, y cada lugar tiene un propósito específico.
 
