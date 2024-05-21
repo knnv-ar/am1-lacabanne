@@ -50,17 +50,17 @@ export default defineConfig({
 						},
 						{
 							label: 'Clase 17',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'clases/clase-17' },
 						},
 						{
 							label: 'Clase 20',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'clases/clase-20' },
 						},
 						{
 							label: 'Clase 24',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'clases/clase-24' },
 						},
 						{
