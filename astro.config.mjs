@@ -40,31 +40,32 @@ export default defineConfig({
 							collapsed: false,
 							autogenerate: { directory: 'clases/clase-2' },
 							/*badge: 'Nuevo',*/
-							badge: { text: 'nuevo', variant: 'default' },
+							
 						},
 						{
 							label: 'Clase 6',
 							collapsed: true,
 							autogenerate: { directory: 'clases/clase-6' },
+							badge: { text: 'nuevo', variant: 'default' },
 						},
 						{
 							label: 'Clase 17',
-							collapsed: true,
+							collapsed: false,
 							autogenerate: { directory: 'clases/clase-17' },
 						},
 						{
 							label: 'Clase 20',
-							collapsed: true,
+							collapsed: false,
 							autogenerate: { directory: 'clases/clase-20' },
 						},
 						{
 							label: 'Clase 24',
-							collapsed: true,
+							collapsed: false,
 							autogenerate: { directory: 'clases/clase-24' },
 						},
 						{
 							label: 'Avanzadas',
-							collapsed: true,
+							collapsed: false,
 							autogenerate: { directory: 'clases/avanzadas' },
 						},
 					],
