@@ -37,7 +37,7 @@ export default defineConfig({
 						},
 						{
 							label: 'Clase 2',
-							collapsed: false,
+							collapsed: true,
 							autogenerate: { directory: 'clases/clase-2' },
 							/*badge: 'Nuevo',*/
 							
