@@ -45,8 +45,7 @@ export default defineConfig({
 						{
 							label: 'Clase 6',
 							collapsed: true,
-							autogenerate: { directory: 'clases/clase-6' },
-							badge: { text: 'nuevo', variant: 'default' },
+							autogenerate: { directory: 'clases/clase-6' },	
 						},
 						{
 							label: 'Clase 17',
@@ -67,6 +66,7 @@ export default defineConfig({
 							label: 'Avanzadas',
 							collapsed: false,
 							autogenerate: { directory: 'clases/avanzadas' },
+							badge: { text: 'nuevo', variant: 'default' },
 						},
 					],
 				},
