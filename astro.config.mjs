@@ -80,6 +80,11 @@ export default defineConfig({
 					collapsed: true,
 					autogenerate: { directory: 'tps' },
 				},
+				{
+					label: 'Bibliografía',
+					collapsed: true,
+					autogenerate: { directory: 'bibliografia' },
+				},
 			],
 		}),
 	],
