@@ -66,7 +66,7 @@ export default defineConfig({
 							label: 'Misc.',
 							collapsed: false,
 							autogenerate: { directory: 'clases/misc' },
-							badge: { text: 'nuevo', variant: 'default' },
+							/*badge: { text: 'nuevo', variant: 'default' },*/
 						},
 					],
 				},
