@@ -28,7 +28,7 @@ export default defineConfig({
 					autogenerate: { directory: 'organizacion' },
 				},
 				{
-					label: 'Clases',
+					label: 'Taller p5.js',
 					items: [
 						{
 							label: 'Clase 1',
@@ -43,29 +43,29 @@ export default defineConfig({
 							
 						},
 						{
+							label: 'Clase 3',
+							collapsed: true,
+							autogenerate: { directory: 'clases/clase-3' },	
+						},
+						{
+							label: 'Clase 4',
+							collapsed: true,
+							autogenerate: { directory: 'clases/clase-4' },
+						},
+						{
+							label: 'Clase 5',
+							collapsed: true,
+							autogenerate: { directory: 'clases/clase-5' },
+						},
+						{
 							label: 'Clase 6',
 							collapsed: true,
-							autogenerate: { directory: 'clases/clase-6' },	
+							autogenerate: { directory: 'clases/clase-6' },
 						},
 						{
-							label: 'Clase 17',
-							collapsed: true,
-							autogenerate: { directory: 'clases/clase-17' },
-						},
-						{
-							label: 'Clase 20',
-							collapsed: true,
-							autogenerate: { directory: 'clases/clase-20' },
-						},
-						{
-							label: 'Clase 24',
-							collapsed: true,
-							autogenerate: { directory: 'clases/clase-24' },
-						},
-						{
-							label: 'Avanzadas',
+							label: 'Misc.',
 							collapsed: false,
-							autogenerate: { directory: 'clases/avanzadas' },
+							autogenerate: { directory: 'clases/misc' },
 							badge: { text: 'nuevo', variant: 'default' },
 						},
 					],
