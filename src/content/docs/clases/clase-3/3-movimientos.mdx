@@ -24,7 +24,7 @@ El siguiente ejemplo presenta un movimiento implícito, es decir un movimiento r
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/CsaqreIwL"></iframe>
 
-Como vemos en este ejemplo, la variable `x` que es la que le da la posición en el eje x a la figura dibujada, está constantemente afectada por la variable velocidad en nuestro bloque `draw()`. De esta forma, la posición del círculo se devuelve en cada frame y la posición anterior es borrada al redibujar el fondo con la función `background()`, dando así la sensación de movimiento.
+Como vemos en este ejemplo, la variable `x` que es la que le da la posición en el eje x a la figura dibujada, está constantemente afectada por la variable velocidad en nuestro bloque `draw()`. De esta forma, la posición del círculo se actualiza en cada frame y la posición anterior es borrada al redibujar el fondo con la función `background()`, dando así la sensación de movimiento.
 
 También en este ejemplo se agrega un condicional que verifica si la posición del círculo es mayor al ancho de la pantalla, para que en este caso se redibuje nuevamente en el inicio. Esto lo podemos ver al quitar los comentarios entre la linea 58 y la 62.
 
