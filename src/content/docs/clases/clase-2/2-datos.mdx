@@ -46,22 +46,26 @@ Por ejemplo, el nombre de variable `radio` será mucho más claro que `r` cuando
 
 Cuando declaras una variable, usas la palabra var, para indicar que estás creando una nueva variable, seguida del nombre. Después de que el nombre es fijado, se le puede asignar un valor a la variable:  
 
+
+
+**Recomendación oficial de p5.js:** > > Evitamos usar `var` para declarar variables. Siguiendo la [guía de estilo oficial de p5.js](https://p5js.org/contribute/documentation_style_guide/), las variables declaradas con `var` tienen reglas de alcance (scoping rules) confusas que pueden derivar en errores sutiles (bugs). Por ello, en toda esta documentación utilizamos `let`.
+
 ```javascript
-var x; // Declara la variable x 
+let x; // Declara la variable x 
 x = 12; // Asigna un valor a x 
 ```
 
 Este código hace lo mismo, pero es más corto: 
 
 ```javascript
-var x = 12; // Declara la variable x y le asigna un valor 
+let x = 12; // Declara la variable x y le asigna un valor 
 ```
 
 La palabra var en la línea de código que declara la variable se escribe una sola vez, no se debe escribir de nuevo al utilizarla o al asignarle otro valor. Cada vez que se escribe var antes del nombre de una variable, la computadora piensa que estás tratando de declarar una nueva variable. Por lo tanto, no podés tener dos variables con el mismo nombre en la misma sección del programa, ya que el programa podría comportarse extrañamente: 
 
 ```javascript
-var x; // Declara la variable x 
-var x = 12; // ¡ERROR! Ya existe una variable x 
+let x; // Declara la variable x 
+let x = 12; // ¡ERROR! Ya existe una variable x 
 ```
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/zEUeju8YL"></iframe>
@@ -83,14 +87,14 @@ La regla para entender esto es muy simple: si la variable está declarada dentro
 De esto se infiere que las variables declaradas en el `setup()` pueden usarse solo en el `setup()`, las variables declaradas en el `draw()` pueden usarse solo en el `draw()` y las variables declaradas por fuera de ambas estructuras podrán utilizarse en todo el programa.
 
 ```javascript
-var x = 51; //La variable d es global, puede ser usada donde sea
+let x = 51; //La variable d es global, puede ser usada donde sea
 function setup() {
   createCanvas(x, 100);
-  var valor =20; //La variable local valor, puede ser usada solo en el //setup()
+  let valor =20; //La variable local valor, puede ser usada solo en el //setup()
   fill(valor); 
 }
 function draw() {
-  var y = 60; //La variable local y, puede ser usada solo en el draw()
+  let y = 60; //La variable local y, puede ser usada solo en el draw()
   line(0, y, x, y);
   y = 25;
   line(0, y, x, y);
@@ -121,7 +125,7 @@ En programación, las propiedades visuales de una imagen son asignadas por núme
 
 En el código, símbolos como `+`, `−` y `*` son llamados operadores. Cuando se encuentran entre dos valores, crean una **expresión**.
 
-Por ejemplo, `5 + 9` y `1024 - 512` son expresiones. Los operadores para operaciones matemáticas básicas son:
+Por ejemplo, `5 + 9` y `1024 - 512` son expresiones. Los operadores para operaciones matemáticas básicas son: 
 
 ```
 +     Suma
