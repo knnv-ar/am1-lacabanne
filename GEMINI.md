@@ -116,7 +116,7 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 *   **Material misceláneo**:
     *   *Hacia una estética del arte generativo* (`clases/misc/estetica-gen-art.mdx`): Ensayo conceptual e histórico sobre el arte computacional y generativo.
     *   *Herramientas* (`clases/misc/herramientas.mdx`): Guía introductoria para el uso de VS Code, Git, Bash y GitHub en el desarrollo local.
-    *   *Guía de montaje de TPs* (`clases/misc/guía-montaje-tp1.mdx`): Guía paso a paso para estructurar, nombrar y subir los archivos del TP Nº1 a la galería `<la-piscine>`.
+    *   *Guía de montaje de TPs* (`clases/misc/guia-montaje-tp1.mdx`): Guía paso a paso para estructurar, nombrar y subir los archivos del TP Nº1 a la galería `<la-piscine>`.
 
 ### **Acciones de Consolidación de Saberes** (`src/content/docs/acs/`)
 Se componen de 6 actividades prácticas secuenciales (ACS-1 a ACS-6) que sirven de checkpoints para consolidar los conocimientos adquiridos en cada una de las clases del taller.
