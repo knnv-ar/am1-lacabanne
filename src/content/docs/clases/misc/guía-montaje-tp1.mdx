@@ -1,0 +1,153 @@
+---
+title: 'Guía de montaje del TP Nº1 para la galería <la-piscine>'
+description: 'Guía de montaje del TP Nº1 para la galería <la-piscine>'
+sidebar:
+  order: 2
+  hidden: false
+---
+
+#### ⚠️ IMPORTANTE: Nomenclatura de archivos y carpetas
+Es de vital importancia que **todos los nombres de carpetas y archivos** que suban respeten el formato **kebab-case**. Esto significa:
+1. **No** usar espacios.
+2. **No** usar mayúsculas.
+3. **No** usar acentos ni tildes.
+4. **No** usar la letra `ñ`.
+5. **No** usar caracteres especiales, **únicamente** usar el guión medio `-` para separar palabras.
+
+---
+
+**Ejemplo incorrecto y ejemplo correcto:**
+
+- ❌ `2026 TP1 Pérez García Amparo`
+- ✅ `2026-tp1-perez-garcia-amparo`
+
+---
+
+## Bloque 1. Crear la carpeta de tu proyecto
+
+1. Creá una carpeta en tu computadora para tu proyecto siguiendo esta estructura estricta: `<año>-tp<n>-<apellido>-<nombre>`.
+2. Por ejemplo, si te llamás Amparo Pérez García y estás entregando el TP 1 en 2026, tu carpeta debe llamarse: `2026-tp1-perez-garcia-amparo`.
+
+---
+
+## Bloque 2. Preparar los archivos del proyecto
+
+Dentro de la carpeta que acabás de crear, deben existir obligatoriamente **tres archivos**:
+
+### 1. `thumbnail.webp` (o extensión admitida como `.png` / `.jpg`)
+Esta es la miniatura de tu proyecto que aparecerá en el catálogo de la galería.
+- **Tamaño obligatorio:** Debe medir exactamente **360 píxeles de ancho por 360 píxeles de alto**.
+- Podés hacer una captura de pantalla de tu sketch y recortarla/redimensionarla en Photoshop, GIMP o cualquier editor de imágenes asegurándote de que tenga esas dimensiones exactas antes de exportarla.
+- **Exportación a WEBP:** Si tu software de edición de imágenes no te permite guardar o exportar directamente en formato WEBP, podés usar herramientas online gratuitas y muy utilizadas por diseñadores para convertir tus archivos PNG o JPEG:
+  - [Squoosh](https://squoosh.app/) (Recomendada por Google, excelente compresión)
+  - [CloudConvert](https://cloudconvert.com/webp-converter)
+  - [Convertio](https://convertio.co/es/png-webp/)
+  - [Ezgif](https://ezgif.com/png-to-webp)
+
+### 2. `sketch.js` (y otros recursos de código)
+Este es el archivo principal de tu código en p5.js. 
+- Debés asegurarte de vincular tu lienzo (canvas) a un contenedor específico llamado `div-sketch` en la función `setup()`.
+- **Ejemplo de código necesario:**
+  ```javascript
+  function setup() {
+    let canvas = createCanvas(512, 512); // Reemplazá con tus dimensiones
+    canvas.parent('div-sketch'); // ESTA LÍNEA ES OBLIGATORIA
+  }
+  ```
+- Limpiá el código de `console.log()` que hayan quedado de pruebas.
+- Si tenés otros archivos `.js` o medios (imágenes, sonidos, videos, etc. que posiblemente uses para el TP2), dejalos también en la misma carpeta e incluí el código adicional dentro del mismo `sketch.js` para facilitar su carga.
+
+### 3. `statement.mdx`
+Este es el archivo central que contiene tu declaración de obra, tus textos bilingües y que además vincula tu `sketch.js` con la plataforma. Deberás crearlo en tu carpeta (por ejemplo desde vscode o con `touch statement.mdx`).
+
+El archivo `statement.mdx` está dividido en tres partes fundamentales:
+1. El **YAML front matter** (metadatos).
+2. El **contenedor del sketch**.
+3. Las **versiones de idiomas** (español e inglés).
+
+#### A. El YAML front matter
+Va al principio del archivo y va encerrado entre tres guiones `---`. Contiene la información técnica de la obra. **Aquí sí podés usar mayúsculas, espacios y acentos** luego del _nombre de la variable_ y los _dos puntos (`:`)_, ya que son los datos que leerá el sistema para mostrar en pantalla.
+
+```yaml
+---
+author: Nombres y apellidos completos
+title: Título de la Obra
+date: YYYY-MM-DD
+year: YYYY
+cuatrimestre: primer cuatrimestre
+thumbnail: thumbnail.webp
+dependencies:
+  - p5.v1.11.13
+  - p5.sound.v1.11.13
+---
+```
+
+**¿Qué significa cada variable?**
+- `author`: Tu nombre y apellido completo (Ej: Raúl Federico Lacabanne).
+- `title`: El título de tu obra.
+- `date`: La fecha de publicación o entrega en formato `año-mes-día` (Ej: `2026-05-10`).
+- `year`: El año de cursada en formato de cuatro dígitos (Ej: `2026`).
+- `cuatrimestre`: En qué parte del año se cursó. Los únicos valores válidos son `primer cuatrimestre` o `segundo cuatrimestre`.
+- `thumbnail`: El nombre exacto de tu archivo de miniatura (Ej: `thumbnail.webp`).
+- `dependencies`: Un listado (con guiones) de las librerías que utiliza tu sketch. Podes usar versiones específicas como `p5.v1.11.13` o generales como `p5` y `p5.sound`.
+
+#### B. El contenedor del sketch
+Debajo de los tres guiones de cierre `---` del Front Matter, tenés que copiar y pegar este bloque exacto de código HTML, que se encargará de ejecutar tu `sketch.js` en la página:
+
+```html
+<div id="div-sketch">
+  <script type="text/javascript" src="sketch.js"></script>
+</div>
+```
+
+#### C. Versiones de idiomas (ES y EN)
+Por último, el contenido escrito de tu declaración debe estar en `español` y en `inglés`, envuelto en etiquetas especiales `<Language>`. 
+
+Tomá como referencia esta estructura y adaptá los textos con los tuyos (usando el formato de marcado Markdown para negritas `**texto**`, cursivas `_texto_`, etc.):
+
+```markdown
+<Language code="es">
+Breve descripción de la obra en español.
+
+**Desarrollo técnico, estético y conceptual**
+
+Texto del desarrollo en español.
+
+**Bibliografía**
+
+- APELLIDO, Nombre. (año). _"Título del libro"_. Ciudad: Editorial.
+
+**Breve biografía**
+
+Breve presentación tuya (estudiante) en español.
+</Language>
+
+<Language code="en">
+Brief description of the work in english.
+
+**Technical, aesthetic, and conceptual development**
+
+Development text in english.
+
+**Bibliography**
+
+- LASTNAME, Firstname. (year). _"Book title"_. City: Publisher.
+
+**Brief resume**
+
+Brief presentation of yourself (student) in english.
+</Language>
+```
+
+---
+
+## Bloque 3. Subir tu obra a GitHub
+*Nota: Los pasos para realizar el Fork, Branch y Pull Request siguen vigentes según las clases.*
+
+1. Ingresá a GitHub y asegurate de hacer un fork de `knnv-ar/la-piscine`.
+2. Creá una nueva rama (branch) con los siguientes datos  separados por un guión medio (`-`): `branch`, el año de cursada, el número de tp, tus apellidos, y tus nombres. Debe quedar una cadena de texto como el siguiente ejemplo: `branch-2026-tp1-perez-garcia-amparo`.
+3. Navegá en tu repositorio hasta la carpeta `_projects/`.
+4. Arrastrá allí la **carpeta completa** que creaste (ej. `2026-tp1-perez-garcia-amparo`).
+5. Hacé el commit y luego un **Pull Request** para que tu TP sea aceptado en la galería.
+
+### ¡Felicitaciones por llegar hasta acá y ser parte de `<la-piscine>` v3!
