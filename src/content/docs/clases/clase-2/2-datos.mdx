@@ -44,25 +44,27 @@ Cuando haces tus propias variables, podés determinar el nombre y el valor. El n
 
 Por ejemplo, el nombre de variable `radio` será mucho más claro que `r` cuando leas tu código. Las variables primero deben ser declaradas, lo que reserva espacio en la memoria de la computadora para almacenar la información. 
 
-Cuando declaras una variable, usas la palabra var, para indicar que estás creando una nueva variable, seguida del nombre. Después de que el nombre es fijado, se le puede asignar un valor a la variable:  
+Cuando declaras una variable, usas la palabra let, para indicar que estás creando una nueva variable, seguida del nombre. Después de que el nombre es fijado, se le puede asignar un valor a la variable:  
 
 ```javascript
-var x; // Declara la variable x 
+let x; // Declara la variable x 
 x = 12; // Asigna un valor a x 
 ```
 
 Este código hace lo mismo, pero es más corto: 
 
 ```javascript
-var x = 12; // Declara la variable x y le asigna un valor 
+let x = 12; // Declara la variable x y le asigna un valor 
 ```
 
-La palabra var en la línea de código que declara la variable se escribe una sola vez, no se debe escribir de nuevo al utilizarla o al asignarle otro valor. Cada vez que se escribe var antes del nombre de una variable, la computadora piensa que estás tratando de declarar una nueva variable. Por lo tanto, no podés tener dos variables con el mismo nombre en la misma sección del programa, ya que el programa podría comportarse extrañamente: 
+La palabra let en la línea de código que declara la variable se escribe una sola vez, no se debe escribir de nuevo al utilizarla o al asignarle otro valor. Cada vez que se escribe let antes del nombre de una variable, la computadora piensa que estás tratando de declarar una nueva variable. Por lo tanto, no podés tener dos variables con el mismo nombre en la misma sección del programa, ya que el programa devolverá un error: 
 
 ```javascript
-var x; // Declara la variable x 
-var x = 12; // ¡ERROR! Ya existe una variable x 
+let x; // Declara la variable x 
+let x = 12; // ¡ERROR! Ya existe una variable x 
 ```
+
+> **Importante:** Anteriormente en JavaScript era común declarar variables usando la palabra clave `var`. Sin embargo, de acuerdo con la [guía de estilo de documentación de p5.js](https://p5js.org/contribute/documentation_style_guide/), se recomienda evitar el uso de `var` y se recomienda usar `let`:
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/zEUeju8YL"></iframe>
 
@@ -83,14 +85,14 @@ La regla para entender esto es muy simple: si la variable está declarada dentro
 De esto se infiere que las variables declaradas en el `setup()` pueden usarse solo en el `setup()`, las variables declaradas en el `draw()` pueden usarse solo en el `draw()` y las variables declaradas por fuera de ambas estructuras podrán utilizarse en todo el programa.
 
 ```javascript
-var x = 51; //La variable d es global, puede ser usada donde sea
+let x = 51; //La variable x es global, puede ser usada donde sea
 function setup() {
   createCanvas(x, 100);
-  var valor =20; //La variable local valor, puede ser usada solo en el //setup()
+  let valor = 20; //La variable local valor, puede ser usada solo en el setup()
   fill(valor); 
 }
 function draw() {
-  var y = 60; //La variable local y, puede ser usada solo en el draw()
+  let y = 60; //La variable local y, puede ser usada solo en el draw()
   line(0, y, x, y);
   y = 25;
   line(0, y, x, y);
@@ -99,7 +101,7 @@ function draw() {
 
 La implementación de variables locales y globales permite que se pueda tener dos o más variables con el mismo nombre. Aún así, no se recomienda el trabajo con variables del mismo nombre ya que puede producir confusión en quien programa.
 
-Cuando nos referimos a estructuras debemos tener en cuenta que no existen solo las que ya conocemos `setup()` y `draw()` sino todas aquellas que tengan llave de apertura y cierre como pueden ser `if(){}` y `for{}` que veremos más adelante. Esto se aclara ya que hay otra forma de declarar variables que encontraremos en ejemplos. Esta otra forma es let que  funciona de la misma manera que var . La única diferencia es que si declaramos una variable con var dentro de alguna estructura que no sea `setup()` y `draw()` o cualquiera que empiece con la palabra function, el programa nos indicará una advertencia si queremos utilizarla por fuera de ese bloque aunque correrá igual. En cambio con let directamente el programa nos devolverá un error y no podremos correrlo.
+Cuando nos referimos a estructuras debemos tener en cuenta que no existen solo las que ya conocemos `setup()` y `draw()` sino todas aquellas que tengan llave de apertura y cierre como pueden ser `if(){}` y `for{}` que veremos más adelante. Al declarar variables con `let`, éstas tienen un ámbito de bloque (block scope). Esto significa que si declaramos una variable con `let` dentro de una estructura, esa variable solo existe dentro de ese bloque y no puede ser utilizada por fuera de él. Anteriormente se utilizaba `var` para declarar variables, pero `var` tiene un ámbito de función (function scope) lo que puede provocar comportamientos confusos e inesperados. Por esta razón, la [guía de estilo de documentación de p5.js](https://p5js.org/contribute/documentation_style_guide/) indica evitar el uso de `var` y usar `let` para declarar variables, ya que `let` proporciona un ámbito de bloque más predecible y seguro.
 
 
 ### 2.4. Variables especiales

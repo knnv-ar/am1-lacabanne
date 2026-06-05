@@ -70,10 +70,10 @@ function setup() {
 }
 function draw() {
   background(204);
-  for (var x = 20; x < width; x += 20) {
-    var mx = mouseX / 10;
-    var desplazamientoA = random(-mx, mx);
-    var desplazamientoB = random(-mx, mx);
+  for (let x = 20; x < width; x += 20) {
+    let mx = mouseX / 10;
+    let desplazamientoA = random(-mx, mx);
+    let desplazamientoB = random(-mx, mx);
     line(x + desplazamientoA, 20, x - desplazamientoB, 100);
   }
 }
@@ -98,10 +98,10 @@ Este ejemplo muestra cómo los valores de `sin()` oscilan entre -1 y 1 a medida 
 <iframe src="https://editor.p5js.org/sebifly/sketches/UDqM2I2f3"></iframe>
 
 ```javascript
-var angulo = 0.0;
+let angulo = 0.0;
 function draw() {
-  var valorSeno = sin(angulo);
-  var gris = map(valorSeno, -1, 1, 0, 255);
+  let valorSeno = sin(angulo);
+  let gris = map(valorSeno, -1, 1, 0, 255);
   background(gris);
   angulo += 0.1;
 }
@@ -112,18 +112,18 @@ Este ejemplo muestra cómo estos valores pueden ser convertidos en movimiento:
 <iframe src="https://editor.p5js.org/sebifly/sketches/d7mGO3zSv"></iframe>
 
 ```javascript
-var angulo = 0.0;
-var desplazamiento = 60;
-var escalar = 40;
-var velocidad = 0.05;
+let angulo = 0.0;
+let desplazamiento = 60;
+let escalar = 40;
+let velocidad = 0.05;
 function setup() {
   createCanvas(240, 120);
 }
 function draw() {
   background(0);
-  var y1 = desplazamiento + sin(angulo) * escalar;
-  var y2 = desplazamiento + sin(angulo + 0.4) * escalar;
-  var y3 = desplazamiento + sin(angulo + 0.8) * escalar;
+  let y1 = desplazamiento + sin(angulo) * escalar;
+  let y2 = desplazamiento + sin(angulo + 0.4) * escalar;
+  let y3 = desplazamiento + sin(angulo + 0.8) * escalar;
   ellipse( 80, y1, 40, 40);
   ellipse(120, y2, 40, 40);
   ellipse(160, y3, 40, 40);
@@ -138,17 +138,17 @@ Cuando las funciones sin() y cos() son usadas en conjunto, pueden producir movim
 <iframe src="https://editor.p5js.org/sebifly/sketches/IqyrU-A_Y"></iframe>
 
 ```javascript
-var angulo = 0.0;
-var desplazamiento = 60;
-var escalar = 30;
-var velocidad = 0.05;
+let angulo = 0.0;
+let desplazamiento = 60;
+let escalar = 30;
+let velocidad = 0.05;
 function setup() {
   createCanvas(120, 120);
   background(204);
 }
 function draw() {
-  var x = desplazamiento + cos(angulo) * escalar;
-  var y = desplazamiento + sin(angulo) * escalar;
+  let x = desplazamiento + cos(angulo) * escalar;
+  let y = desplazamiento + sin(angulo) * escalar;
   ellipse(x, y, 40, 40);
   angulo += velocidad;
 }
@@ -161,18 +161,18 @@ Un pequeño cambio hecho para aumentar el valor escalar en cada cuadro produce u
 <iframe src="https://editor.p5js.org/sebifly/sketches/KcMSJ7ukq"></iframe>
 
 ```javascript
-var angulo = 0.0;
-var desplazamiento = 60;
-var escalar = 2;
-var velocidad = 0.05;
+let angulo = 0.0;
+let desplazamiento = 60;
+let escalar = 2;
+let velocidad = 0.05;
 function setup() {
   createCanvas(120, 120);
   fill(0);
   background(204);
 }
 function draw() {
-  var x = desplazamiento + cos(angulo) * escalar;
-  var y = desplazamiento + sin(angulo) * escalar;
+  let x = desplazamiento + cos(angulo) * escalar;
+  let y = desplazamiento + sin(angulo) * escalar;
   ellipse(x, y, 2, 2);
   angulo += velocidad;
   escalar += velocidad;

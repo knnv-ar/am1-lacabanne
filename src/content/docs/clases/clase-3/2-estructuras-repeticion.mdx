@@ -58,7 +58,7 @@ Los paréntesis asociados a esta estructura corresponden a tres acciones interna
 Veamos como sería el código optimizado a continuación:
 
 ```javascript
-for (var i = 20; i < 150; i += 10) {
+for (let i = 20; i < 150; i += 10) {
   line(i, 20, i, 180);
 }
 ```
@@ -71,7 +71,7 @@ for (var i = 20; i < 150; i += 10) {
 
 El bloque for  se lee así:
 
-1. Se ejecuta la instrucción de inicialización o contador interno `var i = 20;`, que se encarga de inicializar el valor de la variable de control (`i`) del bloque `for`. En este caso se inicia en `20`.
+1. Se ejecuta la instrucción de inicialización o contador interno `let i = 20;`, que se encarga de inicializar el valor de la variable de control (`i`) del bloque `for`. En este caso se inicia en `20`.
 2. Luego pasamos a la instrucción de evaluación `i < 150;`, encargada de determinar si la variable de control se encuentra dentro del rango de valores contemplados en la condición (es decir, que `i` sea un valor `menor a 150`). Si dicha evaluación resulta verdadera continuamos con el paso 3. Si resulta falsa saltamos al paso 5.
 3. Se ejecutan las instrucciones dentro del bloque marcado entre llaves. Notar que se utiliza la variable de control como variable dinámica que devuelve los valores correspondientes al eje x en coordenadas de origen y destino.
 4. A continuación se ejecuta la instrucción de actualización `i += 10`, encargada de renovar el valor de la variable de control. A continuación se salta al paso 2.
@@ -110,7 +110,7 @@ Esta estructura puede resultar peligrosa para los programadores novatos ya que e
 A continuación un ejemplo simple:
 
 ```javascript
-var i=0;
+let i = 0;
 while (i < 80) {
   line(30, i, 80, i);
   i = i + 5;

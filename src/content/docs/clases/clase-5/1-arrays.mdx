@@ -50,13 +50,13 @@ Cada array puede darnos información sobre su composición. De esta forma si acc
 Usar arrays es similar a trabajar con variables únicas, sigue los mismos patrones. Como ya sabés, con este código puedes crear una sola variable llamada `x`:
 
 ```javascript
-var x;
+let x;
 ```
 
 Para crear un array, basta con definir que el valor de la variable sea un par de corchetes vacíos:
 
 ```javascript
-var x = [];
+let x = [];
 ```
 
 Observá que no es necesario declarar por adelantado la longitud del array, la longitud es determinada por el número de elementos que vos pones en él.
@@ -93,7 +93,7 @@ Esto está bien y funciona, pero existe una mejor forma de solucionarlo que nos 
 De esta forma podremos agregar valores relacionados dentro del array. Básicamente lo que estamos haciendo es agregar un array dentro de otro. La sintaxis sería la siguiente
 
 ```javascript
-var xy = [[10, 30],[40, 20],[37,82]];
+let xy = [[10, 30],[40, 20],[37,82]];
 ```
 
 Si quisiéramos agregar un valor nuevo en vez de pasar un número como valor pasariamos el array de la siguiente forma:
@@ -145,7 +145,7 @@ Dentro de un objeto se pueden guardar múltiples valores como en un array, pero 
 La sintaxis para generar objetos es:
 
 ```javascript
-var objs = {llave1: 100, llave2: 460, llave3: 17};
+let objs = {llave1: 100, llave2: 460, llave3: 17};
 ```
 
 Acá vemos como creamos el objeto objs y dentro le agremos tres llaves diferentes con diferentes valores. El nombre de las llaves puede ser cualquiera como si fuese una variable más.
@@ -165,7 +165,7 @@ objs.llave1 = 20;
 Es muy común que estos objetos estén dentro de un array. La sintaxis correcta para agregar objetos a un array es la siguiente:
 
 ```javascript
-var objs = [
+let objs = [
   {llave1: 14, llave2: 12.2, llave3: 17},
   {llave1: 3, llave2: 8.9, llave3: 12},
   {llave1: 8, llave2: 11.0, llave3: 99}
