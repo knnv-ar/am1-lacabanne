@@ -61,7 +61,7 @@ Este es el archivo principal de tu código en p5.js.
 Este es el archivo central que contiene tu declaración de obra, tus textos bilingües y que además vincula tu `sketch.js` con la plataforma. Deberás crearlo en tu carpeta (por ejemplo desde vscode o con `touch statement.mdx`).
 
 El archivo `statement.mdx` está dividido en tres partes fundamentales:
-1. El **YAML front matter** (metadatos).
+1. El **YAML front matter** (metadatos, incluida la **licencia** de tu obra).
 2. El **contenedor del sketch**.
 3. Las **versiones de idiomas** (español e inglés).
 
@@ -76,6 +76,7 @@ date: YYYY-MM-DD
 year: YYYY
 cuatrimestre: primer cuatrimestre
 thumbnail: thumbnail.webp
+license: CC-BY-SA-4.0
 dependencies:
   - p5.v2.3.3
   - p5.sound.v2.3.3
@@ -89,7 +90,42 @@ dependencies:
 - `year`: El año de cursada en formato de cuatro dígitos (Ej: `2026`).
 - `cuatrimestre`: En qué parte del año se cursó. Los únicos valores válidos son `primer cuatrimestre` o `segundo cuatrimestre`.
 - `thumbnail`: El nombre exacto de tu archivo de miniatura (Ej: `thumbnail.webp`).
+- `license`: **(obligatorio)** La licencia que elegís para tu obra. Los únicos valores válidos son `CC-BY-SA-4.0`, `CC-BY-4.0`, `CC-BY-NC-SA-4.0` o `all-rights-reserved`. Leé con atención la sección siguiente antes de elegir.
 - `dependencies`: Un listado (con guiones) de las librerías que utiliza tu sketch. Podes usar versiones específicas como la versión actual 2 `v2.3.3` o la versión anterior 1 `p5.v1.11.13`.
+
+#### La licencia de tu obra (`license`)
+
+Tu obra es tuya: los derechos de autor del código, los textos y las imágenes te pertenecen (Ley 11.723). Montarla en `<la-piscine>` **no te obliga a ceder nada**. Lo que sí tenés que hacer es **decidir qué pueden hacer otras personas con ella** y declararlo en el campo `license` del front matter.
+
+Elegí **una** de estas cuatro opciones y escribila tal cual:
+
+| Escribí en `license:` | Qué permitís a otras personas |
+|---|---|
+| `CC-BY-SA-4.0` _(sugerida por la cátedra)_ | Copiar, modificar y usar tu obra, incluso con fines comerciales, siempre que te citen y que lo que hagan a partir de ella se comparta con esta misma licencia. |
+| `CC-BY-4.0` | Copiar, modificar y usar tu obra, incluso con fines comerciales, siempre que te citen. |
+| `CC-BY-NC-SA-4.0` | Lo mismo que `CC-BY-SA-4.0`, pero **sin usos comerciales**. |
+| `all-rights-reserved` | Nada: la obra se exhibe en la galería, pero nadie puede reutilizarla sin tu permiso. |
+
+**Exhibir no obliga a abrir:** `all-rights-reserved` es una opción tan válida como las otras.
+
+Ejemplos de cómo queda la línea en tu front matter, según la opción que elijas (escribí **solo una**):
+
+```yaml
+license: CC-BY-SA-4.0          # Atribución-CompartirIgual (sugerida)
+license: CC-BY-4.0             # Atribución
+license: CC-BY-NC-SA-4.0       # Atribución-NoComercial-CompartirIgual
+license: all-rights-reserved   # Todos los derechos reservados
+```
+
+Para tener en cuenta:
+
+- **La licencia alcanza a toda la carpeta de tu obra**, incluido el `sketch.js`: en esta galería, el código es la obra.
+- **Sugerimos `CC-BY-SA-4.0`** porque comparte la lógica del código de la galería (que se publica bajo la licencia AGPLv3): lo que se recibe de lo común se devuelve a lo común.
+- **Las licencias Creative Commons no se pueden revocar.** Podés cambiar la licencia más adelante, pero quien ya haya obtenido tu obra bajo la licencia anterior puede seguir usándola en esas condiciones. Si dudás, podés empezar por `all-rights-reserved` y abrirla después: al revés no se puede.
+- **Material de terceros:** si usaste imágenes, sonidos, tipografías, videos o código que no son tuyos, tu licencia no los cubre. Mencioná en tu statement (por ejemplo, en la bibliografía) qué son, de quién y con qué licencia.
+- Si tu obra no declara el campo `license`, el sistema no la va a aceptar en la galería: el chequeo automático del Pull Request te va a avisar (ver Bloque 3).
+
+Podés leer el texto completo de cada licencia en el sitio de Creative Commons: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es) y [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es).
 
 #### B. El contenedor del sketch
 Debajo de los tres guiones de cierre `---` del Front Matter, tenés que copiar y pegar este bloque exacto de código HTML, que se encargará de ejecutar tu `sketch.js` en la página:
@@ -149,5 +185,25 @@ Brief presentation of yourself (student) in english.
 3. Navegá en tu repositorio hasta la carpeta `_projects/`.
 4. Arrastrá allí la **carpeta completa** que creaste (ej. `2026-tp1-perez-garcia-amparo`).
 5. Hacé el commit y luego un **Pull Request** para que tu TP sea aceptado en la galería.
+
+### Completar la plantilla del Pull Request
+
+Al abrir el Pull Request, GitHub te va a mostrar una plantilla con casillas para marcar. Completala:
+
+1. Marcá las casillas de **archivos** (sketch, statement, miniatura y nombres en kebab-case).
+2. Marcá la **declaración de autoría**.
+3. Marcá **la misma licencia** que escribiste en el campo `license` de tu `statement.mdx`.
+4. Indicá si usaste **material de terceros** y, si es así, detallalo (qué es, autor/a, fuente y licencia).
+
+### El chequeo automático de licencia
+
+Cuando abrís el Pull Request se ejecuta un **chequeo automático** que verifica tu licencia:
+
+- ✅ **En verde:** la licencia está bien declarada.
+- ❌ **En rojo:** falta el campo `license` o tiene un valor que no está en la lista. Leé el mensaje, que explica qué corregir, corregí el `statement.mdx` en tu rama y el chequeo se vuelve a ejecutar solo.
+
+*Nota: la primera vez que contribuís al repositorio, el chequeo puede quedar en espera hasta que el equipo docente lo apruebe. Es una medida de seguridad de GitHub para cuentas nuevas.*
+
+Luego, como siempre, revisaremos juntos tu Pull Request en clase.
 
 ### ¡Felicitaciones por llegar hasta acá y ser parte de `<la-piscine>` v3!
