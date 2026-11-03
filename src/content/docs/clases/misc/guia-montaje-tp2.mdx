@@ -228,9 +228,11 @@ async function setup() {
   lluvia = await loadSound('sonidos/lluvia-suave.mp3'); // requiere p5.sound.v2.3.3
   fuente = await loadFont('tipografias/space-mono-regular.ttf');
 
-  // El video se crea como elemento de la página y se oculta para dibujarlo en el lienzo
+  // createVideo() no necesita await: crea el elemento de video en el momento
   olas = createVideo('videos/olas-del-mar.mp4');
-  olas.hide();
+  olas.volume(0); // sin volumen, el navegador permite que el video arranque solo
+  olas.loop();    // reproduce el video en bucle
+  olas.hide();    // oculta el elemento HTML del video para dibujarlo en el lienzo
 }
 
 function draw() {
@@ -240,18 +242,17 @@ function draw() {
   text('Hola', 20, height - 20);
 }
 
-// Los navegadores no reproducen sonido ni video hasta que la persona interactúa con la página
+// Los navegadores no reproducen sonido hasta que la persona interactúa con la página
 function mousePressed() {
   if (!lluvia.isPlaying()) {
     lluvia.loop(true); // en p5.sound v2, loop() solo activa la repetición...
     lluvia.play();     // ...y play() inicia la reproducción
   }
-  olas.loop();
 }
 ```
 
 - **Audios:** el formato más compatible es `.mp3`. El formato `.m4a` (AAC) también funciona en la mayoría de los navegadores, pero si dudás, convertí tus audios a `.mp3`.
-- **Videos:** usá `.mp4` (códec H.264), que se reproduce en todos los navegadores.
+- **Videos:** usá `.mp4` (códec H.264), que se reproduce en todos los navegadores. Si tu video tiene sonido y querés escucharlo, no le bajes el volumen en `setup()`: iniciá la reproducción desde una interacción (por ejemplo, en `mousePressed()`), porque los navegadores bloquean los videos con sonido que arrancan solos.
 
 *Tip: desde el editor de p5.js podés descargar tu proyecto completo (menú **Archivo > Descargar**) y obtener un `.zip` con tu código y todas tus carpetas de recursos. Los archivos `index.html` y `style.css` que vienen en ese `.zip` no hace falta subirlos.*
 
