@@ -21,7 +21,9 @@ En anteriores versiones de p5.js se incluía una librería llamada `p5.dom`, que
 
 Para poder reproducir video en nuestro sketch primero tenemos que seguir el mismo proceso que realizamos con las imágenes o el sonido. Debemos agregar el archivo de video a nuestro proyecto, ya sea a subiendo el archivo si trabajamos en el editor online de p5.js o agregándolo en la carpeta que contiene nuestro proyecto si trabajamos localmente.
 
-Una vez hecho eso llamamos a la función `createVideo()` pasándole la ruta y el nombre de nuestro archivo de video:
+Una vez hecho eso llamamos a la función `createVideo()` pasándole la ruta y el nombre de nuestro archivo de video. A diferencia de `loadImage()` o `loadSound()`, `createVideo()` no necesita `await`: crea el elemento de video en el momento y el navegador lo va cargando mientras se reproduce. Si necesitamos que nuestro sketch espere a que el video esté listo, lo vemos en la sección 3.2.
+
+Los navegadores tampoco permiten que un video con sonido empiece a reproducirse solo: hace falta que la persona interactúe con la página (con un clic o una tecla), o bien quitarle el volumen con `volume(0)` antes de reproducirlo.
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/hW_R60ZTO"></iframe>
 
@@ -32,6 +34,30 @@ Como se puede ver en el ejemplo anterior se llama a la función `createCanvas()`
 Si lo que queremos es reproducir videos dentro del lienzo de nuestro sketch, para poder hacerlo convivir con cualquier otro elemento gráfico de los que venimos viendo, lo que debemos hacer es esconder el video que se crea por defecto al llamar a la función `createVideo()`. Esto se realiza mediante el método `hide()`.
 
 Una vez escondido el video, podemos mostrarlo con la función image de nuestro sketch y trabajarlo de la misma manera que lo hacíamos con las imágenes fijas.
+
+Si queremos que el sketch espere a que el video esté listo para reproducirse antes de seguir (por ejemplo, para conocer su duración desde el inicio), podemos usar `await` envolviendo `createVideo()` en una promesa (`Promise`), que se resuelve cuando el video terminó de cargarse:
+
+```javascript
+let myVideo;
+
+async function setup() {
+  createCanvas(640, 360);
+  // Espera a que el video esté listo para reproducirse antes de seguir
+  myVideo = await new Promise((resolve) => {
+    let v = createVideo("videos/video.mp4", () => resolve(v));
+  });
+  myVideo.volume(0); // sin volumen, el navegador permite que el video arranque solo
+  myVideo.loop();    // reproduce el video en bucle
+  myVideo.hide();    // oculta el elemento HTML del video para dibujarlo en el lienzo
+}
+
+function draw() {
+  background(0);
+  image(myVideo, 0, 0, width, height);
+}
+```
+
+> *Para tener en cuenta: escribir `await createVideo(...)` directamente no hace que el programa espere, porque `createVideo()` no devuelve una promesa. Por eso usamos `new Promise()` y le pasamos a `createVideo()` una función que avisa (`resolve`) cuando el video ya está cargado.*
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/PcreXW4ZY"></iframe>
 

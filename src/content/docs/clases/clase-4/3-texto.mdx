@@ -62,9 +62,25 @@ En este caso estamos agregando la fuente en nuestro sistema de archivos en vez d
 
 Los pasos que debes seguir para incluir una tipografía personalizada en tu programa son:
 
-    Agregá la tipografía a tu carpeta del sketch.
-    Creá una variable para almacenar la tipografía.
-    Cargá la tipografía en la variable con `loadFont()`.
+1. Agregá la tipografía a tu carpeta del sketch.
+2. Creá una variable para almacenar la tipografía.
+3. Cargá la tipografía en la variable con `await loadFont()` dentro de `async function setup()` (igual que con las imágenes, en la versión 2 de p5.js ya no se usa `preload()`).
+
+```javascript
+let fuente;
+
+async function setup() {
+  createCanvas(400, 200);
+  fuente = await loadFont("tipografias/pacifico-regular.ttf");
+}
+
+function draw() {
+  background(220);
+  textFont(fuente);
+  textSize(48);
+  text("¡Hola!", 40, 120);
+}
+```
 
 
 Usa la función `textFont()` para definir la tipografía actual:

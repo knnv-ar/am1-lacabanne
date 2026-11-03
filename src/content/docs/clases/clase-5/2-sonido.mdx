@@ -33,19 +33,47 @@ Una vez que un archivo es cargado, puede ser reproducido, detenido y repetido, a
 
 El uso más común de la biblioteca p5.sound es reproducir un sonido cuando un evento ocurre en la pantalla o como música de fondo. Este ejemplo muestra como hacer para reproducir un sonido cuando la figura llega a los bordes de la pantalla. 
 
-Así como con otros archivos, en la parte superior del sketch se define una variable para almacenar un objeto `p5.SoundFile` (lo que la función `loadSound()` retorna), es cargada dentro de `preload()`, y después de eso, puede ser usada en cualquier parte del programa:
+Así como con otros archivos, en la parte superior del sketch se define una variable para almacenar un objeto `p5.SoundFile` (lo que la función `loadSound()` retorna), se carga dentro de `async function setup()` con `await loadSound()` y, después de eso, puede ser usada en cualquier parte del programa:
+
+```javascript
+let sonido;
+
+async function setup() {
+  createCanvas(400, 400);
+  sonido = await loadSound("sonidos/sonido.mp3");
+}
+
+function draw() {
+  background(220);
+  text("Hacé clic para reproducir el sonido", 20, 20);
+}
+
+function mousePressed() {
+  if (!sonido.isPlaying()) {
+    sonido.loop(true); // activa la repetición...
+    sonido.play();     // ...y play() inicia la reproducción
+  }
+}
+```
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/naQATIkkd"></iframe>
 
-> *Para tener en cuenta: La última versión de la librería p5.sound es la 1.0.0 . Verificar siempre en la archivo `index.html` que se este haciendo referencia a esa versión de la siguiente manera:* `<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script><script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/addons/p5.sound.min.js"></script>`
+> *Para tener en cuenta: con la versión 2 de p5.js se usa la nueva librería p5.sound.js. Verificá siempre que en el archivo `index.html` de tu sketch estén estas dos líneas, que son las mismas versiones que usa la galería `<la-piscine>`:*
 
-El sonido es reproducido cada vez que se ejecuta el método `play()` o tambien se puede llamar al método `loop()` para que reproduzca desde el principio una vez que llega al final.
+```html
+<script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.min.js"></script>
+```
+
+El sonido es reproducido cada vez que se ejecuta el método `play()`. Si queremos que vuelva a reproducirse desde el principio una vez que llega al final, antes de `play()` llamamos al método `loop(true)`: en la librería para la versión 2 de p5.js, `loop()` solo activa la repetición y no inicia la reproducción.
+
+Tené en cuenta que los navegadores no reproducen sonido hasta que la persona interactúa con la página (con un clic o una tecla). Por eso conviene iniciar la reproducción desde funciones disparadas por eventos como `mousePressed()` o `keyPressed()`.
 
 Se puede ver en el ejemplo que la canción la llamamos dentro del `setup()` ya que si el sonido fuese reproducido en cada ejecución de `draw()`, el sonido se reiniciaría 60 veces por segundo generando una sobrecarga en nuestro sketch.
 
 Este ejemplo funciona bien porque el sonido solamente se reproduce cuando el valor de la variable x está dentro de los bordes de la pantalla. 
 
-El objeto `p5.SoundFile` posee muchos métodos para controlar cómo un sonido es reproducido. Los más esenciales son `play()` para reproducir la muestra una sola vez, `loop()` para reproducirlo de principio a fin una y otra vez, `stop()` para detener la reproducción, y `pause()` para detener la reproducción y que resuma desde ese punto.
+El objeto `p5.SoundFile` posee muchos métodos para controlar cómo un sonido es reproducido. Los más esenciales son `play()` para reproducir la muestra una sola vez, `loop(true)` (seguido de `play()`) para reproducirlo de principio a fin una y otra vez, `stop()` para detener la reproducción, y `pause()` para detener la reproducción y que resuma desde ese punto.
 
 ### 2.3. Tiempo de reproducción: `jump()`, `duration()` y `currenTime()`
 
