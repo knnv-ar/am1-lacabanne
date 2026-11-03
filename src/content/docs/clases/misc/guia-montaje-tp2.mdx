@@ -81,8 +81,8 @@ cuatrimestre: segundo cuatrimestre
 thumbnail: thumbnail.webp
 license: CC-BY-SA-4.0
 dependencies:
-  - p5.v1.11.13
-  - p5.sound.v1.11.13
+  - p5.v2.3.3
+  - p5.sound.v2.3.3
 ---
 ```
 
@@ -94,9 +94,9 @@ dependencies:
 - `cuatrimestre`: En qué parte del año se cursó. Los únicos valores válidos son `primer cuatrimestre` o `segundo cuatrimestre`.
 - `thumbnail`: El nombre exacto de tu archivo de miniatura (Ej: `thumbnail.webp`).
 - `license`: **(obligatorio)** La licencia que elegís para tu obra. Los únicos valores válidos son `CC-BY-SA-4.0`, `CC-BY-4.0`, `CC-BY-NC-SA-4.0` o `all-rights-reserved`. Leé con atención la sección siguiente antes de elegir.
-- `dependencies`: Un listado (con guiones) de las librerías que utiliza tu sketch. Tenés que declarar **la misma versión de p5.js con la que hiciste tu obra en el editor** (podés verla en el archivo `index.html` de tu sketch). Las opciones son la versión 1 `p5.v1.11.13` o la versión actual 2 `p5.v2.3.3`.
-  - **Si cargaste tus archivos con `preload()`, como vimos en clase, usá la versión 1** (`p5.v1.11.13`): en la versión 2 la función `preload()` ya no existe y tu obra no cargaría los recursos.
-  - **Si tu obra usa sonido** (`loadSound()`, etc.), agregá también la librería de sonido en la misma versión: `p5.sound.v1.11.13` (o `p5.sound.v2.3.3` si usaste la versión 2). Si no usás sonido, podés borrar esa línea.
+- `dependencies`: Un listado (con guiones) de las librerías que utiliza tu sketch. Usá la versión 2 de p5.js, `p5.v2.3.3`, que es la versión por defecto del editor de p5.js y la que usamos en la cátedra.
+  - **Si tu obra usa sonido** (`loadSound()`, etc.), dejá también la línea `p5.sound.v2.3.3`. Si no usás sonido, podés borrarla.
+  - **En la versión 2 la función `preload()` ya no existe:** los archivos se cargan con `async` / `await` dentro de `setup()` (ver el ejemplo del punto 4). Si tu sketch todavía usa `preload()`, adaptalo antes de montarlo; si no, tu obra no va a cargar sus recursos.
 
 #### La licencia de tu obra (`license`)
 
@@ -209,27 +209,49 @@ A diferencia del TP1, en el TP2 seguramente usaste archivos externos: imágenes,
     └── space-mono-regular.ttf
 ```
 
-**Y así se cargan esos recursos desde `sketch.js`:**
+**Y así se cargan esos recursos desde `sketch.js` con la versión 2 de p5.js (`async` / `await`):**
 
 ```javascript
 let fondo;
 let lluvia;
-let olas;
 let fuente;
+let olas;
 
-function preload() {
-  fondo = loadImage('imagenes/fondo-noche.webp');
-  lluvia = loadSound('sonidos/lluvia-suave.mp3');
-  fuente = loadFont('tipografias/space-mono-regular.ttf');
-}
-
-function setup() {
+// En la versión 2 de p5.js no existe preload():
+// declaramos setup() como async y usamos await en cada carga.
+async function setup() {
   let canvas = createCanvas(800, 600); // Reemplazá con tus dimensiones
   canvas.parent('div-sketch'); // ESTA LÍNEA ES OBLIGATORIA
+
+  // await espera a que cada archivo termine de cargarse antes de seguir
+  fondo = await loadImage('imagenes/fondo-noche.webp');
+  lluvia = await loadSound('sonidos/lluvia-suave.mp3'); // requiere p5.sound.v2.3.3
+  fuente = await loadFont('tipografias/space-mono-regular.ttf');
+
+  // El video se crea como elemento de la página y se oculta para dibujarlo en el lienzo
   olas = createVideo('videos/olas-del-mar.mp4');
   olas.hide();
 }
+
+function draw() {
+  image(fondo, 0, 0, width, height);
+  image(olas, 0, 0, 320, 240);
+  textFont(fuente);
+  text('Hola', 20, height - 20);
+}
+
+// Los navegadores no reproducen sonido ni video hasta que la persona interactúa con la página
+function mousePressed() {
+  if (!lluvia.isPlaying()) {
+    lluvia.loop(true); // en p5.sound v2, loop() solo activa la repetición...
+    lluvia.play();     // ...y play() inicia la reproducción
+  }
+  olas.loop();
+}
 ```
+
+- **Audios:** el formato más compatible es `.mp3`. El formato `.m4a` (AAC) también funciona en la mayoría de los navegadores, pero si dudás, convertí tus audios a `.mp3`.
+- **Videos:** usá `.mp4` (códec H.264), que se reproduce en todos los navegadores.
 
 *Tip: desde el editor de p5.js podés descargar tu proyecto completo (menú **Archivo > Descargar**) y obtener un `.zip` con tu código y todas tus carpetas de recursos. Los archivos `index.html` y `style.css` que vienen en ese `.zip` no hace falta subirlos.*
 
