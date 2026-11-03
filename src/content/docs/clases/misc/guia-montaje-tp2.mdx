@@ -1,0 +1,267 @@
+---
+title: 'Guía de montaje del TP Nº2 para la galería <la-piscine>'
+description: 'Guía de montaje del TP Nº2 para la galería <la-piscine>'
+sidebar:
+  order: 3
+  hidden: false
+---
+
+Esta guía corresponde a la **instancia obligatoria 12: Montaje del TP Nº 2 corregido para la exposición de fin de año**, que se realizará el **miércoles 25/11/2026** mediante un pull request al repositorio de `<la-piscine>` en GitHub. Podés consultar la consigna completa en la página del [Trabajo Práctico Nº 2](/tps/tp-2/).
+
+#### ⚠️ IMPORTANTE: Nomenclatura de archivos y carpetas
+Es de vital importancia que **todos los nombres de carpetas y archivos** que suban (incluidas las subcarpetas y los archivos de imágenes, audios, videos, tipografías, etc.) respeten el formato **kebab-case**. Esto significa:
+1. **No** usar espacios.
+2. **No** usar mayúsculas.
+3. **No** usar acentos ni tildes.
+4. **No** usar la letra `ñ`.
+5. **No** usar caracteres especiales, **únicamente** usar el guión medio `-` para separar palabras.
+
+---
+
+**Ejemplo incorrecto y ejemplo correcto:**
+
+- ❌ `2026 TP2 Pérez García Amparo`
+- ✅ `2026-tp2-perez-garcia-amparo`
+
+---
+
+## Bloque 1. Crear la carpeta de tu proyecto
+
+1. Creá una carpeta en tu computadora para tu proyecto siguiendo esta estructura estricta: `<año>-tp<n>-<apellido>-<nombre>`.
+2. Por ejemplo, si te llamás Amparo Pérez García y estás entregando el TP 2 en 2026, tu carpeta debe llamarse: `2026-tp2-perez-garcia-amparo`.
+
+---
+
+## Bloque 2. Preparar los archivos del proyecto
+
+Dentro de la carpeta que acabás de crear, deben existir obligatoriamente **tres archivos** y, además, **todos los recursos que use tu sketch** (imágenes, audios, videos, tipografías, etc.), como se explica en el punto 4:
+
+### 1. `thumbnail.webp`
+Esta es la miniatura de tu proyecto que aparecerá en el catálogo de la galería.
+- **Tamaño obligatorio:** Debe medir exactamente **360 píxeles de ancho por 360 píxeles de alto**.
+- Podés hacer una captura de pantalla de tu sketch y recortarla/redimensionarla en Photoshop, GIMP o cualquier editor de imágenes asegurándote de que tenga esas dimensiones exactas antes de exportarla.
+- **Exportación a WEBP:** Si tu software de edición de imágenes no te permite guardar o exportar directamente en formato WEBP, podés usar herramientas online gratuitas y muy utilizadas por diseñadores para convertir tus archivos PNG o JPEG:
+  - [Squoosh](https://squoosh.app/) (Recomendada por Google, excelente compresión)
+  - [CloudConvert](https://cloudconvert.com/webp-converter)
+  - [Convertio](https://convertio.co/es/png-webp/)
+  - [Ezgif](https://ezgif.com/png-to-webp)
+
+### 2. `sketch.js` (y otros recursos de código)
+Este es el archivo principal de tu código en p5.js. 
+- Debés asegurarte de vincular tu lienzo (canvas) a un contenedor específico llamado `div-sketch` en la función `setup()`.
+- **Ejemplo de código necesario:**
+  ```javascript
+  function setup() {
+    let canvas = createCanvas(512, 512); // Reemplazá con tus dimensiones
+    canvas.parent('div-sketch'); // ESTA LÍNEA ES OBLIGATORIA
+  }
+  ```
+- Limpiá el código de `console.log()` que hayan quedado de pruebas.
+- La galería **solo carga el archivo `sketch.js`**. Si en el editor de p5.js repartiste tu código en otros archivos `.js`, copiá ese código dentro de `sketch.js`.
+- Los archivos de imágenes, audios, videos y tipografías que cargue tu código se suben aparte, siguiendo las indicaciones del punto 4.
+
+### 3. `statement.mdx`
+Este es el archivo central que contiene tu declaración de obra, tus textos bilingües y que además vincula tu `sketch.js` con la plataforma. Deberás crearlo en tu carpeta (por ejemplo desde vscode o con `touch statement.mdx`).
+
+El archivo `statement.mdx` está dividido en tres partes fundamentales:
+1. El **YAML front matter** (metadatos, incluida la **licencia** de tu obra).
+2. El **contenedor del sketch**.
+3. Las **versiones de idiomas** (español e inglés).
+
+#### A. El YAML front matter
+Va al principio del archivo y va encerrado entre tres guiones `---`. Contiene la información técnica de la obra. **Aquí sí podés usar mayúsculas, espacios y acentos** luego del _nombre de la variable_ y los _dos puntos (`:`)_, ya que son los datos que leerá el sistema para mostrar en pantalla.
+
+```yaml
+---
+author: Nombres y apellidos completos
+title: Título de la Obra
+date: YYYY-MM-DD
+year: YYYY
+cuatrimestre: segundo cuatrimestre
+thumbnail: thumbnail.webp
+license: CC-BY-SA-4.0
+dependencies:
+  - p5.v1.11.13
+  - p5.sound.v1.11.13
+---
+```
+
+**¿Qué significa cada variable?**
+- `author`: Tu nombre y apellido completo (Ej: Raúl Federico Lacabanne).
+- `title`: El título de tu obra.
+- `date`: La fecha de publicación o entrega en formato `año-mes-día` (Ej: `2026-11-25`).
+- `year`: El año de cursada en formato de cuatro dígitos (Ej: `2026`).
+- `cuatrimestre`: En qué parte del año se cursó. Los únicos valores válidos son `primer cuatrimestre` o `segundo cuatrimestre`.
+- `thumbnail`: El nombre exacto de tu archivo de miniatura (Ej: `thumbnail.webp`).
+- `license`: **(obligatorio)** La licencia que elegís para tu obra. Los únicos valores válidos son `CC-BY-SA-4.0`, `CC-BY-4.0`, `CC-BY-NC-SA-4.0` o `all-rights-reserved`. Leé con atención la sección siguiente antes de elegir.
+- `dependencies`: Un listado (con guiones) de las librerías que utiliza tu sketch. Tenés que declarar **la misma versión de p5.js con la que hiciste tu obra en el editor** (podés verla en el archivo `index.html` de tu sketch). Las opciones son la versión 1 `p5.v1.11.13` o la versión actual 2 `p5.v2.3.3`.
+  - **Si cargaste tus archivos con `preload()`, como vimos en clase, usá la versión 1** (`p5.v1.11.13`): en la versión 2 la función `preload()` ya no existe y tu obra no cargaría los recursos.
+  - **Si tu obra usa sonido** (`loadSound()`, etc.), agregá también la librería de sonido en la misma versión: `p5.sound.v1.11.13` (o `p5.sound.v2.3.3` si usaste la versión 2). Si no usás sonido, podés borrar esa línea.
+
+#### La licencia de tu obra (`license`)
+
+Tu obra es tuya: los derechos de autor del código, los textos y las imágenes te pertenecen (Ley 11.723). Montarla en `<la-piscine>` **no te obliga a ceder nada**. Lo que sí tenés que hacer es **decidir qué pueden hacer otras personas con ella** y declararlo en el campo `license` del front matter.
+
+Elegí **una** de estas cuatro opciones y escribila tal cual:
+
+| Escribí en `license:` | Qué permitís a otras personas |
+|---|---|
+| `CC-BY-SA-4.0` _(sugerida por la cátedra)_ | Copiar, modificar y usar tu obra, incluso con fines comerciales, siempre que te citen y que lo que hagan a partir de ella se comparta con esta misma licencia. |
+| `CC-BY-4.0` | Copiar, modificar y usar tu obra, incluso con fines comerciales, siempre que te citen. |
+| `CC-BY-NC-SA-4.0` | Lo mismo que `CC-BY-SA-4.0`, pero **sin usos comerciales**. |
+| `all-rights-reserved` | Nada: la obra se exhibe en la galería, pero nadie puede reutilizarla sin tu permiso. |
+
+**Exhibir no obliga a abrir:** `all-rights-reserved` es una opción tan válida como las otras.
+
+Ejemplos de cómo queda la línea en tu front matter, según la opción que elijas (escribí **solo una**):
+
+```yaml
+license: CC-BY-SA-4.0          # Atribución-CompartirIgual (sugerida)
+license: CC-BY-4.0             # Atribución
+license: CC-BY-NC-SA-4.0       # Atribución-NoComercial-CompartirIgual
+license: all-rights-reserved   # Todos los derechos reservados
+```
+
+Para tener en cuenta:
+
+- **La licencia alcanza a toda la carpeta de tu obra**, incluido el `sketch.js`: en esta galería, el código es la obra.
+- **Sugerimos `CC-BY-SA-4.0`** porque comparte la lógica del código de la galería (que se publica bajo la licencia AGPLv3): lo que se recibe de lo común se devuelve a lo común.
+- **Las licencias Creative Commons no se pueden revocar.** Podés cambiar la licencia más adelante, pero quien ya haya obtenido tu obra bajo la licencia anterior puede seguir usándola en esas condiciones. Si dudás, podés empezar por `all-rights-reserved` y abrirla después: al revés no se puede.
+- **Material de terceros:** si usaste imágenes, sonidos, tipografías, videos o código que no son tuyos, tu licencia no los cubre. Mencioná en tu statement (por ejemplo, en la bibliografía) qué son, de quién y con qué licencia.
+- Si tu obra no declara el campo `license`, el sistema no la va a aceptar en la galería: el chequeo automático del Pull Request te va a avisar (ver Bloque 3).
+
+Podés leer el texto completo de cada licencia en el sitio de Creative Commons: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es) y [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es).
+
+#### B. El contenedor del sketch
+Debajo de los tres guiones de cierre `---` del Front Matter, tenés que copiar y pegar este bloque exacto de código HTML, que se encargará de ejecutar tu `sketch.js` en la página:
+
+```html
+<div id="div-sketch">
+  <script type="text/javascript" src="sketch.js"></script>
+</div>
+```
+
+#### C. Versiones de idiomas (ES y EN)
+Por último, el contenido escrito de tu declaración debe estar en `español` y en `inglés`, envuelto en etiquetas especiales `<Language>`. 
+
+Tomá como referencia esta estructura y adaptá los textos con los tuyos (usando el formato de marcado Markdown para negritas `**texto**`, cursivas `_texto_`, etc.):
+
+```markdown
+<Language code="es">
+Breve descripción de la obra en español.
+
+**Desarrollo técnico, estético y conceptual**
+
+Texto del desarrollo en español.
+
+**Bibliografía**
+
+- APELLIDO, Nombre. (año). _"Título del libro"_. Ciudad: Editorial.
+
+**Breve biografía**
+
+Breve presentación tuya (estudiante) en español.
+</Language>
+
+<Language code="en">
+Brief description of the work in english.
+
+**Technical, aesthetic, and conceptual development**
+
+Development text in english.
+
+**Bibliography**
+
+- LASTNAME, Firstname. (year). _"Book title"_. City: Publisher.
+
+**Brief resume**
+
+Brief presentation of yourself (student) in english.
+</Language>
+```
+
+
+### 4. Los recursos de tu obra: imágenes, audios, videos, tipografías, etc.
+A diferencia del TP1, en el TP2 seguramente usaste archivos externos: imágenes, audios, videos, tipografías, archivos de datos (`.json`, `.csv`, `.txt`), etc. **Además de `thumbnail.webp`, `sketch.js` y `statement.mdx`, tenés que subir todos esos archivos**: sin ellos tu obra no va a funcionar en la galería.
+
+- **Mantené la misma estructura de carpetas y archivos que usa tu sketch.** Si en tu código escribiste `loadImage('imagenes/fondo-noche.webp')`, dentro de tu carpeta tiene que existir la subcarpeta `imagenes` con el archivo `fondo-noche.webp` adentro.
+- **Respetá la convención de nombres kebab-case también en las subcarpetas y en los recursos**, incluida la extensión en minúsculas: ✅ `fondo-noche.webp` / ❌ `Fondo Noche.WEBP`.
+- **Si renombrás un archivo o una carpeta, actualizá también tu código.** El servidor de la galería distingue mayúsculas de minúsculas: `Lluvia.mp3` y `lluvia.mp3` son dos archivos distintos. Antes de subir, probá en el editor de p5.js que tu obra siga funcionando con los nombres nuevos.
+- **Usá rutas relativas a tu carpeta**, sin barra inicial: ✅ `'sonidos/lluvia-suave.mp3'` / ❌ `'/sonidos/lluvia-suave.mp3'` / ❌ `'C:/Users/amparo/Desktop/lluvia.mp3'`.
+- **Cuidá el peso de los archivos.** GitHub no permite subir desde el navegador archivos de más de 25 MB. Usá formatos livianos (imágenes en `.webp` o `.jpg`, audios en `.mp3`, videos en `.mp4`) y no subas archivos que tu código no use.
+- **Material de terceros:** si alguno de estos recursos no es de tu autoría, declaralo en tu statement y en el Pull Request (ver la sección sobre la licencia de tu obra).
+
+**Ejemplo de estructura de carpetas y archivos:**
+
+```text
+2026-tp2-perez-garcia-amparo/
+├── thumbnail.webp
+├── sketch.js
+├── statement.mdx
+├── imagenes/
+│   ├── fondo-noche.webp
+│   └── luna-llena.png
+├── sonidos/
+│   └── lluvia-suave.mp3
+├── videos/
+│   └── olas-del-mar.mp4
+└── tipografias/
+    └── space-mono-regular.ttf
+```
+
+**Y así se cargan esos recursos desde `sketch.js`:**
+
+```javascript
+let fondo;
+let lluvia;
+let olas;
+let fuente;
+
+function preload() {
+  fondo = loadImage('imagenes/fondo-noche.webp');
+  lluvia = loadSound('sonidos/lluvia-suave.mp3');
+  fuente = loadFont('tipografias/space-mono-regular.ttf');
+}
+
+function setup() {
+  let canvas = createCanvas(800, 600); // Reemplazá con tus dimensiones
+  canvas.parent('div-sketch'); // ESTA LÍNEA ES OBLIGATORIA
+  olas = createVideo('videos/olas-del-mar.mp4');
+  olas.hide();
+}
+```
+
+*Tip: desde el editor de p5.js podés descargar tu proyecto completo (menú **Archivo > Descargar**) y obtener un `.zip` con tu código y todas tus carpetas de recursos. Los archivos `index.html` y `style.css` que vienen en ese `.zip` no hace falta subirlos.*
+
+---
+
+## Bloque 3. Subir tu obra a GitHub
+*Nota: Los pasos para realizar el Fork, Branch y Pull Request siguen vigentes según las clases.*
+
+1. Ingresá a GitHub y asegurate de hacer un fork de `knnv-ar/la-piscine`. Si ya tenés el fork que usaste para el TP1, antes de seguir actualizalo con el botón **Sync fork > Update branch** para trabajar sobre la última versión de la galería.
+2. Creá una nueva rama (branch) con los siguientes datos  separados por un guión medio (`-`): `branch`, el año de cursada, el número de tp, tus apellidos, y tus nombres. Debe quedar una cadena de texto como el siguiente ejemplo: `branch-2026-tp2-perez-garcia-amparo`.
+3. Navegá en tu repositorio hasta la carpeta `_projects/`.
+4. Arrastrá allí la **carpeta completa** que creaste (ej. `2026-tp2-perez-garcia-amparo`), **con todas sus subcarpetas y recursos**. Antes de hacer el commit, revisá en la lista de archivos que GitHub muestra que no falte ninguno.
+5. Hacé el commit y luego un **Pull Request** para que tu TP sea aceptado en la galería.
+
+### Completar la plantilla del Pull Request
+
+Al abrir el Pull Request, GitHub te va a mostrar una plantilla con casillas para marcar. Completala:
+
+1. Marcá las casillas de **archivos** (sketch, statement, miniatura y nombres en kebab-case, también en los recursos).
+2. Marcá la **declaración de autoría**.
+3. Marcá **la misma licencia** que escribiste en el campo `license` de tu `statement.mdx`.
+4. Indicá si usaste **material de terceros** y, si es así, detallalo (qué es, autor/a, fuente y licencia).
+
+### El chequeo automático de licencia
+
+Cuando abrís el Pull Request se ejecuta un **chequeo automático** que verifica tu licencia:
+
+- ✅ **En verde:** la licencia está bien declarada.
+- ❌ **En rojo:** falta el campo `license` o tiene un valor que no está en la lista. Leé el mensaje, que explica qué corregir, corregí el `statement.mdx` en tu rama y el chequeo se vuelve a ejecutar solo.
+
+*Nota: la primera vez que contribuís al repositorio, el chequeo puede quedar en espera hasta que el equipo docente lo apruebe. Es una medida de seguridad de GitHub para cuentas nuevas.*
+
+Luego, como siempre, revisaremos juntos tu Pull Request en clase, el miércoles 25/11/2026.
+
+### ¡Felicitaciones por llegar hasta acá y ser parte de `<la-piscine>` v3!
