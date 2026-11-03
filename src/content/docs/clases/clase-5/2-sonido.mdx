@@ -8,11 +8,13 @@ sidebar:
 
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
+> *Para tener en cuenta: los ejemplos embebidos del editor de p5.js de esta página fueron creados con la versión 1 de p5.js y de p5.sound. Para trabajar con la versión 2 (la versión por defecto del editor y la que usamos en la cátedra), seguí los bloques de código de cada sección.*
+
 ### 2.1. Librerías
 
 Una librería de p5.js es un conjunto de código que extiende el software más allá de sus funciones principales. Las librerías han sido importantes para el crecimiento de este proyecto, porque le permite a los desarrolladores añadir nuevas funciones rápidamente. Como proyectos autocontenidos y más pequeños, las librerías son más fáciles de manejar que si sus características estuvieran integradas al software principal.
 
-El archivo `.zip` completo de p5.js incluye la librería p5.sound.
+Desde la versión 2 de p5.js, la librería de sonido ya no viene incluida en p5.js: es una librería aparte, llamada p5.sound.js, que tenemos que agregar al archivo `index.html` de nuestro sketch (en la sección 2.2 te mostramos cómo).
 
 También podés descargar otras librerías desde http://p5js.org/es/libraries/ . Para usar una de estas librerías, primero asegurate de que está dentro del directorio que contiene tus archivos HTML y JavaScript o incluida en el proyecto del editor online de p5.js. En segundo lugar, añadí una línea de código a tu archivo `HTML` para indicar que la librería será usada en el sketch actual. Esta línea debería verse así:
 
@@ -23,11 +25,11 @@ También podés descargar otras librerías desde http://p5js.org/es/libraries/ .
 
 ### 2.2. `p5.sound`
 
-La librería de audio p5.sound tiene la habilidad de reproducir, analizar y generar (*sintetizar*) sonido. A continuación se presentan algunas funciones clave; consultá la Referencia de p5.js para conocer más objetos que pueden ser creados y funciones que pueden ser llamadas: http://p5js.org/es/reference/#/libraries/p5.sound.
+La librería de audio p5.sound tiene la habilidad de reproducir, analizar y generar (*sintetizar*) sonido. A continuación se presentan algunas funciones clave; consultá la [Referencia de p5.sound](https://p5js.org/reference/p5.sound/) para conocer más objetos que pueden ser creados y funciones que pueden ser llamadas.
 
 Al igual que las imágenes, y los archivos de texto, un archivo de sonido es otro tipo de medio capaz de extender un sketch de p5.js. Que se carga de la misma forma que vimos anteriormente.
 
-La biblioteca p5.sound puede cargar un gran rango de formatos de archivos de audio incluyendo `WAV`, `AIFF` y `MP3`. 
+La biblioteca p5.sound puede cargar distintos formatos de archivos de audio, como `MP3` y `WAV`. El formato más compatible entre navegadores es `MP3`.
 
 Una vez que un archivo es cargado, puede ser reproducido, detenido y repetido, además de ser distorsionado con funciones de efecto.
 
@@ -75,61 +77,299 @@ Este ejemplo funciona bien porque el sonido solamente se reproduce cuando el val
 
 El objeto `p5.SoundFile` posee muchos métodos para controlar cómo un sonido es reproducido. Los más esenciales son `play()` para reproducir la muestra una sola vez, `loop(true)` (seguido de `play()`) para reproducirlo de principio a fin una y otra vez, `stop()` para detener la reproducción, y `pause()` para detener la reproducción y que resuma desde ese punto.
 
-### 2.3. Tiempo de reproducción: `jump()`, `duration()` y `currenTime()`
+### 2.3. Tiempo de reproducción: `jump()` y `duration()`
 
-Para ir a un tiempo específico de el archivo de sonido utilizamos el método `jump()` pasándole como parámetro el tiempo en segundos desde el que queremos que nuestro archivo se reproduzca.
+Para ir a un tiempo específico del archivo de sonido utilizamos el método `jump()`, pasándole como parámetro el tiempo en segundos desde el que queremos que se reproduzca. En la librería para la versión 2, `jump()` funciona mientras el sonido se está reproduciendo.
+
+También podemos acceder a diferentes propiedades de nuestro archivo de sonido. Si llamamos al método `duration()`, obtendremos la duración total en segundos de nuestro archivo de sonido.
+
+La librería para la versión 2 ya no tiene el método `currentTime()`, que devolvía el tiempo actual de reproducción. Podemos calcularlo nosotros con la función `millis()`, que devuelve los milisegundos transcurridos desde que empezó el sketch: guardamos el momento en que empezó a sonar el archivo y el segundo desde el que arrancó, y en cada cuadro calculamos cuánto tiempo pasó. Con el método `onended()` nos enteramos de cuándo se detiene el sonido (tené en cuenta que `jump()` también lo dispara, como se explica en el comentario del ejemplo).
+
+```javascript
+let sonido;
+let sonando = false;
+let inicio = 0; // valor de millis() cuando empezó a sonar
+let desde = 0;  // segundo del archivo desde el que empezó a sonar
+
+async function setup() {
+  createCanvas(400, 200);
+  sonido = await loadSound("sonidos/sonido.mp3");
+  // onended() recibe una función que se ejecuta cuando el sonido se detiene.
+  // jump() también la dispara, así que solo consideramos que terminó
+  // si el tiempo calculado llegó al final del archivo.
+  sonido.onended(() => {
+    if (tiempoActual() >= sonido.duration() - 0.2) {
+      sonando = false;
+    }
+  });
+}
+
+function draw() {
+  background(220);
+  text("Duración: " + nf(sonido.duration(), 1, 2) + " s", 20, 40);
+  text("Tiempo actual: " + nf(tiempoActual(), 1, 2) + " s", 20, 70);
+  text("Clic: reproducir | Tecla J: saltar al segundo 1", 20, 110);
+}
+
+function tiempoActual() {
+  if (!sonando) {
+    return 0;
+  }
+  return desde + (millis() - inicio) / 1000;
+}
+
+function mousePressed() {
+  if (!sonando) {
+    sonido.play();
+    sonando = true;
+    inicio = millis();
+    desde = 0;
+  }
+}
+
+function keyPressed() {
+  if ((key === "j" || key === "J") && sonando) {
+    sonido.jump(1);
+    inicio = millis();
+    desde = 1;
+  }
+}
+```
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/50U9RPL1R"></iframe>
 
-También podemos acceder a diferentes propiedades de nuestro archivo de sonido. Si llamamos al método `duration()`, obtendremos la duración total en segundos de nuestro archivo de sonido. Por otro lado podemos obtener el tiempo actual de reproducción en segundos de nuestro archivo de sonido llamando al método `currentTime()`.
-
 ### 2.4. Modificaciones: Volumen y paneo
 
-Podemos modificar a través de diferentes opciones como se escucha nuestro archivo de sonido. Dos opciones muy utilizadas son el paneo y el volumen en el que es escuchado nuestro sonido. 
+Podemos modificar a través de diferentes opciones cómo se escucha nuestro archivo de sonido. Dos opciones muy utilizadas son el paneo y el volumen en el que es escuchado nuestro sonido.
 
-Para modificar el volumen llamamos al método `setVolume()` pasándole como parámetro un valor numérico entre 0 y 1, siendo cero el volumen más bajo y 1 el más alto.
+Para modificar el volumen llamamos al método `amp()` (en la versión 1 se llamaba `setVolume()`) pasándole como parámetro un valor numérico entre 0 y 1, siendo cero el volumen más bajo y 1 el más alto.
 
-Para modificar el paneo (esto es cuanto se escucha del sonido en cada uno de los parlantes izquierdo y derecho) se utiliza el metodo `pan()`. Este recibe valores entre -1 y 1, siendo -1 que el sonido se va a reproducir todo a la izquierda y 1 todo a la derecha. El valor por defecto es 0 (centrado). 
+Para modificar el paneo (esto es cuánto se escucha del sonido en cada uno de los parlantes izquierdo y derecho) en la versión 2 usamos un objeto `p5.Panner`. Primero desconectamos el sonido de los parlantes con `disconnect()` y lo conectamos al panner con `connect()`; el panner es el que queda conectado a los parlantes. Luego, con el método `pan()` del panner indicamos la posición: recibe valores entre -1 y 1, siendo -1 que el sonido se va a reproducir todo a la izquierda y 1 todo a la derecha. El valor por defecto es 0 (centrado).
+
+```javascript
+let sonido;
+let panner;
+
+async function setup() {
+  createCanvas(400, 400);
+  sonido = await loadSound("sonidos/sonido.mp3");
+  panner = new p5.Panner(); // crea el efecto de paneo
+  sonido.disconnect();      // desconecta el sonido de los parlantes...
+  sonido.connect(panner);   // ...y lo conecta al panner, que sí va a los parlantes
+}
+
+function draw() {
+  background(220);
+  text("Clic para reproducir", 20, 20);
+  text("Mouse X: paneo | Mouse Y: volumen", 20, 40);
+
+  let volumen = map(mouseY, 0, height, 1, 0);
+  let paneo = map(mouseX, 0, width, -1, 1);
+  sonido.amp(volumen);
+  panner.pan(paneo);
+}
+
+function mousePressed() {
+  if (!sonido.isPlaying()) {
+    sonido.loop(true);
+    sonido.play();
+  }
+}
+```
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/VrC9iVV4r"></iframe>
 
-### 2.5. Eventos: `addCue()`
+### 2.5. Eventos en momentos específicos
 
-Podemos automatizar eventos para que sucedan en momentos específicos de la reproducción de nuestro audio. Para esto utilizamos el método addCue:
+Podemos automatizar eventos para que sucedan en momentos específicos de la reproducción de nuestro audio. En la versión 1 se usaba el método `addCue()`, que ya no existe en la librería para la versión 2.
+
+Podemos obtener el mismo resultado combinando el cálculo de tiempo de la sección 2.3 con un array que contiene los tiempos (en segundos) de cada evento: en cada cuadro de `draw()` revisamos si ya llegó el momento del próximo evento y, si llegó, llamamos a la función de usuario que queremos disparar.
 
 ```javascript
-archivo.addCue(tiempo, funcion, parámetros);
-```
+let sonido;
+let sonando = false;
+let inicio = 0;
+let eventos = [1, 2, 3]; // tiempos en segundos (ajustalos a la duración de tu sonido)
+let proximo = 0;         // índice del próximo evento del array
+let colorFondo = 220;
 
-Cuando llamamos a este método, debemos pasarle como primer parámetro el tiempo del archivo de audio en el que queremos que se dispare el evento. El segundo parámetro es la función de usuario a la que va a llamar cuando se dispare el evento. Por último se le pasa la cantidad de valores que refieren a los parámetros de la función creada.
+async function setup() {
+  createCanvas(400, 400);
+  sonido = await loadSound("sonidos/sonido.mp3");
+  sonido.onended(() => {
+    sonando = false;
+  });
+}
+
+function draw() {
+  background(colorFondo);
+  text("Clic para reproducir", 20, 20);
+
+  if (sonando && proximo < eventos.length) {
+    let tiempo = (millis() - inicio) / 1000;
+    if (tiempo >= eventos[proximo]) {
+      cambiarColor(random(255)); // función de usuario con su parámetro
+      proximo++;
+    }
+  }
+}
+
+function cambiarColor(nuevoColor) {
+  colorFondo = nuevoColor;
+}
+
+function mousePressed() {
+  if (!sonando) {
+    sonido.play();
+    sonando = true;
+    inicio = millis();
+    proximo = 0;
+  }
+}
+```
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/FVSewpzey"></iframe>
 
 ### 2.6 Velocidad: `rate()`
 
-También podemos utilizar un método que intervenga en la velocidad de reproducción de nuestro sonido. Con el método `rate()` cambiamos esta velocidad haciendo que nuestro archivo se reproduzca más lento o más rápido lo que modifica también la altura o pitch en la que le sonido es percibido.
+También podemos utilizar un método que intervenga en la velocidad de reproducción de nuestro sonido. Con el método `rate()` cambiamos esta velocidad, haciendo que nuestro archivo se reproduzca más lento o más rápido, lo que modifica también la altura o *pitch* en la que el sonido es percibido. El valor 1 es la velocidad normal, 0.5 la mitad y 2 el doble. En la librería para la versión 2 no se pueden usar valores negativos (que en la versión 1 reproducían el sonido al revés).
+
+```javascript
+let sonido;
+
+async function setup() {
+  createCanvas(400, 200);
+  sonido = await loadSound("sonidos/sonido.mp3");
+}
+
+function draw() {
+  background(220);
+  let velocidad = map(mouseX, 0, width, 0.1, 2);
+  sonido.rate(velocidad);
+  text("Clic para reproducir. Velocidad: " + nf(velocidad, 1, 2), 20, 20);
+}
+
+function mousePressed() {
+  if (!sonido.isPlaying()) {
+    sonido.loop(true);
+    sonido.play();
+  }
+}
+```
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/36gXvEnjs"></iframe>
 
-### 2.7 Escuchar: `setInput()` y `soundRecorder()`
+### 2.7 Escuchar: `p5.AudioIn`, `p5.Amplitude` y grabación
 
-Además de reproducir sonidos, p5.js puede escuchar. Si tu computadora tiene un micrófono incorporado o conectado, la libreria p5.sound puede escuchar audio en vivo a través de él. Una vez que los datos del micrófono están conectados al software, los podes analizar, modificar o reproducir:
+Además de reproducir sonidos, p5.js puede escuchar. Si tu computadora tiene un micrófono incorporado o conectado, la librería p5.sound puede escuchar audio en vivo a través de él. Una vez que los datos del micrófono están conectados al software, los podés analizar, modificar o reproducir.
+
+El micrófono se activa creando el objeto `p5.AudioIn`, que puede ser guardado en una variable. Para conocer la amplitud (*volumen*) del audio que está tomando el micrófono, en la versión 2 creamos un objeto `p5.Amplitude` y le conectamos el micrófono con `connect()`. Luego, su método `getLevel()` nos devuelve un valor entre 0 y 1. En este ejemplo usamos ese valor para modificar el color de fondo de nuestro sketch:
+
+```javascript
+let mic;
+let medidor;
+
+function setup() {
+  createCanvas(400, 400);
+  mic = new p5.AudioIn();       // micrófono
+  medidor = new p5.Amplitude(); // analizador de amplitud
+  mic.disconnect();             // no mandamos el micrófono a los parlantes (evita acoples)
+  mic.connect(medidor);         // conectamos el micrófono al analizador
+}
+
+function draw() {
+  let nivel = medidor.getLevel();
+  let rojo = map(nivel, 0, 0.3, 0, 255);
+  background(rojo, 0, 0);
+  fill(255);
+  text("Hacé clic para activar el micrófono", 20, 20);
+}
+
+function mousePressed() {
+  mic.start(); // el navegador pide permiso para usar el micrófono
+}
+```
+
+> *Para tener en cuenta: en la versión 2, todos los objetos de sonido quedan conectados a los parlantes cuando se crean. Por eso desconectamos el micrófono con `disconnect()`: si no, lo que entra por el micrófono saldría por los parlantes y podría generar un acople.*
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/gNK6Jpdcd"></iframe>
 
-El micrófono se activa creando el objeto p5.AudioIn que puede ser guardado en una variable. Una vez que creamos ese objeto podemos acceder a diferentes métodos que nos devuelven información sobre las características del sonido que el micrófono esta tomando. En este ejemplo, vemos que accedemos al método `getLevel()` para obtener la amplitud (*volumen*) del audio que está tomando el micrófono y utilizamos esos valores para modificar el color de fondo de nuestro sketch.
+También podemos grabar el sonido que está tomando el micrófono. La librería para la versión 2 ya no incluye el objeto `p5.SoundRecorder`, pero podemos usar `MediaRecorder`, una herramienta del propio navegador. Grabamos el micrófono con `MediaRecorder` y, al detener la grabación, la convertimos en un archivo de sonido con `loadSound()`. A partir de ahí la podemos reproducir como cualquier otro sonido:
 
-También podemos grabar el sonido que está tomando el micrófono, creando el objeto p5.SoundRecorder e indicando que grabe lo que ingresa por el micrófono pasándole la variable que contiene nuestro objeto audioIn al método setInput del objeto SoundRecorder.
+```javascript
+let grabador;
+let partes = [];
+let grabacion;
+let estado = "Clic: empezar a grabar";
 
-Por último podemos almacenar ese audio grabado creando en un nuevo objeto `p5.SoundFile()` y pasándoselo como parámetro al método record de nuestro objeto `SoundRecorder`.
+function setup() {
+  createCanvas(400, 200);
+}
 
-### 2.8. Sintesis 
+function draw() {
+  background(220);
+  text(estado, 20, 40);
+}
+
+async function mousePressed() {
+  if (!grabador) {
+    // pide permiso y obtiene el audio del micrófono
+    let microfono = await navigator.mediaDevices.getUserMedia({ audio: true });
+    grabador = new MediaRecorder(microfono);
+    grabador.ondataavailable = (e) => partes.push(e.data); // guarda los datos grabados
+    grabador.onstop = guardarGrabacion;                     // se ejecuta al detener
+  }
+  if (grabador.state === "inactive") {
+    partes = [];
+    grabador.start();
+    estado = "Grabando... Clic: detener y reproducir";
+  } else {
+    grabador.stop();
+  }
+}
+
+async function guardarGrabacion() {
+  let archivo = new Blob(partes, { type: grabador.mimeType });
+  grabacion = await loadSound(URL.createObjectURL(archivo));
+  grabacion.play();
+  estado = "Clic: grabar de nuevo";
+}
+```
+
+### 2.8. Síntesis
 
 Además de reproducir un sonido, grabarlo o analizarlo, p5.js puede directamente sintetizar sonido. Los bloques fundamentales de la síntesis de sonido son ondas, entre las que se incluyen ondas sinusoidales, ondas triangulares y ondas cuadradas. Una onda sinusoidal tiene un sonido agradable, una onda cuadrada es más dura y una onda triangular está entre medio. Cada onda tiene un número de propiedades. La frecuencia, medida en *Hertz*, determina la altura, cuán grave o agudo es el tono. La amplitud de la onda determina el volumen, el nivel de intensidad.
 
-En el siguiente ejemplo, el valor de x e y de la figura determina la frecuencia de una onda sinusoidal. A medida que la figura se mueve, la frecuencia audible de la onda aumenta y decae:
+En el siguiente ejemplo, la posición x del mouse determina la frecuencia de una onda sinusoidal. A medida que el mouse se mueve hacia la derecha, la frecuencia audible de la onda aumenta:
+
+```javascript
+let onda;
+let sonando = false;
+
+function setup() {
+  createCanvas(400, 400);
+  onda = new p5.SinOsc(); // crea una onda sinusoidal
+  onda.amp(0.3);          // volumen de la onda
+}
+
+function draw() {
+  background(220);
+  text("Clic para encender o apagar la onda", 20, 20);
+  let frecuencia = map(mouseX, 0, width, 100, 800);
+  onda.freq(frecuencia);
+  circle(mouseX, mouseY, 30);
+}
+
+function mousePressed() {
+  if (!sonando) {
+    onda.start();
+  } else {
+    onda.stop();
+  }
+  sonando = !sonando;
+}
+```
 
 <iframe src="https://editor.p5js.org/sebifly/sketches/M0mjn9DXH"></iframe>
 
-El objeto sinusoide, creado a partir del constructor p5.SinOsc, es denfinido al principio del código y luego creado dentro de `setup()`. El método `start()` causa que la onda empiece a generar sonido. Dentro de `draw()`, el método `freq()` define continuamente la frecuencia de la onda, basándose en la posición x e y de la figura.
-
+El objeto onda, creado a partir del constructor `p5.SinOsc`, es definido al principio del código y luego creado dentro de `setup()`. El método `start()` causa que la onda empiece a generar sonido; como con los archivos de sonido, el navegador solo lo permite después de una interacción, por eso lo llamamos desde `mousePressed()`. Dentro de `draw()`, el método `freq()` define continuamente la frecuencia de la onda, basándose en la posición x del mouse.
