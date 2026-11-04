@@ -178,32 +178,225 @@ Brief presentation of yourself (student) in english.
 ---
 
 ## Bloque 3. Subir tu obra a GitHub
-*Nota: Los pasos para realizar el Fork, Branch y Pull Request siguen vigentes según las clases.*
 
-1. Ingresá a GitHub y asegurate de hacer un fork de `knnv-ar/la-piscine`.
-2. Creá una nueva rama (branch) con los siguientes datos  separados por un guión medio (`-`): `branch`, el año de cursada, el número de tp, tus apellidos, y tus nombres. Debe quedar una cadena de texto como el siguiente ejemplo: `branch-2026-tp1-perez-garcia-amparo`.
-3. Navegá en tu repositorio hasta la carpeta `_projects/`.
-4. Arrastrá allí la **carpeta completa** que creaste (ej. `2026-tp1-perez-garcia-amparo`).
-5. Hacé el commit y luego un **Pull Request** para que tu TP sea aceptado en la galería.
+Con tu carpeta lista, la vas a subir a la galería mediante un **pull request** al repositorio [`knnv-ar/la-piscine`](https://github.com/knnv-ar/la-piscine). Se hace todo desde el navegador: no hace falta instalar nada.
 
-### Completar la plantilla del Pull Request
+| # | Paso | ¿Cuándo? |
+|---|------|----------|
+| 1 | Crear una cuenta en GitHub | Una sola vez |
+| 2 | Hacer tu **fork** (tu copia) de `la-piscine` | Una sola vez |
+| 3 | **Sync fork**: actualizar tu copia | **Siempre**, antes de cada entrega |
+| 4 | Crear tu **branch** (rama) y seleccionarla | En cada entrega |
+| 5 | Entrar a la carpeta `_projects` | En cada entrega |
+| 6 | Subir tu carpeta completa | En cada entrega |
+| 7 | Hacer el **commit** con el nombre de tu carpeta | En cada entrega |
+| 8 | Abrir el **pull request** y completar la plantilla | En cada entrega |
+| 9 | Esperar la revisión automática y corregir si hace falta | En cada entrega |
 
-Al abrir el Pull Request, GitHub te va a mostrar una plantilla con casillas para marcar. Completala:
+:::caution[GitHub está en inglés]
+GitHub no tiene versión en castellano: esta guía nombra los botones tal como aparecen en pantalla (por ejemplo **Fork** o **Commit changes**) y explica qué hace cada uno. Si ves los botones en castellano (por ejemplo "Tenedor" en lugar de **Fork**), es el traductor automático del navegador, que traduce mal y cambia los nombres. Desactivalo para este sitio: en Chrome, hacé clic en el ícono de traducción de la barra de direcciones y elegí no traducir nunca `github.com`.
+:::
 
-1. Marcá las casillas de **archivos** (sketch, statement, miniatura y nombres en kebab-case).
-2. Marcá la **declaración de autoría**.
-3. Marcá **la misma licencia** que escribiste en el campo `license` de tu `statement.mdx`.
-4. Indicá si usaste **material de terceros** y, si es así, detallalo (qué es, autor/a, fuente y licencia).
+**Vocabulario mínimo**
 
-### El chequeo automático de licencia
+| Término | Qué es |
+|---------|--------|
+| **Repositorio** | Un proyecto guardado en GitHub con todo su historial. La galería es el repositorio `knnv-ar/la-piscine`. |
+| **Fork** | Tu copia personal del repositorio, dentro de tu cuenta (`TU-USUARIO/la-piscine`). Ahí sí podés subir archivos. |
+| **Branch** (rama) | Una línea de trabajo separada dentro de tu fork. Cada entrega va en su propia rama. |
+| **Commit** | Guardar un cambio (por ejemplo, subir tu carpeta) con un mensaje que lo describe. |
+| **Pull request** (PR) | El pedido que le hacés a la cátedra para que tu obra se incorpore a la galería. |
+| **Sync fork** | Traer a tu fork las novedades del repositorio original. |
 
-Cuando abrís el Pull Request se ejecuta un **chequeo automático** que verifica tu licencia:
+### Antes de subir: revisá tu carpeta
 
-- ✅ **En verde:** la licencia está bien declarada.
-- ❌ **En rojo:** falta el campo `license` o tiene un valor que no está en la lista. Leé el mensaje, que explica qué corregir, corregí el `statement.mdx` en tu rama y el chequeo se vuelve a ejecutar solo.
+Tu carpeta tiene que quedar así:
 
-*Nota: la primera vez que contribuís al repositorio, el chequeo puede quedar en espera hasta que el equipo docente lo apruebe. Es una medida de seguridad de GitHub para cuentas nuevas.*
+```text
+2026-tp1-perez-garcia-amparo/
+├── sketch.js
+├── statement.mdx
+└── thumbnail.webp
+```
 
-Luego, como siempre, revisaremos juntos tu Pull Request en clase.
+Repasá estos puntos de los bloques 1 y 2, que son los errores más frecuentes:
+
+- [ ] El nombre de la carpeta es `año-tpN-apellido-nombre`, en kebab-case. Se escribe `tp1`, no `tp-1`.
+- [ ] Los archivos se llaman **exactamente** `sketch.js`, `statement.mdx` y `thumbnail.webp`, todo en minúsculas.
+- [ ] `thumbnail.webp` es una imagen **WebP de verdad**, de **360 × 360 px**. Si tenías un PNG o un JPG, **convertilo**: cambiarle la extensión al nombre no alcanza.
+- [ ] En `statement.mdx`, el frontmatter empieza y termina con una línea de **tres guiones medios** (`---`). Cuidado: algunos editores convierten `---` en una raya larga (`—`).
+- [ ] Están los dos bloques `<Language code="es">` y `<Language code="en">`, **cada uno cerrado con su `</Language>`**.
+- [ ] El campo `license` tiene uno de los cuatro valores válidos.
+- [ ] No quedó texto de la plantilla sin reemplazar ("Breve descripción de la obra en español", "APELLIDO, Nombre", etc.).
+
+:::tip[Antes de empezar, fijate que GitHub funcione bien]
+Entrá a [githubstatus.com](https://www.githubstatus.com/) y revisá el estado del servicio. Si arriba aparece un incidente o **Git Operations**, **Pull Requests**, **Actions** o **Pages** no figuran como *Normal* u *Operational* (con tilde verde), esperá a que lo resuelvan antes de subir tu obra y abrir el pull request. Durante un incidente, la carga de archivos puede fallar y la revisión automática puede quedar trabada en *Queued* (en cola) durante mucho tiempo.
+:::
+
+### Paso 1. Crear una cuenta en GitHub (una sola vez)
+
+1. Entrá a [github.com/signup](https://github.com/signup).
+2. Completá **Email**, **Password** (contraseña) y **Username** (nombre de usuario), y elegí tu país en **Country/Region**. El nombre de usuario es público y aparece en todas tus contribuciones: usá uno serio y fácil de reconocer (por ejemplo `amparo-perez`).
+3. Seguí los pasos: GitHub te pide resolver un desafío de verificación y escribir un **código que te manda por correo**. Revisá también la carpeta de spam.
+4. Iniciá sesión con tu usuario y contraseña.
+
+:::note
+GitHub puede pedirte que actives la **verificación en dos pasos** (*two-factor authentication*, 2FA). Es obligatoria para quienes contribuyen código. Podés usar la app **GitHub Mobile** o una app de autenticación del celular. Guardá los códigos de recuperación (*recovery codes*) en un lugar seguro.
+:::
+
+### Paso 2. Hacer tu fork (una sola vez)
+
+1. Con tu sesión iniciada, entrá a [github.com/knnv-ar/la-piscine](https://github.com/knnv-ar/la-piscine).
+2. Arriba a la derecha, hacé clic en el botón **Fork**.
+3. Se abre la página **Create a new fork**:
+   - **Owner**: tu usuario (ya viene seleccionado).
+   - **Repository name**: dejá `la-piscine`, sin cambiarlo.
+   - Dejá tildada la casilla **Copy the `main` branch only**.
+4. Hacé clic en el botón verde **Create fork**.
+
+Vas a quedar en **tu** copia: arriba a la izquierda dice `TU-USUARIO / la-piscine` y, debajo, *forked from knnv-ar/la-piscine*. Tu fork siempre está en `https://github.com/TU-USUARIO/la-piscine`, y es el mismo que vas a usar para el TP2.
+
+### Paso 3. Sincronizar tu fork (siempre, antes de cada entrega)
+
+Tu fork es una foto del repositorio en el momento en que lo creaste. Mientras tanto, tus compañeros/as suman obras a la galería. **Sync fork** trae esas novedades a tu copia, y así tu entrega parte de la versión actual. **Hacelo siempre antes de crear la rama de una entrega nueva**: si tu fork ya está al día, no cambia nada.
+
+1. Entrá a tu fork: `https://github.com/TU-USUARIO/la-piscine`.
+2. Fijate que el selector de ramas, arriba a la izquierda de la lista de archivos, diga **`main`**.
+3. Encima de la lista de archivos aparece una barra con el estado de tu fork:
+   - *This branch is up to date with knnv-ar/la-piscine:main.* → Ya está al día. Pasá al paso 4.
+   - *This branch is N commits behind knnv-ar/la-piscine:main.* → Está desactualizado. Hacé clic en **Sync fork** y después en el botón verde **Update branch**.
+   - *This branch is N commits ahead of…* → Alguna vez subiste algo directamente a `main` de tu fork. Abrí **Sync fork** y elegí la opción para descartar esos commits (**Discard N commits**). No afecta a la galería, solo limpia tu copia. Si no estás seguro/a, consultá antes.
+
+### Paso 4. Crear tu rama (branch) y seleccionarla
+
+Cada entrega va en una rama propia. Así tu PR contiene solo tu obra.
+
+1. En tu fork, con `main` seleccionado, hacé clic en el **selector de ramas**: el botón que dice `main`, con un ícono de rama, arriba a la izquierda de la lista de archivos.
+2. En el campo **Find or create a branch…**, escribí el nombre de tu rama, separado por guiones medios: `branch`, el año de cursada, el número de TP, tus apellidos y tus nombres. Por ejemplo: `branch-2026-tp1-perez-garcia-amparo`.
+3. Hacé clic en la opción **Create branch `branch-2026-tp1-perez-garcia-amparo` from `main`**.
+4. **Verificá que el selector ahora muestre tu rama** y no `main`. Todo lo que sigue se hace con tu rama seleccionada.
+
+:::tip
+Si cerrás la página y volvés más tarde, GitHub abre `main`. Antes de seguir, volvé a elegir tu rama en el selector.
+:::
+
+### Paso 5. Entrar a la carpeta `_projects`
+
+1. Con tu rama seleccionada, hacé clic en la carpeta **`_projects`** de la lista de archivos.
+2. Verificá dos cosas: arriba se ve la ruta `la-piscine / _projects /`, y el selector de ramas sigue mostrando **tu rama**.
+
+:::danger[No subas nada en la raíz del repositorio]
+La raíz es la primera pantalla, donde están `README.md`, `src`, etc. Las obras van **siempre** dentro de `_projects`. Si tu carpeta queda afuera, la obra no aparece en la galería y la revisión automática rechaza el pull request.
+:::
+
+### Paso 6. Subir tu carpeta completa
+
+1. Dentro de `_projects`, arriba a la derecha, hacé clic en **Add file** y elegí **Upload files**.
+2. En la página de carga, revisá que arriba diga `la-piscine / _projects /`.
+3. Abrí el explorador de archivos de tu computadora y **arrastrá la carpeta completa** (`2026-tp1-perez-garcia-amparo`) al recuadro que dice *Drag files here to add them to your repository*.
+   - Arrastrá **la carpeta**, no los archivos sueltos. Así GitHub crea la subcarpeta con tu nombre.
+   - El enlace **choose your files** no deja elegir carpetas: usá arrastrar y soltar.
+4. Esperá a que termine la carga y se listen tus archivos (`sketch.js`, `statement.mdx` y `thumbnail.webp`).
+
+### Paso 7. Hacer el commit
+
+Debajo de la lista de archivos está la sección **Commit changes**:
+
+1. En el primer campo (aparece en gris *Add files via upload*), escribí **el nombre de tu carpeta**: `2026-tp1-perez-garcia-amparo`. Este texto después se usa como título del pull request, así que no dejes *Add files via upload*.
+2. El segundo campo (*Add an optional extended description…*) es opcional. Podés dejarlo vacío.
+3. Revisá que esté marcada la opción **Commit directly to the `branch-2026-tp1-perez-garcia-amparo` branch**. Si en lugar de tu rama dice `main`, **no hagas el commit**: volvé al paso 4 y seleccioná tu rama.
+4. Hacé clic en el botón verde **Commit changes**.
+
+Para comprobarlo, en `_projects` ahora tiene que aparecer tu carpeta. Entrá y fijate que estén tus archivos.
+
+### Paso 8. Abrir el pull request
+
+1. Después del commit, aparece arriba una franja amarilla con el texto *branch-2026-tp1-perez-garcia-amparo had recent pushes…* y un botón verde **Compare & pull request**. Hacé clic en él. Si la franja no aparece, volvé a la página principal de tu fork, hacé clic en **Contribute** (arriba de la lista de archivos) y después en **Open pull request**.
+2. Se abre la página **Open a pull request** en el repositorio de la galería (`knnv-ar/la-piscine`). Revisá la barra de arriba: tiene que decir `base repository: knnv-ar/la-piscine`, `base: main` ← `head repository: TU-USUARIO/la-piscine`, `compare: branch-2026-tp1-perez-garcia-amparo`, y debajo **✓ Able to merge**.
+3. **Título:** viene completado con el mensaje de tu commit (el nombre de tu carpeta). Si no, escribilo.
+4. **Descripción:** viene con la plantilla de la cátedra. Para marcar una casilla, cambiá `- [ ]` por `- [x]` (una equis, sin espacios dentro de los corchetes). Completala así:
+   1. Escribí tu nombre y el trabajo práctico donde lo pide.
+   2. Marcá las casillas de **archivos** (sketch, statement, miniatura y nombres en kebab-case).
+   3. Marcá la **declaración de autoría**.
+   4. Marcá **una sola** licencia: **la misma** que escribiste en el campo `license` de tu `statement.mdx`.
+   5. Indicá si usaste **material de terceros** y, si es así, detallalo (qué es, autor/a, fuente y licencia).
+5. Dejá como está la casilla **Allow edits and access to secrets by maintainers** (marcada). Permite que la cátedra corrija detalles menores de tu entrega.
+6. Más abajo en la misma página, revisá el listado de cambios: tienen que aparecer **solo** tus archivos, todos dentro de `_projects/2026-tp1-perez-garcia-amparo/`.
+7. Hacé clic en el botón verde **Create pull request**.
+
+Tu pull request queda en la lista de [pull requests de la galería](https://github.com/knnv-ar/la-piscine/pulls).
+
+### Paso 9. La revisión automática
+
+Al abrir el pull request se ejecuta la revisión **Revisión de obras / Revisar obra**. Su estado aparece al final de la página del PR. Revisa:
+
+1. Que todos los archivos estén dentro de `_projects/tu-carpeta/`.
+2. Que `thumbnail.webp` sea un WebP real de 360 × 360 px.
+3. Que `statement.mdx` tenga el frontmatter completo, el contenedor del sketch y los dos bloques `<Language>` con sus secciones.
+4. Que la licencia sea válida.
+5. Que la galería compile con tu obra incluida.
+
+Los resultados posibles:
+
+- ✅ **En verde:** todo está en orden. La cátedra revisa tu obra y la acepta (*merge*).
+- ❌ **En rojo:** hay algo para corregir. Hacé clic en **Details** junto a la revisión: arriba vas a ver un resumen con cada error, el archivo y la línea. Corregilo como se explica en el paso 10.
+- 🟡 **En espera durante mucho tiempo** (*Queued*, más de 10 minutos): no es un problema de tu obra. Revisá [githubstatus.com](https://www.githubstatus.com/): seguramente GitHub tiene un incidente. No vuelvas a subir nada ni abras otro PR: cuando lo resuelvan, la revisión arranca sola.
+
+:::note
+La primera vez que contribuís al repositorio, la revisión queda en espera (*workflow awaiting approval*) hasta que el equipo docente la apruebe. Es una medida de seguridad de GitHub para cuentas nuevas: no tenés que hacer nada.
+:::
+
+**Errores frecuentes y cómo resolverlos**
+
+| Mensaje (resumido) | Qué pasó | Solución |
+|--------------------|----------|----------|
+| *modifica archivos fuera de `_projects/…`* | Subiste la carpeta en la raíz o tocaste otros archivos | Escribí a la cátedra. Lo más simple suele ser cerrar el PR y repetir los pasos 3 a 8 en una rama nueva. |
+| *`thumbnail.webp` es en realidad una imagen PNG…* | Le cambiaste la extensión a un PNG o JPG | Convertí la imagen a WebP y subila de nuevo (paso 10). |
+| *La miniatura mide … px* | No mide 360 × 360 | Recortala en cuadrado, redimensionala a 360 × 360 y volvé a subirla. |
+| *Falta `thumbnail.webp`… Encontré `Thumbnail.png`* | El nombre o el formato no coinciden | Renombrá y convertí a `thumbnail.webp`. |
+| *El frontmatter se cierra con `—`* | El editor cambió `---` por una raya larga | Reemplazá esa línea por `---`. |
+| *Falta el `</Language>` que cierra el bloque…* | Un bloque `<Language>` quedó abierto | Agregá `</Language>` al final de ese bloque. |
+| *`date: …` no es una fecha válida* | La fecha no tiene el formato AAAA-MM-DD | Escribila con dos dígitos para el mes y el día: `2026-09-03`, no `2026-9-3`. |
+| *El valor de … tiene ": "* / *no es YAML válido* | Un título u otro valor tiene dos puntos | Poné el valor entre comillas: `title: "Entropía: el caos"`. |
+| *Falta la sección `**Bibliografía**`* (u otra) | Falta un título de sección o está escrito distinto | Usá los títulos de la plantilla, en negrita. |
+| *Quedó el texto de la plantilla…* | No reemplazaste el texto de ejemplo | Escribí tu propio texto. |
+
+### Paso 10. Corregir tu entrega (sin abrir otro pull request)
+
+Si la revisión marca errores o la cátedra te pide cambios, **no abras un pull request nuevo**. Corregí los archivos en **la misma rama**: el PR se actualiza solo y la revisión vuelve a ejecutarse.
+
+1. Entrá a tu fork (`https://github.com/TU-USUARIO/la-piscine`).
+2. En el selector de ramas, elegí **tu rama** (`branch-2026-tp1-…`).
+3. Entrá a `_projects` y después a tu carpeta.
+
+**Para corregir un texto** (`statement.mdx` o `sketch.js`): hacé clic en el archivo y después en el ícono del lápiz (**Edit this file**). Hacé los cambios y hacé clic en el botón verde **Commit changes…**. En la ventana que se abre, escribí un mensaje breve (por ejemplo `Corrijo fecha`), dejá marcada la opción **Commit directly to the `branch-2026-tp1-…` branch** y hacé clic en **Commit changes**.
+
+**Para reemplazar la miniatura:** dentro de tu carpeta, hacé clic en **Add file** y elegí **Upload files**. Arrastrá el archivo nuevo, con **el mismo nombre** (`thumbnail.webp`): reemplaza al anterior. Hacé el commit en tu rama, como en el paso 7.
+
+### Después de la aceptación
+
+- Cuando la cátedra acepta tu obra, el PR pasa a **Merged** (en violeta). En unos minutos tu obra aparece en la [galería](https://knnv-ar.github.io/la-piscine/).
+- Si GitHub te ofrece **Delete branch** en el PR, podés borrar la rama: ya cumplió su función.
+- **Para el TP2** no hagas otro fork: volvé al paso 3 (Sync fork), creá una **rama nueva** y seguí la [guía de montaje del TP2](/clases/misc/guia-montaje-tp2/).
+
+Luego, como siempre, revisaremos juntos tu pull request en clase.
+
+### Glosario: botones de GitHub que usa esta guía
+
+| Botón o texto en pantalla | Dónde aparece | Qué hace |
+|---------------------------|---------------|----------|
+| **Fork** | Repositorio de la galería, arriba a la derecha | Crea tu copia |
+| **Create fork** | Página *Create a new fork* | Confirma la creación del fork |
+| **Sync fork** → **Update branch** | Tu fork, encima de la lista de archivos | Trae las novedades de la galería |
+| **Find or create a branch…** | Selector de ramas | Buscar o crear una rama |
+| **Create branch … from `main`** | Selector de ramas | Crea tu rama a partir de `main` |
+| **Add file** → **Upload files** | Dentro de una carpeta, arriba a la derecha | Abre la página para subir archivos |
+| **Commit directly to the … branch** | Debajo de los archivos subidos | Guarda los cambios en la rama elegida |
+| **Commit changes** | Botón verde al pie | Confirma el commit |
+| **Compare & pull request** | Franja amarilla después del commit | Empieza el pull request |
+| **Contribute** → **Open pull request** | Página principal de tu fork | Alternativa si no aparece la franja amarilla |
+| **Create pull request** | Botón verde al pie de *Open a pull request* | Envía tu entrega |
+| **Edit this file** (lápiz) | Al abrir un archivo | Editar un archivo en el navegador |
+| **Details** | Junto a la revisión automática, en el PR | Muestra el detalle de los errores |
 
 ### ¡Felicitaciones por llegar hasta acá y ser parte de `<la-piscine>` v3!
