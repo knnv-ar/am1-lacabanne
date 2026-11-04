@@ -339,7 +339,7 @@ Al abrir el pull request se ejecuta la revisión **Revisión de obras / Revisar 
 Los resultados posibles:
 
 - ✅ **En verde:** todo está en orden. La cátedra revisa tu obra y la acepta (*merge*).
-- ❌ **En rojo:** hay algo para corregir. Hacé clic en **Details** junto a la revisión: arriba vas a ver un resumen con cada error, el archivo y la línea. Corregilo como se explica en el paso 10.
+- ❌ **En rojo:** hay algo para corregir. Hacé clic en **Details** junto a la revisión: arriba vas a ver un resumen con cada error, el archivo y la línea. Corregilo en la misma rama y sin abrir otro pull request, como se explica en el paso 10.
 - 🟡 **En espera durante mucho tiempo** (*Queued*, más de 10 minutos): no es un problema de tu obra. Revisá [githubstatus.com](https://www.githubstatus.com/): seguramente GitHub tiene un incidente. No vuelvas a subir nada ni abras otro PR: cuando lo resuelvan, la revisión arranca sola.
 
 :::note
@@ -350,7 +350,7 @@ La primera vez que contribuís al repositorio, la revisión queda en espera (*wo
 
 | Mensaje (resumido) | Qué pasó | Solución |
 |--------------------|----------|----------|
-| *modifica archivos fuera de `_projects/…`* | Subiste la carpeta en la raíz o tocaste otros archivos | Escribí a la cátedra. Lo más simple suele ser cerrar el PR y repetir los pasos 3 a 8 en una rama nueva. |
+| *modifica archivos fuera de `_projects/…`* | Subiste la carpeta en la raíz o tocaste otros archivos | Borrá lo que quedó afuera con **Delete directory** y subilo en el lugar correcto. Ver los casos particulares del paso 10. |
 | *`thumbnail.webp` es en realidad una imagen PNG…* | Le cambiaste la extensión a un PNG o JPG | Convertí la imagen a WebP y subila de nuevo (paso 10). |
 | *La miniatura mide … px* | No mide 360 × 360 | Recortala en cuadrado, redimensionala a 360 × 360 y volvé a subirla. |
 | *Falta `thumbnail.webp`… Encontré `Thumbnail.png`* | El nombre o el formato no coinciden | Renombrá y convertí a `thumbnail.webp`. |
@@ -361,17 +361,46 @@ La primera vez que contribuís al repositorio, la revisión queda en espera (*wo
 | *Falta la sección `**Bibliografía**`* (u otra) | Falta un título de sección o está escrito distinto | Usá los títulos de la plantilla, en negrita. |
 | *Quedó el texto de la plantilla…* | No reemplazaste el texto de ejemplo | Escribí tu propio texto. |
 
-### Paso 10. Corregir tu entrega (sin abrir otro pull request)
+### Paso 10. Si algo salió mal: cómo corregir tu entrega
 
-Si la revisión marca errores o la cátedra te pide cambios, **no abras un pull request nuevo**. Corregí los archivos en **la misma rama**: el PR se actualiza solo y la revisión vuelve a ejecutarse.
+Equivocarse es normal, y **casi todo se corrige en la misma rama y en el mismo pull request**.
 
-1. Entrá a tu fork (`https://github.com/TU-USUARIO/la-piscine`).
-2. En el selector de ramas, elegí **tu rama** (`branch-2026-tp1-…`).
-3. Entrá a `_projects` y después a tu carpeta.
+| Pregunta | Respuesta |
+|----------|-----------|
+| ¿Tengo que hacer otro fork? | **No, nunca.** El fork se hace una sola vez. Tampoco lo borres: si lo borrás, se cierra tu pull request. |
+| ¿Tengo que crear otra rama? | **No.** Corregí en la misma rama de tu entrega (`branch-2026-tp1-…`). No la borres hasta que acepten tu obra. |
+| ¿Tengo que volver a subir todos los archivos? | **No hace falta**: alcanza con subir los que corregiste. Si te resulta más simple, podés volver a arrastrar la carpeta completa: los archivos que no cambiaron quedan igual. |
+| ¿Tengo que abrir otro pull request? | **No.** Cada commit que hagas en tu rama se suma solo al pull request abierto, y la revisión automática vuelve a ejecutarse. |
 
-**Para corregir un texto** (`statement.mdx` o `sketch.js`): hacé clic en el archivo y después en el ícono del lápiz (**Edit this file**). Hacé los cambios y hacé clic en el botón verde **Commit changes…**. En la ventana que se abre, escribí un mensaje breve (por ejemplo `Corrijo fecha`), dejá marcada la opción **Commit directly to the `branch-2026-tp1-…` branch** y hacé clic en **Commit changes**.
+**Cómo corregir (recomendado):**
 
-**Para reemplazar la miniatura:** dentro de tu carpeta, hacé clic en **Add file** y elegí **Upload files**. Arrastrá el archivo nuevo, con **el mismo nombre** (`thumbnail.webp`): reemplaza al anterior. Hacé el commit en tu rama, como en el paso 7.
+1. Corregí los archivos **en tu computadora**. Así tu copia queda siempre igual a la que entregaste.
+2. Entrá a tu fork y elegí **tu rama** en el selector de ramas.
+3. Entrá a `_projects` y hacé clic en **Add file** → **Upload files**.
+4. Arrastrá **otra vez tu carpeta completa**. Los archivos con el mismo nombre se reemplazan.
+5. Hacé el commit como en el paso 7. Escribí un mensaje que diga qué corregiste (por ejemplo `Corrijo miniatura`) y dejá marcada la opción **Commit directly to the `branch-2026-tp1-…` branch**.
+6. Volvé a tu pull request: vas a ver el commit nuevo y la revisión ejecutándose otra vez.
+
+Para un cambio chico de texto también podés usar el lápiz (**Edit this file**) en el navegador: abrí el archivo, hacé el cambio, hacé clic en **Commit changes…** y confirmá en tu rama. Si lo hacés, repetí el mismo cambio en tu computadora.
+
+:::caution[Subir de nuevo no borra]
+Volver a subir reemplaza o agrega archivos, pero **no borra** los que ya estaban. Si renombraste o eliminaste un archivo, el viejo sigue en tu rama. Para borrarlo:
+
+1. Abrilo y, en el menú **⋯** de arriba a la derecha, elegí **Delete file**.
+2. Hacé el commit en tu rama.
+:::
+
+**Casos particulares**
+
+| Qué pasó | Qué hacer |
+|----------|-----------|
+| Subí mi carpeta fuera de `_projects` (en la raíz) | En tu rama, entrá a la carpeta mal ubicada. En el menú **⋯** de arriba a la derecha, elegí **Delete directory** y hacé el commit en tu rama. Después subila bien (pasos 5 a 7). El mismo pull request se actualiza. |
+| El nombre de mi carpeta está mal (por ejemplo `tp-1`) | Igual que el caso anterior: borrá la carpeta mal nombrada con **Delete directory** y subí la carpeta con el nombre correcto. Para corregir el título del PR, usá el botón **Edit**, al lado del título. |
+| Me olvidé un archivo | Entrá a tu carpeta, con tu rama seleccionada, y subí solo ese archivo con **Add file** → **Upload files**. |
+| Hice el commit en `main` en lugar de mi rama | No es grave: abrí el pull request igual (en **compare** va a figurar `main`) y hacé las correcciones en `main`. Cuando acepten tu obra, el **Sync fork** de la próxima entrega va a funcionar normalmente. Si la obra no se acepta, ahí sí usá **Discard commits** (paso 3). |
+| Cerré el pull request sin querer | Entrá al PR y hacé clic en **Reopen pull request**. |
+| Ya aceptaron mi obra y encontré un error | Ese PR ya está cerrado. Hacé **Sync fork**, creá una rama nueva (por ejemplo `branch-2026-tp1-perez-garcia-amparo-correccion`), subí lo corregido y abrí un pull request nuevo. **Es el único caso en que hace falta un PR nuevo.** |
+| No sé qué pasó / se complicó | Antes de borrar nada, escribí a la cátedra con el link de tu pull request. |
 
 ### Después de la aceptación
 
