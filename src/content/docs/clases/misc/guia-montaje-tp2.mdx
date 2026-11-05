@@ -6,6 +6,23 @@ sidebar:
   hidden: false
 ---
 
+import { Image } from 'astro:assets';
+
+import img1 from './la-piscine-entregas-github-2026-01.png';
+import img2 from './la-piscine-entregas-github-2026-02.png';
+import img3 from './la-piscine-entregas-github-2026-03.png';
+import img4 from './la-piscine-entregas-github-2026-04.png';
+import img5 from './la-piscine-entregas-github-2026-05.png';
+import img6 from './la-piscine-entregas-github-2026-06.png';
+import img7 from './la-piscine-entregas-github-2026-07.png';
+import img8 from './la-piscine-entregas-github-2026-08.png';
+import img9 from './la-piscine-entregas-github-2026-09.png';
+import img10 from './la-piscine-entregas-github-2026-10.png';
+import img11 from './la-piscine-entregas-github-2026-11.png';
+import img12 from './la-piscine-entregas-github-2026-12.png';
+import img13 from './la-piscine-entregas-github-2026-13.png';
+import img14 from './la-piscine-entregas-github-2026-14.png';
+
 Esta guía corresponde a la **instancia obligatoria 12: Montaje del TP Nº 2 corregido para la exposición de fin de año**, que se realizará el **miércoles 25/11/2026** mediante un pull request al repositorio de `<la-piscine>` en GitHub. Podés consultar la consigna completa en la página del [Trabajo Práctico Nº 2](/tps/tp-2/).
 
 #### ⚠️ IMPORTANTE: Nomenclatura de archivos y carpetas
@@ -339,11 +356,16 @@ GitHub puede pedirte que actives la **verificación en dos pasos** (*two-factor 
 
 1. Con tu sesión iniciada, entrá a [github.com/knnv-ar/la-piscine](https://github.com/knnv-ar/la-piscine).
 2. Arriba a la derecha, hacé clic en el botón **Fork**.
+
+<Image src={img1} alt="" width="600" />
+
 3. Se abre la página **Create a new fork**:
    - **Owner**: tu usuario (ya viene seleccionado).
    - **Repository name**: dejá `la-piscine`, sin cambiarlo.
    - Dejá tildada la casilla **Copy the `main` branch only**.
 4. Hacé clic en el botón verde **Create fork**.
+
+<Image src={img2} alt="" width="600" />
 
 Vas a quedar en **tu** copia: arriba a la izquierda dice `TU-USUARIO / la-piscine` y, debajo, *forked from knnv-ar/la-piscine*. Tu fork siempre está en `https://github.com/TU-USUARIO/la-piscine`.
 
@@ -358,6 +380,8 @@ Tu fork es una foto del repositorio en el momento en que lo creaste. Desde que l
    - *This branch is N commits behind knnv-ar/la-piscine:main.* → Está desactualizado. Hacé clic en **Sync fork** y después en el botón verde **Update branch**.
    - *This branch is N commits ahead of…* → Alguna vez subiste algo directamente a `main` de tu fork. Abrí **Sync fork** y elegí la opción para descartar esos commits (**Discard N commits**). No afecta a la galería, solo limpia tu copia. Si no estás seguro/a, consultá antes.
 
+<Image src={img3} alt="" width="600" />
+
 ### Paso 4. Crear tu rama (branch) y seleccionarla
 
 Cada entrega va en una rama propia. Así tu PR contiene solo tu obra.
@@ -365,7 +389,12 @@ Cada entrega va en una rama propia. Así tu PR contiene solo tu obra.
 1. En tu fork, con `main` seleccionado, hacé clic en el **selector de ramas**: el botón que dice `main`, con un ícono de rama, arriba a la izquierda de la lista de archivos.
 2. En el campo **Find or create a branch…**, escribí el nombre de tu rama, separado por guiones medios: `branch`, el año de cursada, el número de TP, tus apellidos y tus nombres. Por ejemplo: `branch-2026-tp2-perez-garcia-amparo`.
 3. Hacé clic en la opción **Create branch `branch-2026-tp2-perez-garcia-amparo` from `main`**.
+
+<Image src={img4} alt="" width="600" />
+
 4. **Verificá que el selector ahora muestre tu rama** y no `main`. Todo lo que sigue se hace con tu rama seleccionada.
+
+<Image src={img5} alt="" width="600" />
 
 :::tip
 Si cerrás la página y volvés más tarde, GitHub abre `main`. Antes de seguir, volvé a elegir tu rama en el selector.
@@ -374,7 +403,12 @@ Si cerrás la página y volvés más tarde, GitHub abre `main`. Antes de seguir,
 ### Paso 5. Entrar a la carpeta `_projects`
 
 1. Con tu rama seleccionada, hacé clic en la carpeta **`_projects`** de la lista de archivos.
+
+<Image src={img6} alt="" width="600" />
+
 2. Verificá dos cosas: arriba se ve la ruta `la-piscine / _projects /`, y el selector de ramas sigue mostrando **tu rama**.
+
+<Image src={img7} alt="" width="600" />
 
 :::danger[No subas nada en la raíz del repositorio]
 La raíz es la primera pantalla, donde están `README.md`, `src`, etc. Las obras van **siempre** dentro de `_projects`. Si tu carpeta queda afuera, la obra no aparece en la galería y la revisión automática rechaza el pull request.
@@ -383,11 +417,16 @@ La raíz es la primera pantalla, donde están `README.md`, `src`, etc. Las obras
 ### Paso 6. Subir tu carpeta completa
 
 1. Dentro de `_projects`, arriba a la derecha, hacé clic en **Add file** y elegí **Upload files**.
+
+<Image src={img8} alt="" width="600" />
+
 2. En la página de carga, revisá que arriba diga `la-piscine / _projects /`.
 3. Abrí el explorador de archivos de tu computadora y **arrastrá la carpeta completa** (`2026-tp2-perez-garcia-amparo`) al recuadro que dice *Drag files here to add them to your repository*.
    - Arrastrá **la carpeta**, no los archivos sueltos. Así GitHub crea la subcarpeta con tu nombre.
    - El enlace **choose your files** no deja elegir carpetas: usá arrastrar y soltar.
 4. Esperá a que termine la carga y se listen **todos** tus archivos: `sketch.js`, `statement.mdx`, `thumbnail.webp` y todos los recursos, dentro de sus subcarpetas (por ejemplo `imagenes/fondo-noche.webp`). **Revisá que no falte ninguno** antes de hacer el commit.
+
+<Image src={img9} alt="" width="600" />
 
 :::caution[Límites de GitHub]
 - **25 MB por archivo.** Si un archivo pesa más, GitHub no lo deja subir: comprimilo (por ejemplo, bajá la resolución de la imagen o del video, o exportá el audio en `.mp3`).
@@ -403,13 +442,21 @@ Debajo de la lista de archivos está la sección **Commit changes**:
 3. Revisá que esté marcada la opción **Commit directly to the `branch-2026-tp2-perez-garcia-amparo` branch**. Si en lugar de tu rama dice `main`, **no hagas el commit**: volvé al paso 4 y seleccioná tu rama.
 4. Hacé clic en el botón verde **Commit changes**.
 
+<Image src={img10} alt="" width="600" />
+
 Para comprobarlo, en `_projects` ahora tiene que aparecer tu carpeta. Entrá y fijate que estén tus archivos.
 
 ### Paso 8. Abrir el pull request
 
 1. Después del commit, aparece arriba una franja amarilla con el texto *branch-2026-tp2-perez-garcia-amparo had recent pushes…* y un botón verde **Compare & pull request**. Hacé clic en él. Si la franja no aparece, volvé a la página principal de tu fork, hacé clic en **Contribute** (arriba de la lista de archivos) y después en **Open pull request**.
+
+<Image src={img11} alt="" width="600" />
+
 2. Se abre la página **Open a pull request** en el repositorio de la galería (`knnv-ar/la-piscine`). Revisá la barra de arriba: tiene que decir `base repository: knnv-ar/la-piscine`, `base: main` ← `head repository: TU-USUARIO/la-piscine`, `compare: branch-2026-tp2-perez-garcia-amparo`, y debajo **✓ Able to merge**.
 3. **Título:** viene completado con el mensaje de tu commit (el nombre de tu carpeta). Si no, escribilo.
+
+<Image src={img12} alt="" width="600" />
+
 4. **Descripción:** viene con la plantilla de la cátedra. Para marcar una casilla, cambiá `- [ ]` por `- [x]` (una equis, sin espacios dentro de los corchetes). Completala así:
    1. Escribí tu nombre y el trabajo práctico donde lo pide.
    2. Marcá las casillas de **archivos** (sketch, statement, miniatura y nombres en kebab-case, también en los recursos).
@@ -420,7 +467,11 @@ Para comprobarlo, en `_projects` ahora tiene que aparecer tu carpeta. Entrá y f
 6. Más abajo en la misma página, revisá el listado de cambios: tienen que aparecer **solo** tus archivos, todos dentro de `_projects/2026-tp2-perez-garcia-amparo/`.
 7. Hacé clic en el botón verde **Create pull request**.
 
+<Image src={img13} alt="" width="600" />
+
 Tu pull request queda en la lista de [pull requests de la galería](https://github.com/knnv-ar/la-piscine/pulls).
+
+<Image src={img14} alt="" width="600" />
 
 ### Paso 9. La revisión automática
 
